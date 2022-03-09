@@ -16,4 +16,4 @@ void main()
 }
 ```
 
-![emt](test/emt.png)
+![](emt.png)
