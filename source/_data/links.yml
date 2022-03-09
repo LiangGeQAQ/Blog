@@ -1,11 +1,17 @@
-- name: XPoet
-  link: https://xpoet.cn/
-  description: 所有命运的馈赠，早已在暗中标好价格。
-  avatar: https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg
+- name: LiangGe
+  link: https://www.liliaw.com/
+  description: 星星拼命发光，是为了让人能够看到。
+  avatar: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
 
 - name: Anillc
   link: https://ani.llc/
   description: https://ani.llc | AS142055 | BG8KYF
   avatar: https://s3.bmp.ovh/imgs/2022/03/48a359f41b79c06f.jpg
 
-- ......
+- name: XPoet
+  link: https://xpoet.cn/
+  description: 所有命运的馈赠，早已在暗中标好价格。
+  avatar: https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg
+
+
+

@@ -54,10 +54,9 @@ style:
 social_contact:
   enable: true
   links:
+    bilibili: https://space.bilibili.com/45024635 #your Bilibili URL
     github: https://github.com/LiangGeQAQ # your GitHub URL
     zhihu: https://www.zhihu.com/people/ci-jin-wu-zai-wu-huan-yue # your ZhiHu URL
-    twitter: LiangGe233@outlook.com # your twitter URL
-    bilibili: https://space.bilibili.com/45024635 #your Bilibili URL
     email: LiangGe233@outlook.com # your email
 
 # ---------------------------------------------------------------------------------------
@@ -99,9 +98,9 @@ post:
   # Author label
   author_label:
     enable: true
-    auto: true # if true, show Lv1, Lv2, Lv3... , If false, show custom label
+    auto: false # if true, show Lv1, Lv2, Lv3... , If false, show custom label
     # label array item can be one or more
-    custom_label_list: ["Trainee", "Engineer", "Architect", "CTO", "BOSS"]
+    custom_label_list: ["凉凉成长态", "凉凉进化态", "凉凉超进化态", "凉凉超超进化态", "萌新"]
 
 # ---------------------------------------------------------------------------------------
 # Code copy
