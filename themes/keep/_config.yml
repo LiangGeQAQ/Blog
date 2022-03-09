@@ -2,7 +2,7 @@
 #  Your basic info
 # ---------------------------------------------------------------------------------------
 base_info:
-  title: Liang's Blog╰(￣ω￣ｏ)
+  title: Liang's Blog ♥
   author: 凉凉不冷
   url: https://www.liliaw.com/
   # Logo image (You can use local image, image external link or don’t fill)
@@ -38,7 +38,7 @@ style:
   # First screen
   first_screen:
     enable: true
-    background_img: /images/bg.svg # You can use local image or image external link
+    background_img: /images/bg.png # You can use local image or image external link
     description: 星星拼命发光，是为了让人看见。
 
   # Scroll style settings
@@ -54,10 +54,9 @@ style:
 social_contact:
   enable: true
   links:
+    # fa-file-video: https://space.bilibili.com/45024635 #your Bilibili URL
     github: https://github.com/LiangGeQAQ # your GitHub URL
     zhihu: https://www.zhihu.com/people/ci-jin-wu-zai-wu-huan-yue # your ZhiHu URL
-    twitter: LiangGe233@outlook.com # your twitter URL
-    bilibili: https://space.bilibili.com/45024635 #your Bilibili URL
     email: LiangGe233@outlook.com # your email
 
 # ---------------------------------------------------------------------------------------
@@ -98,10 +97,10 @@ post:
 
   # Author label
   author_label:
-    enable: true
-    auto: true # if true, show Lv1, Lv2, Lv3... , If false, show custom label
+    enable: false
+    auto: false # if true, show Lv1, Lv2, Lv3... , If false, show custom label
     # label array item can be one or more
-    custom_label_list: ["Trainee", "Engineer", "Architect", "CTO", "BOSS"]
+    custom_label_list: ["凉凉成长态", "凉凉进化态", "凉凉超进化态", "凉凉超超进化态", "萌新"]
 
 # ---------------------------------------------------------------------------------------
 # Code copy
@@ -114,10 +113,10 @@ code_copy:
 # Table of Contents in the Sidebar
 # ---------------------------------------------------------------------------------------
 toc:
-  enable: false
+  enable: true
 
   # Automatically add list number to toc.
-  number: false
+  number: true
 
   # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
   expand_all: false
