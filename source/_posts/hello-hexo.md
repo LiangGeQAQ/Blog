@@ -2,8 +2,8 @@
 title: Hello Hexo!
 date: 2022-03-08 20:37:40
 tags: [Hexo]
-categories: [Hexo]
-stucky: 999
+categories: [日常]
+stucky: 99999
 ---
 
 Just a spur of the moment, I wanna start a blog.
