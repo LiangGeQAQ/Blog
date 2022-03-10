@@ -21,7 +21,7 @@ date: 2022-03-08 19:45:10
 +	周末闲暇时会 Play Guitar🎸
 
 # Contact me
-+	Bilibili：[<u>@凉歌小可爱吖</u>](https://space.bilibili.com/45024635)
++	Bilibili：[<u>@小可爱凉歌吖</u>](https://space.bilibili.com/45024635)
 +	邮箱：LiangGe233@outlook.com
 +	Blog：https://www.liliaw.com/
 
