@@ -38,7 +38,7 @@ style:
   # First screen
   first_screen:
     enable: true
-    background_img: /images/bg.png # You can use local image or image external link
+    background_img: /images/bg.gif # You can use local image or image external link
     description: 星星拼命发光，是为了让人看见。
 
   # Scroll style settings
