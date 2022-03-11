@@ -6,8 +6,6 @@ tags: [C,malloc,动态分配]
 categories: C语言
 comment: true
 ---
-# 关于C语言动态分配内存
-
 ## 传统数组的缺点
 
 1.  数组长度必须事先指定，只能是常量，不能是变量；
@@ -135,7 +133,7 @@ malloc与ffree一定要成对存在，一一对应。
 
 
 
-## 使用malloc创建动态数组
+## 例. 使用malloc创建动态数组
 
 ```c
 a = (double *) malloc(n * sizeof(double));		

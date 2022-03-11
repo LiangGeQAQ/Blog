@@ -1,13 +1,11 @@
 ---
-title: The Beginning
+title: The-Beginning
 mathjax: true
 date: 2022-03-10 14:22:22
 tags: [Hexo,Beginning]
 categories: 日常
 comment: true
 ---
-
-# The Beginning
 
 >   至于为什么会突然想到 **Start a Blog**，
 >
@@ -29,4 +27,4 @@ comment: true
 
 主页的深色调模式和背景匹配起来还是有点BUG啊啊啊啊啊啊
 
-![1646914377709](1646914377709.png)
+![](https://s3.bmp.ovh/imgs/2022/03/6cc9cc3d44da4958.png)

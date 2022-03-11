@@ -7,25 +7,23 @@ categories: [STM32]
 comment: true
 ---
 
-#  STM32学习记录
-
 +   相关说明
 
     本文仅为个人学习记录，若有错误欢迎指出，相关的参考文章会在本文末进行列出，主要参考视频为**Blibili**[@正点原子官方](https://space.bilibili.com/394620890?from=search&seid=13393056502650554081&spm_id_from=333.337.0.0)，以及**Blibili**[@野火_firege](https://space.bilibili.com/356820657?from=search&seid=6957304932395919416&spm_id_from=333.337.0.0)。
 
-相关的可参考文件：
+    +   相关的可参考文件：
 
-[STM32 中文参考手册](http://www.stm32er.com/zb_users/upload/2021/01/202101191611046723128863.pdf)
+    [STM32 中文参考手册](http://www.stm32er.com/zb_users/upload/2021/01/202101191611046723128863.pdf)
 
-[STM32 选型手册 2021](https://www.stmcu.com.cn/upload/Selection_Guide.pdf)
+    [STM32 选型手册 2021](https://www.stmcu.com.cn/upload/Selection_Guide.pdf)
 
-[STM32F103C8T6 ](https://pdf1.alldatasheetcn.com/datasheet-pdf/view/201596/STMICROELECTRONICS/STM32F103C8T6.html)
+    [STM32F103C8T6 ](https://pdf1.alldatasheetcn.com/datasheet-pdf/view/201596/STMICROELECTRONICS/STM32F103C8T6.html)
 
 # 1.  STM32概述
 
 ## 1.1 **CM3**芯片结构
 
-![CM3芯片结构](CM3芯片结构.png)
+![](https://s3.bmp.ovh/imgs/2022/03/2dd63aab5ae67707.png)
 
 上图为Cortex-M3 芯片的结构图，总的来说，内核是由**ARM**公司来设计的，
 
@@ -33,7 +31,7 @@ comment: true
 
 ## 1.2 STM32F103系列
 
-![F103结构](F103结构.png)
+![](https://s3.bmp.ovh/imgs/2022/03/47b00675cee9d26c.png)
 
 总的来说**STM32F103**系列芯片
 
@@ -52,7 +50,7 @@ comment: true
 
 1.  **内核**通过**ICode总线**控制**外设**；
 
-![ICode](ICode.png)
+![](https://s3.bmp.ovh/imgs/2022/03/e58a15af0c523e3e.png)
 
 2.  **DCode**为**数据总线**；
 
@@ -68,7 +66,7 @@ comment: true
 
 ## 1.3 命名规则
 
-![命名](命名.png)
+![](https://s3.bmp.ovh/imgs/2022/03/2a4430e84a485b9f.png)
 
 区分32选型因素：
 
