@@ -146,7 +146,7 @@ comment: true
 
 填写方式如下，
 
-**README.md **可以不用勾选。
+**README.md**可以不用勾选。
 
 <img src = 'https://s3.bmp.ovh/imgs/2022/03/88161a9d9dbd2cfa.png' />
 
