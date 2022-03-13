@@ -43,7 +43,7 @@ comment: true
 
 ## 0.4 How they work？
 
-本地撰写好 **Markdown** 格式文章后，通过 **Hexo** 解析文档，渲染生成各类主题样式的 **HTML** [静态网页](https://baike.baidu.com/item/%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/6327183)，再上传到 **GitHub** **Repo** 中，**Vercel** 通过拉拉取 **GitHub** **库** 中的数据以供访客访问。
+本地撰写好 **Markdown** 格式文章后，通过 **Hexo** 解析文档，渲染生成各类主题样式的 **HTML** [静态网页](https://baike.baidu.com/item/%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/6327183)，再上传到 **GitHub** **Repo** 中，**Vercel** 通过拉取 **GitHub** **库** 中的数据以供访客访问。
 
 <img src = 'https://s3.bmp.ovh/imgs/2022/03/40038a04b8da3713.png' />
 
@@ -89,11 +89,11 @@ comment: true
 
 新建一个名为“**Blog**”的文件夹，
 
-如果出现如下类似问题（即误操作权限等问题），
+如果出现如下类似问题（即无操作权限等问题），
 
 ![](https://s3.bmp.ovh/imgs/2022/03/2b93afa21cdfea92.jpg)
 
-分别给 **Node**、Git 与 我们创建的 **Blog** 文件夹管理员权限。
+分别给 **Node**、**Git** 与 我们创建的 **Blog** 文件夹管理员权限。
 
 在文件夹内右键打开 “**Git Bash Here**”，
 
@@ -233,9 +233,10 @@ npm install -g hexo
 
 `git push -u origin main`
 
-这一步千万千万不要上传到**master**！！！
+这一步千万千万不要上传到**master**分支！！！
 
-<center>千万不要！！！<center/>
+<div align = "center">千万不要！！！</div>
+
 
 ## 2.6 Vercel配置
 
@@ -279,7 +280,7 @@ npm install -g hexo
 
 `hexo new page 页面名`
 
-模板储存同上。
+模板储存地址同上。
 
 ## 3.3 上传页面
 
