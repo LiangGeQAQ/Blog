@@ -100,4 +100,5 @@ $\tfrac{X方向切线对图形的切点数N_X}{Y方向切线对图形的切点�
 
 [在multisim中，如何产生李萨如图形，我没找到相位调节的地方_百度知道 (baidu.com)](https://zhidao.baidu.com/question/1796430360334163547.html)
 
-<div align = "center"><img src="emt.png"  width="500"  height = "800" /></div>
+<div align = "center"><img src="emt.png"/></div>
+
