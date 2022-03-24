@@ -8,4 +8,3 @@ void main()
 }
 ```
 
-![emt](source/_posts/test/emt.png)
