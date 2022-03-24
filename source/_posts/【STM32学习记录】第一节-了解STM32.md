@@ -9,7 +9,7 @@ comment: true
 
 +   相关说明
 
-    本文仅为个人学习记录，若有错误欢迎指出，相关的参考文章会在本文末进行列出，主要参考视频为**Blibili**[@正点原子官方](https://space.bilibili.com/394620890?from=search&seid=13393056502650554081&spm_id_from=333.337.0.0)，以及**Blibili**[@野火_firege](https://space.bilibili.com/356820657?from=search&seid=6957304932395919416&spm_id_from=333.337.0.0)。
+    本系列文章仅为个人学习记录，若有错误欢迎指出，相关的参考文章会在本文末进行列出，主要参考视频为**Blibili**[@正点原子官方](https://space.bilibili.com/394620890?from=search&seid=13393056502650554081&spm_id_from=333.337.0.0)，以及**Blibili**[@野火_firege](https://space.bilibili.com/356820657?from=search&seid=6957304932395919416&spm_id_from=333.337.0.0)。
 
     +   相关的可参考文件：
 
