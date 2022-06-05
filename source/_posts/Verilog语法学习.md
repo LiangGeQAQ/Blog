@@ -2,7 +2,7 @@
 title: Verilog语法学习
 mathjax: true
 date: 2022-06-05 16:12:16
-tags: [Verilog,语法]
+tags: [Verilog,语法,硬件描述语言]
 categories: [Verilog]
 comment: true
 ---
@@ -792,7 +792,7 @@ end
 {expr1,expr2,...,exprN};
 ```
 
-拼接操作是更换组合方式，不消耗任何硬件资源。
+拼接操作是更换接线组合方式，不消耗任何硬件资源。
 
 #### 样例
 
@@ -806,7 +806,7 @@ assign Dbus = {Dbus[3:0], Dbus[7:4]};
 
 由于非定长常数的长度未知，不允许连接非定长常数。
 
-## 5. 功能描述-时序逻辑
+## 5. 时序逻辑
 
 ### 5.1 always 语句
 
