@@ -1,4 +1,4 @@
-s- name: LiangGe
+- name: LiangGe
   link: https://www.liliaw.com/
   description: 星星拼命发光，是为了让人能够看到。
   avatar: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
@@ -13,15 +13,10 @@ s- name: LiangGe
   description: 所有命运的馈赠，早已在暗中标好价格。
   avatar: https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg
 
-- name: Anillc
-  link: https://ani.llc/
-  description: https://ani.llc | AS142055 | BG8KYF
-  avatar: https://gravatar.loli.net/avatar/5df946d48b36e6f8061cdfe7ebcdf75c?s=200
-
 - name: Tobios
   link: sonder.tk
   description: 无所谓，随便搞。
-  avatar:
+  avatar: https://ftp.bmp.ovh/imgs/2020/03/2f1655bf85b086d6.png
 
 #- name:
 #  link:
