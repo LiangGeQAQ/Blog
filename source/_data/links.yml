@@ -13,5 +13,17 @@ s- name: LiangGe
   description: 所有命运的馈赠，早已在暗中标好价格。
   avatar: https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg
 
+- name: Anillc
+  link: https://ani.llc/
+  description: https://ani.llc | AS142055 | BG8KYF
+  avatar: https://gravatar.loli.net/avatar/5df946d48b36e6f8061cdfe7ebcdf75c?s=200
 
+- name: Tobios
+  link: sonder.tk
+  description: 无所谓，随便搞。
+  avatar:
 
+#- name:
+#  link:
+#  description:
+#  avatar:
