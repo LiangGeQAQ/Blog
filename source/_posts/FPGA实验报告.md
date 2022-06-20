@@ -13,9 +13,13 @@ comment: Ture
 <embed id="pdfPlayer" src="FPGA.pdf" type="application/pdf" width="100%" height="600" >
 
 
-<center>工程文件：https://pan.baidu.com/s/1qAR_aNCddzzF4p2wE7-Kfg <center/>
 
-<center>提取码：liaw<center/>
+
+工程文件：https://pan.baidu.com/s/1qAR_aNCddzzF4p2wE7-Kfg 
+
+提取码：liaw
+
+<center><center/>
 
 
 
