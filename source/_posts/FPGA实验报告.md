@@ -13,5 +13,7 @@ comment: Ture
 <embed id="pdfPlayer" src="FPGA.pdf" type="application/pdf" width="100%" height="600" >
 
 
+<center><center/>
+
 ![EMT](EMT.png)
 
