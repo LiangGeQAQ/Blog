@@ -23,3 +23,7 @@ S_{PM}(t)
 & = Acos[\omega_ct+m_{PM}cos\omega_mt]\\
 \end{split}
 $$
+
+<center><cneter/>
+
+![LateX并行等式](LateX并行等式.png)
