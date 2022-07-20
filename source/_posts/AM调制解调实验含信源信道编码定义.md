@@ -47,10 +47,10 @@ comment: true
 $$
 \begin{split}
 S_{AM}(t)
-&=A_c[A_0+m(t)]cos\omega_ct \\
-&=(A_cA_0+A_cA_mcos\omega_mt)cos\omega_ct\\
-&=A_ccos\omega_ct+A_cA_mcos\omega_mt\\
-&=A_ccos\omega_ct+\frac{A_cA_m}{2}[cos(\omega_c-\omega_m)t+cos(\omega_ct+\omega_m)t]\\
+&=A_c[A_0+m(t)]cos\omega_ct \newline
+&=(A_cA_0+A_cA_mcos\omega_mt)cos\omega_ct\newline
+&=A_ccos\omega_ct+A_cA_mcos\omega_mt\newline
+&=A_ccos\omega_ct+\frac{A_cA_m}{2}[cos(\omega_c-\omega_m)t+cos(\omega_ct+\omega_m)t]\newline
 &=A_ccos2\pi f_ct+\frac{A_cA_m}{2}[cos2\pi(f_c-f_m)t+cos2\pi(f_c+f_m)t]
 \end{split}
 $$
@@ -84,8 +84,10 @@ S_{AM}(t)=A_c[1+k_a·m(t)]cos\omega_ct，0\leqslant k_a \leqslant 1
 $$
 ​	假设调制信号$m(t)$的最大幅度不是$1$，直流分量$A_0=1$，则根据如下公式进行调幅归一化后的信号的幅度为$ 1 $，
 $$
-\hat{m(t)}=\frac{m(t)}{|m(t)|_{max}}
+\hat {m(t)}=\frac{m(t)}{|m(t)|_{max}}
 $$
+​	
+
 ​	则此时AM信号表达式可写成：
 $$
 S_{AM}(t)=A_c[1+k_a·\hat{m(t)}]cos\omega_ct，0\leqslant  k+a\leqslant 1
@@ -101,7 +103,7 @@ $$
 $$
 \begin{split}
 S_{AM}(t)
-& = A_c[1+k_a·m(t)]cos(\omega_ct)\\
+& = A_c[1+k_a·m(t)]cos(\omega_ct)\newline
 & = [1+k_a·m(t)]cos(2\pi f_ct)
 \end{split}
 $$
@@ -111,13 +113,13 @@ $$
 
 ​	1) 用载波$c(t)$乘以已调信号$S_{AM}(t)$
 $$
-\begin{split}
+\begin{align}
 r(t)
-& = S_{AM}(t)·c(t)\\
-& = A_c[1+k_a·m(t)]cos(2\pi f_ct)cos(2\pi f_ct)\\
-& = [1+k_a·m(t)][\frac{1}{2}(1+cos(1\pi f_ct))]\\
-& = \frac{1}{2}[1+k_a·m(t)]+\frac{1}{2}[1+K_a·m(t)]cos(4\pi f_ct)
-\end{split}
+& = S_{AM}(t)·c(t)\newline
+& = A_c[1+k_a·m(t)]cos(2\pi f_ct)cos(2\pi f_ct)\newline
+& = [1+k_a·m(t)][\frac{1}{2}(1+cos(1\pi f_ct))]\newline
+& = \frac{1}{2}[1+k_a·m(t)]+\frac{1}{2}[1+K_a·m(t)]cos(4\pi f_ct)\newline
+\end{align}
 $$
 ​	2) 利用低通滤波器得到调制信号$ \frac{1}{2}[1+k_a·m(t)]$
 
@@ -223,9 +225,9 @@ $$
 $$
 \begin{split}
 r(t)
-& = S_{AM}(t)·c(t)\\
-& = A_c[1+k_a·m(t)]cos(2\pi f_ct)cos(2\pi f_ct)\\
-& = [1+k_a·m(t)][\frac{1}{2}(1+cos(1\pi f_ct))]\\
+& = S_{AM}(t)·c(t)\newline
+& = A_c[1+k_a·m(t)]cos(2\pi f_ct)cos(2\pi f_ct)\newline
+& = [1+k_a·m(t)][\frac{1}{2}(1+cos(1\pi f_ct))]\newline
 & = \frac{1}{2}[1+k_a·m(t)]+\frac{1}{2}[1+K_a·m(t)]cos(4\pi f_ct)
 \end{split}
 $$
@@ -283,7 +285,7 @@ $$
 
 设符号表中的原始符号为：
 $$
-S=\{s_1,s_2,...,s_n\}
+S=\\{s_1,s_2,...,s_n\\}
 $$
 在大小为$r$的字符集上编码为唯一可解编码的码字长度为$\ell_1,\ell_2,...,\ell_n$
 
@@ -352,15 +354,15 @@ $$
 + 使序列中的各个符号尽可能地互相独立（接触相关性）
 + 使序列中各个符号的出现概率尽可能地相等（概率均匀化）
 
-​	$U=\{(u_1,...,u_M)|u_m\in A,m=1,...,M\}$
+​	$U=\\{(u_1,...,u_M)|u_m\in A,m=1,...,M\\}$
 
-​	$V=\{(v_1,...,v_N)|v_n\in,n=1,...,N\}$
+​	$V=\\{(v_1,...,v_N)|v_n\in,n=1,...,N\\}$
 
 ​	若信源的输出为长度等于$M $的符号序列集合，式中符号$A$为信源符号表，它包含着$K$个不同的符号，$A=\{\alpha k | k=1,...,K\}$,这个信源至多可以输出$KM$个不同的符号序列。
 
 ​	记$||U||=KM$。
 
-​	所谓对这个信源的输出进行编码，就是用一个新的符号表$B$的符号序列集合$V$来表示信源输出的符号序列集合$U$。若$V$的各个序列的长度等于$N$，即式中新的符号表$B$共含$L$个符号，$B=\{b_l|l=1,...,L\}$。它总过可以编出$LN$个不同的码字。
+​	所谓对这个信源的输出进行编码，就是用一个新的符号表$B$的符号序列集合$V$来表示信源输出的符号序列集合$U$。若$V$的各个序列的长度等于$N$，即式中新的符号表$B$共含$L$个符号，$B=\\{b_l|l=1,...,L\\}$。它总过可以编出$LN$个不同的码字。
 
 ​	类似地，记$||V||=LN$。
 

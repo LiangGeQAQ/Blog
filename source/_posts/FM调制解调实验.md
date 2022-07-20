@@ -67,11 +67,11 @@ m(t)=Acos\omega_mt=Acos2\pi f_mt
 $$
 ​	当用该调制信号来进行相位调制PM时，PM已调信号为：
 $$
-\begin{equation*} %加*表示不对公式编号
+\begin{equation*} 
 	\begin{split}
 S_{PM}(t)
-& = Acps[\omega_ct+K_{PM}m(t)]\\
-& = Acos[\omega_ct+m_{PM}cos\omega_mt]\\
+& = Acps[\omega_ct+K_{PM}m(t)]\newline
+& = Acos[\omega_ct+m_{PM}cos\omega_mt]\newline
 	\end{split}
 \end{equation*}
 $$
@@ -82,7 +82,7 @@ $$
 $$
 \begin{split}
 S_{FM}(t)
-& = Acos[\omega_ct+K_{FM}A\lmoustache cos\omega_mt dt]\\
+& = Acos[\omega_ct+K_{FM}A\lmoustache cos\omega_mt dt]\newline
 & = Acos[\omega_ct+m_{FM}sin\omega_mt]
 \end{split}
 $$
@@ -94,7 +94,7 @@ $$
 $$
 \begin{split}
 S_{FM}(t)
-& = Acos[\omega_ct+K_{FM}A_m\lmoustache cos \omega_m\tau d \tau]\\
+& = Acos[\omega_ct+K_{FM}A_m\lmoustache cos \omega_m\tau d \tau]\newline
 & = Acos[\omega_ct+m_{FM}sin\omega_mt]
 \end{split}
 $$
@@ -107,22 +107,22 @@ $$
 ​	证明：
 $$
 \begin{aligned}
-&注:设复数x=a+bi，Re[x]=a,即取实部操作\\
-&将I(t),Q(t)代回原式，有\\
-&S_{FM}(t)=Re\{[Acos(m_{FM}sin\omega_mt)+jAsin(m_{FM}sin\omega_mt)]·e^{j\omega_ct}\}\\
-&由欧拉公式e^{ix}=cosx+sinx\\
-&e^{j\omega_ct}=cos(\omega_ct)+jsin(\omega_ct)\\
-&令a=Acos(m_{FM}sin\omega_mt)\\
-&b=Asin(m_{FM}sin\omega_mt)\\
-&c=cos(\omega_ct)\\
-&d=sin(\omega_ct)\\
-&(a+bj)(c+dj)=ac+adj+bcj+bdj^2\\
-&\therefore Re[(a+bj)(c+dj)]=ac-bd\\
-&令m_{FMsin\omega_mt}=\alpha,\omega_ct=\beta\\
-&由cos(a+b)=cosacosb-sinasinb可得\\
-&Acos(m_{FM}sin\omega_mt)c=cos(\omega_ct)-Asin(m_{FM}sin\omega_mt)sin(\omega_ct)=Acos[m_{FM}sin\omega_mt+\omega_ct]\\
-&\therefore S_{FM}(t)=Re\{[I(t)+jQ(t)]·e^{j\omega_ct}\}\\
-&证毕\\
+&注:设复数x=a+bi，Re[x]=a,即取实部操作\newline
+&将I(t),Q(t)代回原式，有\newline
+&S_{FM}(t)=Re\\{[Acos(m_{FM}sin\omega_mt)+jAsin(m_{FM}sin\omega_mt)]·e^{j\omega_ct}\\}\\
+&由欧拉公式e^{ix}=cosx+sinx\newline
+&e^{j\omega_ct}=cos(\omega_ct)+jsin(\omega_ct)\newline
+&令a=Acos(m_{FM}sin\omega_mt)\newline
+&b=Asin(m_{FM}sin\omega_mt)\newline
+&c=cos(\omega_ct)\newline
+&d=sin(\omega_ct)\newline
+&(a+bj)(c+dj)=ac+adj+bcj+bdj^2\newline
+&\therefore Re[(a+bj)(c+dj)]=ac-bd\newline
+&令m_{FMsin\omega_mt}=\alpha,\omega_ct=\beta\newline
+&由cos(a+b)=cosacosb-sinasinb可得\newline
+&Acos(m_{FM}sin\omega_mt)c=cos(\omega_ct)-Asin(m_{FM}sin\omega_mt)sin(\omega_ct)=Acos[m_{FM}sin\omega_mt+\omega_ct]\newline
+&\therefore S_{FM}(t)=Re\\{[I(t)+jQ(t)]·e^{j\omega_ct}\\}\newline
+&证毕\newline
 \end{aligned}
 $$
 ​	其中，$\tilde{s}(t)=I(t)+jQ(t)=A·e^{j\varphi(t)},\varphi(t)=m_{FM}sin\omega_mt$。
@@ -137,12 +137,12 @@ $$
 $$
 \begin{split}
 arg[\tilde{s}(t-1)·\tilde{s^*}(t)]
-&=arg[a(t-1)e^{j\varphi(t-1)}·a(t)e^{-j\varphi(t)}]\\
-&=\varphi(t-1)-\varphi(t)\\
-& \approx\dfrac{d\varphi}{dt}\\
-& =\dfrac{d(m_{FM}sin\omega_mt)}{dt}\\
-& =m_{FM}·\omega_mcos\omega_mt\\
-& =2\pi f_m·m_{FM}cos\omega_mt\\
+&=arg[a(t-1)e^{j\varphi(t-1)}·a(t)e^{-j\varphi(t)}]\newline
+&=\varphi(t-1)-\varphi(t)\newline
+& \approx\dfrac{d\varphi}{dt}\newline
+& =\dfrac{d(m_{FM}sin\omega_mt)}{dt}\newline
+& =m_{FM}·\omega_mcos\omega_mt\newline
+& =2\pi f_m·m_{FM}cos\omega_mt\newline
 & =2\pi f_m·m_{FM}\dfrac{m(t)}{A_m}
 \end{split}
 $$
@@ -172,14 +172,14 @@ $$
 $$
 \begin{split}
 S_{FM}(t)
-&=Acos[\omega_ct+K_{FM}\lmoustache m(\tau)d\tau]\\
+&=Acos[\omega_ct+K_{FM}\lmoustache m(\tau)d\tau]\newline
 &=Acos\omega_ctcos(K_{FM}\lmoustache m(\tau)d\tau)-Asin\omega_ctsin(K_{FM}\lmoustache m(\tau)d\tau)
 \end{split}
 $$
 ​	当最大瞬时相位偏移远远小于 0.5 时，可有
 $$
 \begin{split}
-&cos(K_{FM}\lmoustache m(\tau)d\tau)\approx1,\\
+&cos(K_{FM}\lmoustache m(\tau)d\tau)\approx1,\newline
 &sin(K_{FM}\lmoustache m(\tau)d\tau)=K_{FM}\lmoustache m(\tau)d\tau
 \end{split}
 $$
@@ -188,60 +188,64 @@ $$
 ​	利用常见的傅里叶变换对
 $$
 \begin{split}
-m(t)&\Leftrightarrow M(\omega)\\
-cos\omega_ct&\Leftrightarrow \pi[\delta(\omega+\omega_c)+\delta(\omega-\omega_c)]\\
-sin\omega_ct&\Leftrightarrow j\pi[\delta(\omega+\omega_c)-\delta(\omega-\omega_c)]\\
+m(t)&\Leftrightarrow M(\omega)\newline
+cos\omega_ct&\Leftrightarrow \pi[\delta(\omega+\omega_c)+\delta(\omega-\omega_c)]\newline
+sin\omega_ct&\Leftrightarrow j\pi[\delta(\omega+\omega_c)-\delta(\omega-\omega_c)]\newline
 \lmoustache m(\tau)d\tau &\Leftrightarrow  \dfrac {M(\omega)}{j\omega}
 \end{split}
 $$
 $$
 \begin{split}
-傅里&叶时移性质\\
-&时移质也称为延时特性，针对连续信号f（t），在时间域上提前或者滞后时间t_0，\\
-则在&频域表现为增加一个线性相位。原始时域连续信号及其傅里叶变换为\\
+&\begin{split}
+傅里&叶时移性质\newline
+&时移质也称为延时特性，针对连续信号f（t），在时间域上提前或者滞后时间t_0，\newline
+则在&频域表现为增加一个线性相位。原始时域连续信号及其傅里叶变换为\newline
 \end{split}
-\\f(t)\leftrightarrow F(jw)\\
-\begin{split}
-则时&移性质可表述为下式\\
-&f(t\pm t_0)\leftrightarrow e^{\pm jwt_0}F(jw)\\
-&在实际的计算机处理中，我们只能处理数字信号，而不能直接处理模拟信号，因此，\\
-针对&数字信号，时移性质可表述为\\
-\end{split}\\
-如果\\
-x(n)\leftrightarrow X(k)\\
-则有\\
-x(n\pm n_0)\leftrightarrow X(k)e^{\frac{j2\pi kn_0}{N}}\\
-\begin{split}
-傅里&叶频域性质\\
-&频移性质与时移性质类似，即在频域的频率偏移，在时域上表现为增加一个线性相位。\\
+\newline
+&f(t)\leftrightarrow F(jw)\newline
+&\begin{split}
+则时&移性质可表述为下式\newline
+&f(t\pm t_0)\leftrightarrow e^{\pm jwt_0}F(jw)\newline
+&在实际的计算机处理中，我们只能处理数字信号，而不能直接处理模拟信号，因此，\newline
+针对&数字信号，时移性质可表述为\newline
+\end{split}\newline
+&如果\newline
+&x(n)\leftrightarrow X(k)\newline
+&则有\newline
+&x(n\pm n_0)\leftrightarrow X(k)e^{\frac{j2\pi kn_0}{N}}\newline
+&\begin{split}
+傅里&叶频域性质\newline
+&频移性质与时移性质类似，即在频域的频率偏移，在时域上表现为增加一个线性相位。\newline
 针对&连续信号有
-\end{split}\\
-如果\\
-f(t)\leftrightarrow F(jw)\\
-则有\\
-f(t)e^{\pm jw_0t}\leftrightarrow F(j(w\mp w_0))\\
-针对数字信号有\\
-如果\\
-x(n)\leftrightarrow X(k)\\
-则有\\
-x(n)e^{\frac{j2\pi kn_0}{N}}\leftrightarrow X(k\mp k_0)\\
-\\
-\begin{split}\\\\
-傅里&叶变换\\
-&直流信号的傅里叶变换是2πδ(ω)根据频移性质可得e^{j\omega_0t}的傅里叶变换是2πδ(ω-ω_0),\\
-再根&据线性性质，可得cos\omega_0t的傅里叶变换\\
-由欧&拉公式\\
-&cos\omega_0t=\frac{1}{2}(e^{j\omega_0t}+e^{-j\omega_0t})\\
-&sin\omega_0t=\frac{1}{2j}(e^{j\omega_0t}-e^{-j\omega_0t})\\
-已知&\\
-&1 \leftrightarrow 2\pi \delta(\omega)\\
-由频&移性质\\
-&1·e^{j\omega_0t}\leftrightarrow 2\pi \delta(\omega-\omega_0)\\
-&1·e^{-j\omega_0t}\leftrightarrow 2\pi \delta(\omega+\omega_0)\\
-\therefore &cos\omega_0t\leftrightarrow \frac{1}{2}[2\pi \delta(\omega-\omega_0)+2\pi\delta(\omega+\omega_0)]=\pi\delta(\omega+\omega_0)+\pi\delta(\omega-\omega_0)\\
-同理&sin\omega_0t\leftrightarrow \frac{1}{2}[2\pi \delta(\omega-\omega_0)-2\pi\delta(\omega+\omega_0)]=\pi\delta(\omega+\omega_0)-\pi\delta(\omega-\omega_0)\\
-\end{split}\\
-若原时间信号f(t)是绝对可积的，则它的傅里叶变换是自变量jw的函数。
+\end{split}\newline
+&如果\newline
+&f(t)\leftrightarrow F(jw)\newline
+&则有\newline
+&f(t)e^{\pm jw_0t}\leftrightarrow F(j(w\mp w_0))\newline
+&针对数字信号有\newline
+&如果\newline
+&x(n)\leftrightarrow X(k)\newline
+&则有\newline
+&x(n)e^{\frac{j2\pi kn_0}{N}}\leftrightarrow X(k\mp k_0)\newline
+\newline
+&\begin{split}\newline
+\newline
+傅里&叶变换\newline
+&直流信号的傅里叶变换是2πδ(ω)根据频移性质可得e^{j\omega_0t}的傅里叶变换是2πδ(ω-ω_0),\newline
+再根&据线性性质，可得cos\omega_0t的傅里叶变换\newline
+由欧&拉公式\newline
+&cos\omega_0t=\frac{1}{2}(e^{j\omega_0t}+e^{-j\omega_0t})\newline
+&sin\omega_0t=\frac{1}{2j}(e^{j\omega_0t}-e^{-j\omega_0t})\newline
+已知&\newline
+&1 \leftrightarrow 2\pi \delta(\omega)\newline
+由频&移性质\newline
+&1·e^{j\omega_0t}\leftrightarrow 2\pi \delta(\omega-\omega_0)\newline
+&1·e^{-j\omega_0t}\leftrightarrow 2\pi \delta(\omega+\omega_0)\newline
+\therefore &cos\omega_0t\leftrightarrow \frac{1}{2}[2\pi \delta(\omega-\omega_0)+2\pi\delta(\omega+\omega_0)]=\pi\delta(\omega+\omega_0)+\pi\delta(\omega-\omega_0)\newline
+同理&sin\omega_0t\leftrightarrow \frac{1}{2}[2\pi \delta(\omega-\omega_0)-2\pi\delta(\omega+\omega_0)]=\pi\delta(\omega+\omega_0)-\pi\delta(\omega-\omega_0)\newline
+\end{split}\newline
+&若原时间信号f(t)是绝对可积的，则它的傅里叶变换是自变量jw的函数。
+\end{split}
 $$
 
 
@@ -266,21 +270,25 @@ S_{FM}(t)=Acos\omega_ctcos(m_{FM}sin\omega_mt)-Asin\omega_ctsin(m_{FM}sin\omega_
 $$
 ​	将两个因子分别展开傅里叶级数
 $$
-cos(m_{FM}sin\omega t)=J_0(m_{FM}+\sum^\infty_{n=1}2J_{2n}(m_{FM})cos2n\omega_mt)\\
+\begin{split}
+cos(m_{FM}sin\omega t)=J_0(m_{FM}+\sum^\infty_{n=1}2J_{2n}(m_{FM})cos2n\omega_mt)\newline
 sin(m_{FM}sin\omega_mt)=\sum^\infty_{n=1}2J_{2n-1}(m_{FM})sin(2n-1)\omega_mt
+\end{split}
 $$
 
 ​	其中，$J_0(m_{FM})$是第一类n阶贝塞尔函数（why？），它是调频指数$m_{FM}$的函数。
 
 ​	利用三角公式
 $$
-cosAcosB=\frac{1}{2}cos(A-B)+\frac{1}{2}cos(A+B)\\
+\begin{split}
+cosAcosB=\frac{1}{2}cos(A-B)+\frac{1}{2}cos(A+B)\newline
 sinAsinB=\frac{1}{2}cos(A-B)-\frac{1}{2}(A+B)
+\end{split}
 $$
 ​	以及贝塞尔函数性质
 $$
 \begin{split}
-&J_{-n}(m_{FM})=-J_n(m_{FM}),n为奇数\\
+&J_{-n}(m_{FM})=-J_n(m_{FM}),n为奇数\newline
 &J_{-n}(m_{FM})=J_n(m_{FM}),n为偶数
 \end{split}
 $$
@@ -288,10 +296,10 @@ $$
 $$
 \begin{split}
 S_{FM}(t)
-=&Acos\omega_ctcos(m_{FM}sin\omega_mt)-Asin\omega_ctsin(m_{FM}sin\omega_mt)\\
-=&AJ_0(m_{FM})cos\omega_ct-AJ_1(m_{FM})[cos(\omega_c-\omega_m)t-cos(\omega_c+\omega_m)t]\\
-&+AJ_2(m_{FM})[cos(\omega_c-2\omega_m)t+cos(\omega_c+2\omega_m)t]\\
-&-AJ_3(m_{FM})[cos(\omega_c-3\omega_m)t-cos(\omega+3\omega_m)t]······\\
+=&Acos\omega_ctcos(m_{FM}sin\omega_mt)-Asin\omega_ctsin(m_{FM}sin\omega_mt)\newline
+=&AJ_0(m_{FM})cos\omega_ct-AJ_1(m_{FM})[cos(\omega_c-\omega_m)t-cos(\omega_c+\omega_m)t]\newline
+&+AJ_2(m_{FM})[cos(\omega_c-2\omega_m)t+cos(\omega_c+2\omega_m)t]\newline
+&-AJ_3(m_{FM})[cos(\omega_c-3\omega_m)t-cos(\omega+3\omega_m)t]······\newline
 =&A\sum^\infty_{n=-\infty}J_n{m_{FM}}cos(\omega_c+n\omega_m)t
 \end{split}
 $$
@@ -305,7 +313,7 @@ $$
 
 ​	调频信号的频谱包含**无穷多个频率分量**，因此**理论上调频信号的频带宽度为无限宽**，但是**实际上边频幅度$J_n(m_{FM})$随着n的增大而逐渐减小**，因此**只要取适当的$n$值使边频分量小到可以忽略的程度，调频信号可近似认为具有有线频谱**。通常采用的原则是，**信号的频带宽度应包括幅度大于未调载波的10%以上的变频分量，即**$J_n(m_{FM})\geq0.1$
 
-​	**当$m_{FM}\geq1$以后，取变频数$n=m_{FM}+1$即可**。因为**$n>m_{FM}+1$以上的边频幅度$J_n(m_{FM})$均小于0.1，这意味着大于未调载波幅度10%以上的变频分量均被保留**。因为**被保留的上、下变频数共有$2n=2（m_{FM}+1）$个，相邻边频之间的频率间隔为$f_m$或$\omega_m$**，所以调频波的有效带宽为
+​	**当$m_{FM}\geq1$以后，取变频数 $n=m_{FM}+1$即可**。因为$n>m_{FM}+1$**以上的边频幅度$J_n(m_{FM})$均小于0.1，这意味着大于未调载波幅度10%以上的变频分量均被保留**。因为**被保留的上、下变频数共有$2n=2（m_{FM}+1）$个，相邻边频之间的频率间隔为$f_m$或**$\omega_m$，所以调频波的有效带宽为
 $$
 B_{FM}=2(m_{FM}+1)f_m=2（{\Delta f+f_m}）
 $$
@@ -348,8 +356,8 @@ $$
 $$
 \begin{split}
 S_{FM}(t)
-& = Acos[\omega_ct+K_{FM}A_m\lmoustache cos\omega_m\tau d\tau]\\
-& = Acos[\omega_ct+m_{FM}sin\omega_mt]\\
+& = Acos[\omega_ct+K_{FM}A_m\lmoustache cos\omega_m\tau d\tau]\newline
+& = Acos[\omega_ct+m_{FM}sin\omega_mt]\newline
 & = Acos\omega_ctcos(m_{FM}sin\omega_mt)-Asin\omega_ctsin(m_{FM}sin\omega_mt)
 \end{split}
 $$
@@ -362,7 +370,7 @@ $$
 
 #### 2.1.1 变量定义
 
-​	将$m_{FM}$设定为一个可调变量 （WX GUI Slider）$beta$,将调频信号频率设定为一个可调变量 $fm$，将载波信号频率设定为一个可调变量$fc$，采样率设定为变量$samp\_rate$，并取值200000Hz。（WX GUI在GUN Radio 3.8+ 的版本中被移除，使用QT GUI时可不使用WX GUI Slider模块用QT GUI Rang 代替）
+​	将$m_{FM}$设定为一个可调变量 （WX GUI Slider）$beta$,将调频信号频率设定为一个可调变量 $fm$，将载波信号频率设定为一个可调变量$fc$，采样率设定为变量$samp\\_rate$，并取值200000Hz。（WX GUI在GUN Radio 3.8+ 的版本中被移除，使用QT GUI时可不使用WX GUI Slider模块用QT GUI Rang 代替）
 
 #### 2.1.2 生成调制信号
 
@@ -406,7 +414,7 @@ FM已调信号的频域波形如图5所示。
 
 ​	载波频率$fc$：0~100000Hz，默认为25000Hz
 
-​	低通滤波器截止频率$f\_cut\_off$：0~50000Hz，默认为25000Hz
+​	低通滤波器截止频率$f\\_cut\\_off$：0~50000Hz，默认为25000Hz
 
 #### 2.2.2 生成载波信号
 
@@ -520,9 +528,9 @@ RuntimeError: is not a valid wav file
 
 ​	HackRF用**osmocom Source**模块来接收FM信号，其中采样率设置为变量$samp\_rate$，
 
-​	**Ch0:Frequncy(Hz)**设置为变量$center\_freq$。
+​	**Ch0:Frequncy(Hz)**设置为变量$center\\_freq$。
 
-​	用一个**Signal Source**产生一个频率为$center\_freq\  -\ channel\_freq$的余弦波来与**osmocom Source**模块的输出相乘，进行频谱搬移。
+​	用一个**Signal Source**产生一个频率为$center\\_freq\  -\ channel\\_freq$的余弦波来与**osmocom Source**模块的输出相乘，进行频谱搬移。
 
 #### 2.4.2 低通滤波
 
@@ -540,7 +548,7 @@ RuntimeError: is not a valid wav file
 
 #### 2.4.5 音量调节
 
-​	使用一个**Multiply Constant**模块来调节声音音量大小，这个数值的取值设定为一个可调节的变量$volume\_gain$。
+​	使用一个**Multiply Constant**模块来调节声音音量大小，这个数值的取值设定为一个可调节的变量$volume\\_gain$。
 
 #### 2.4.6 收听电台
 
