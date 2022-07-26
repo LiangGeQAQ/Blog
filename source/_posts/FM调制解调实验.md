@@ -242,16 +242,35 @@ $$
 &1·e^{j\omega_0t}\leftrightarrow 2\pi \delta(\omega-\omega_0)\newline
 &1·e^{-j\omega_0t}\leftrightarrow 2\pi \delta(\omega+\omega_0)\newline
 \therefore &cos\omega_0t\leftrightarrow \frac{1}{2}[2\pi \delta(\omega-\omega_0)+2\pi\delta(\omega+\omega_0)]=\pi\delta(\omega+\omega_0)+\pi\delta(\omega-\omega_0)\newline
-同理&sin\omega_0t\leftrightarrow \frac{1}{2}[2\pi \delta(\omega-\omega_0)-2\pi\delta(\omega+\omega_0)]=\pi\delta(\omega+\omega_0)-\pi\delta(\omega-\omega_0)\newline
+同理&sin\omega_0t\leftrightarrow \frac{1}{2j}[2\pi \delta(\omega-\omega_0)-2\pi\delta(\omega+\omega_0)]=j[\pi\delta(\omega+\omega_0)-\pi\delta(\omega-\omega_0)]\newline
 \end{split}\newline
-&若原时间信号f(t)是绝对可积的，则它的傅里叶变换是自变量jw的函数。
+&若原时间信号f(t)是绝对可积的，则它的傅里叶变换是自变量jw的函数。\newline
+&注：\frac{1}{j}=-j（即\frac{j}{j^2}=\frac{j}{-1}）
 \end{split}
 $$
 
-
 ​	由时域相乘，对应频域卷积的关系可得，（参考博客[关于傅里叶变换的浅谈 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/410937006)以及[关于时域乘法和频域卷积关系的浅谈-Part 1 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/413345939)）
 $$
-\lmoustache m (\tau)d\tau sin \omega_c\Leftrightarrow \dfrac{1}{2}[\frac{M(\omega+\omega_c)}{\omega+\omega_c}-\frac{M(\omega-\omega_c)}{\omega-\omega_c}]
+\begin{split}
+频域&卷积定理\newline
+&F[f_1(t)·f_2(t)]=\frac{1}{2\pi}F_1(\omega)*F_2(\omega)\newline
+&频域卷积定理表明两信号在时域的乘积对应于这两个信号傅里叶变换的\newline
+卷积&除以2\pi\newline
+卷积&的性质——延时特性\newline
+函数&的卷积积分\newline
+&x(t)*\delta(t-t_0)=x(t-t_0)\newline
+\lmoustache m (\tau&)d\tau ·sin \omega_ct为时域相乘需要求其傅里叶变换的卷积并除以2\pi\newline
+\therefore有&\frac{1}{2\pi}\dfrac {M(\omega)}{j\omega}*j[\pi\delta(\omega+\omega_c)-\pi\delta(\omega-\omega_c)]\newline
+&\frac{M(\omega)}{\omega}*\delta(\omega+\omega_c)=\frac{M(\omega+\omega_c)}{\omega+\omega_c}\newline
+同理&\frac{M(\omega)}{\omega}*\delta(\omega-\omega_c)=\frac{M(\omega-\omega_c)}{\omega-\omega_c}\newline
+两者&作差并除以2\pi\newline
+有如&下表达式
+
+\end{split}
+$$
+
+$$
+\lmoustache m (\tau)d\tau sin \omega_ct\Leftrightarrow \dfrac{1}{2}[\frac{M(\omega+\omega_c)}{\omega+\omega_c}-\frac{M(\omega-\omega_c)}{\omega-\omega_c}]
 $$
 ​	因此，可得 NBFM 信号的频域表达式为
 $$
@@ -276,13 +295,13 @@ sin(m_{FM}sin\omega_mt)=\sum^\infty_{n=1}2J_{2n-1}(m_{FM})sin(2n-1)\omega_mt
 \end{split}
 $$
 
-​	其中，$J_0(m_{FM})$是第一类n阶贝塞尔函数（why？），它是调频指数$m_{FM}$的函数。
+​	其中，$J_0(m_{FM})$是第一类n阶贝塞尔函数，它是调频指数$m_{FM}$的函数。
 
 ​	利用三角公式
 $$
 \begin{split}
 cosAcosB=\frac{1}{2}cos(A-B)+\frac{1}{2}cos(A+B)\newline
-sinAsinB=\frac{1}{2}cos(A-B)-\frac{1}{2}(A+B)
+sinAsinB=\frac{1}{2}cos(A-B)-\frac{1}{2}cos(A+B)
 \end{split}
 $$
 ​	以及贝塞尔函数性质
@@ -370,7 +389,7 @@ $$
 
 #### 2.1.1 变量定义
 
-​	将$m_{FM}$设定为一个可调变量 （WX GUI Slider）$beta$,将调频信号频率设定为一个可调变量 $fm$，将载波信号频率设定为一个可调变量$fc$，采样率设定为变量$samp\\_rate$，并取值200000Hz。（WX GUI在GUN Radio 3.8+ 的版本中被移除，使用QT GUI时可不使用WX GUI Slider模块用QT GUI Rang 代替）
+​	将$m_{FM}$设定为一个可调变量 （WX GUI Slider）$beta$,将调频信号频率设定为一个可调变量 $fm$，将载波信号频率设定为一个可调变量$fc$，采样率设定为变量$samp\\_rate$，并取值200000Hz。（WX GUI在GUN Radio 3.8+ 的版本中被移除，使用QT GUI时可不使用WX GUI Slider模块用QT GUI Range 代替）
 
 #### 2.1.2 生成调制信号
 
@@ -566,6 +585,7 @@ RuntimeError: is not a valid wav file
 8. [时域上的乘积等于频域上的卷积_卷积的通俗理解——从傅里叶变换到滤波器_学术入门的博客-CSDN博客](https://blog.csdn.net/weixin_28836875/article/details/112333448)
 9. [第一类贝塞尔函数 - 快懂百科 (baike.com)](https://www.baike.com/wiki/%E7%AC%AC%E4%B8%80%E7%B1%BB%E8%B4%9D%E5%A1%9E%E5%B0%94%E5%87%BD%E6%95%B0?view_id=5qwsmcama5w000)
 10. [ GNU Radio GRC HackRF实现FM接收_开源SDR实验室的博客-CSDN博客](https://blog.csdn.net/OpenSourceSDR/article/details/52634934)
+11. [cos和sin的傅立叶变换_yundanfengqing_nuc的博客-CSDN博客_sin和cos的傅里叶变换](https://blog.csdn.net/yundanfengqing_nuc/article/details/51898248)
 
 <center></center>
 
