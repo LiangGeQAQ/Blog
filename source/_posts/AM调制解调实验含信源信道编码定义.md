@@ -90,7 +90,7 @@ $$
 
 ​	则此时AM信号表达式可写成：
 $$
-S_{AM}(t)=A_c[1+k_a·\hat{m(t)}]cos\omega_ct，0\leqslant  k+a\leqslant 1
+S_{AM}(t)=A_c[1+k_a·\hat{m(t)}]cos\omega_ct，0\leqslant  k_a\leqslant 1
 $$
 
 ### 1.3 AM解调

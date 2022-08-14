@@ -265,7 +265,6 @@ $$
 同理&\frac{M(\omega)}{\omega}*\delta(\omega-\omega_c)=\frac{M(\omega-\omega_c)}{\omega-\omega_c}\newline
 两者&作差并除以2\pi\newline
 有如&下表达式
-
 \end{split}
 $$
 
