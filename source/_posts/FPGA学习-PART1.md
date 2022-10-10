@@ -20,16 +20,17 @@ comment: true
 
 + 项目路径中不能包含中文
 
-+ ![新建项目选择语言](新建项目选择语言.png)
++ <div align = "center"><img src="新建项目选择语言.png"  width="800"  height = "600" /></div>
 
   选择项目语言为**Verilog**
 
 + 选择板子时可在此界面选**Boards**便可直接找到**ZedBoard**
 
-  ![选择ZedBoard](选择ZedBoard.png)
+  <div align = "center"><img src="选择ZedBoard.png"  width="800"  height = "600" /></div>
 
   或是按如下方法进行筛选找到所需要的芯片：
-  ![芯片选择](芯片选择.png)
+
+  <div align = "center"><img src="芯片选择.png"  width="800"  height = "600" /></div>
 
 ## 1.3 文件组成
 
@@ -112,19 +113,17 @@ set_property IOSTANDARD LVCMOS33 [get_ports {LED[7]}]
 
 **附.LED在板上的引脚对应表格**
 
-![LEDS_PINS](LEDS_PINS.png)
-
-
+<div align = "center"><img src="LEDS_PINS.png"  width=""  height = "" /></div>
 
 ## 1.7 烧录文件
 
 点击下图按钮以生成比特流文件，要是编译出错了指定是那个地方代码抄错了，回去再看看
 
-![生成比特流文件](生成比特流文件.png)
+<div align = "center"><img src="生成比特流文件.png"  width=""  height = "" /></div>
 
 编译完成以后会出现弹窗，此时选择如图所示的**Open Hardware Manager**
 
-![编译完成弹窗](编译完成弹窗.png)
+<div align = "center"><img src="编译完成弹窗.png"  width=""  height = "" /></div>
 
 之后显示**No hardware**时，点击**Open target**添加硬件版，
 
@@ -132,21 +131,21 @@ set_property IOSTANDARD LVCMOS33 [get_ports {LED[7]}]
 
 如果还没有，看一下是不是接线接少了…我在这个部分卡了半个小时，试遍了所有方式发现我**PROG**这个接口没有接线！（是的，蠢到我了…！）接线如下图所示
 
-![接线](接线.jpg)
+<div align = "center"><img src="接线.jpg"  width="500"  height = "800" /></div>
 
 成功找到硬件后**HW**会如图所示：
 
-![成功找到硬件](成功找到硬件.png)
+<div align = "center"><img src="成功找到硬件.png"  width=""  height = "" /></div>
 
 其中，**arm_dap_0**为32位arm即PS部分，而**xc7z020**为PL部分，
 
 关联文件路径则在下方窗口中能够找到，右键此部分点击**Program Device**即可将程序写入板子中
 
-![关联文件路径](关联文件路径.png)
+<div align = "center"><img src="关联文件路径.png"  width=""  height = "" /></div>
 
 最后的运行如下所示：
 
-![PL_LED](PL_LED.gif)
+<div align = "center"><img src="PL_LED.gif"  width=""  height = "" /></div>
 
 参考网站：
 
@@ -154,4 +153,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports {LED[7]}]
 
 
 
-![lucy3](lucy3.jpg)
+<div align = "center">Lucy！！！</div>
+
+<div align = "center"><img src="lucy3.jpg"  width="500"  height = "900" /></div>
+
