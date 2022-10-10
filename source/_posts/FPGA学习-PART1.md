@@ -154,4 +154,4 @@ set_property IOSTANDARD LVCMOS33 [get_ports {LED[7]}]
 
 
 
-![lucy3](FPGA学习-PART1/lucy3.jpg)
+![lucy3](lucy3.jpg)
