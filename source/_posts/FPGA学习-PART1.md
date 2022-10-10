@@ -6,8 +6,6 @@ tags: [FPGA,ZedBoard]
 categories: [FPGA]
 comment: true
 ---
-# FPGA学习.Part1
-
 # 使用PL创建一个流水灯
 
 ## 1.1 概念
