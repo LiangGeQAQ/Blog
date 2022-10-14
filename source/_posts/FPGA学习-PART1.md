@@ -2,7 +2,7 @@
 title: FPGA学习.PART1
 mathjax: true
 date: 2022-10-09 22:37:45
-tags: [FPGA,ZedBoard] 
+tags: [FPGA,ZedBoard,流水灯] 
 categories: [FPGA]
 comment: true
 ---
