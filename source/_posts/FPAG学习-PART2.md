@@ -6,7 +6,7 @@ tags: [FPGA,PS,SDK]
 categories: [FPGA]
 comment: true
 ---
-# PS部分HELLOW_WORLD
+# PS部分HELLO_WORLD
 
 ## 1. 概述
 
