@@ -28,7 +28,7 @@ Blog用于记录与分享日常近况、在学校时各类实验的过程等。
 
 + Old  网瘾少年 (/ω＼\*)……… (/ω•＼\*)，周末闲暇时会 Play Guitar🎸
 
-+ 目标是称为全栈大师！<img src="精灵球-2.png"  width="50"  height = "50" />
++ 目标是称为全栈大师DA☆ZE！
 
 # Contact me
 +	Bilibili：[<u>@小可爱凉歌吖</u>](https://space.bilibili.com/45024635)
