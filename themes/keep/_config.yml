@@ -1,5 +1,13 @@
+## ======================================================================================
+## Keep v3.6.1
+## Preview: https://xpoet.cn
+## Documents: https://keep-docs.xpoet.cn
+## Repository: https://github.com/XPoet/hexo-theme-keep
+## ======================================================================================
+
 # ---------------------------------------------------------------------------------------
-#  Your basic info
+# Your basic info
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/base_info.html
 # ---------------------------------------------------------------------------------------
 base_info:
   title: Liang's Blog ♥
@@ -10,58 +18,72 @@ base_info:
 
 # ---------------------------------------------------------------------------------------
 # Theme style settings
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/style.html
 # ---------------------------------------------------------------------------------------
 style:
   # Theme primary color
-  primary_color: "#0066CC"
+  primary_color: "#0066cc"
 
-  # Avatar (You can use local image or image external link)
-  avatar: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
+  # Your blog website logo image
+  # You can use local image, image external link or don't fill
+  logo: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
 
   # Favicon (You can use local image or image external link)
   favicon: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
 
-  # Article image align position, value: left | center
-  article_img_align: left
+  # Avatar (You can use local image or image external link)
+  avatar: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
 
-  # Left side width
-  left_side_width: 260px
+  # Font size, customize font size. (you don't usually have to fill)
+  # e.g. font_size: 18px
+  font_size:
 
-  # Content area max width
-  content_max_width: 920px
+  # Font family, customize font family. (you don't usually have to fill)
+  # e.g. font_family: STKaiti, STSong, STHeiti
+  font_family:
 
-  # Mouse hover
+  # Mouse hover style settings
   hover:
-    shadow: true # shadow effect when the mouse hover
-    scale: false # scale effect when the mouse hover
+    # Shadow effect when the mouse hover
+    shadow: true  # Option values: true | false
+    # Scale effect when the mouse hovers
+    scale: false   # Option values: true | false
 
-  # First screen
+  # First screen style settings
   first_screen:
-    enable: true
-    background_img: /images/bg.gif # You can use local image or image external link
+    enable: true  # Option values: true | false
+
+    # Set transparent background for header
+    header_transparent: false  # Option values: true | false
+
+    # First screen background image (You can use local image or image external link)
+    background_img: /images/bg.gif
+
+    # First screen description
+    # You can use the "||" to begin a newline, maximum is two lines.
     description: 星星拼命发光，是为了让人看见。
 
-  # Scroll style settings
-  scroll:
-    progress_bar:
-      enable: true
-    percent:
-      enable: false
+    # If you want to customize the first screen font color, you can fill in here (e.g. "#0066CC")
+    # Otherwise use the theme default font color
+    font_color:
 
-# ---------------------------------------------------------------------------------------
-# Social contact link
-# ---------------------------------------------------------------------------------------
-social_contact:
-  enable: true
-  links:
-    # fa-file-video: https://space.bilibili.com/45024635 #your Bilibili URL
-    github: https://github.com/LiangGeQAQ # your GitHub URL
-    zhihu: https://www.zhihu.com/people/ci-jin-wu-zai-wu-huan-yue # your ZhiHu URL
-    email: LiangGe233@outlook.com # your email
+    # If enable hitokoto, first screen description is different every time when you enter the site
+    hitokoto: false  # Option values: true | false
+
+  # Page scroll style settings
+  scroll:
+    # Show progress bar in top when page scroll
+    progress_bar: false # Option values: true | false
+
+    # Show percent when page scroll
+    percent: false      # Option values: true | false
 
 # ---------------------------------------------------------------------------------------
 # Navigation menu
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/menu.html
 # ---------------------------------------------------------------------------------------
+# If you want to enable Categories and Tags, you need to create categories and tags pages
+# e.g. `hexo new page categories` or `hexo new page tags`
 menu:
   Home: /
   Archives: /archives
@@ -69,151 +91,212 @@ menu:
   Tags: /tags
   Links: /links
   About: /about
+  # Tags: /tags
+  # Categories: /categories
+  # Links: /links
+  # About: /about
   # Changelog: /changelog
   # ......
 
 # ---------------------------------------------------------------------------------------
+# Social contact link
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/social_contact.html
+# ---------------------------------------------------------------------------------------
+social_contact:
+  enable: true     # Option values: true | false
+  links:
+    # Fill in your social platform links here, e.g. [ github: https://github.com/XPoet ]
+    # If you want to click open the picture, you need to add a prefix "img |",
+    # at the same time change your link to the image link.
+    # e.g. [ weixin: img | https://x.com/images/wechat.png ] or [ weixin: img | ./images/wechat.png ]
+    #bilibili: #img | ./images/icon_bilibili.png
+    github: https://github.com/LiangGeQAQ         # GitHub
+    #weixin:          # WeChat
+    #qq:              # QQ
+    weibo:           # WeiBo
+    zhihu: https://www.zhihu.com/people/ci-jin-wu-zai-wu-huan-yue          # ZhiHu
+    #twitter:         # Twitter
+    #facebook:        # Facebook
+    email: LiangGe233@outlook.com # Email
+
+# ---------------------------------------------------------------------------------------
 # Home page article block display settings
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/home_article.html
 # ---------------------------------------------------------------------------------------
 home_article:
+  # Show category in home page article block
   category:
-    enable: true # show category in home page article block
-    limit: 3 # max number of categories shown in home page article block
+    enable: true  # Option values: true | false
+    limit: 3       # Max number of categories shown in home page article block
+  # Show tags in home page article block
   tag:
-    enable: true # show tags in home page article block
-    limit: 5 # max number of tags shown in home page article block
+    enable: true  # Option values: true | false
+    limit: 5       # Max number of tags shown in home page article block
 
 # ---------------------------------------------------------------------------------------
 # Post page Settings
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/post.html
 # ---------------------------------------------------------------------------------------
 post:
+  # Author label in the post
+  author_label:
+    enable: true  # Option values: true | false
+
+    # If true, show Lv1, Lv2, Lv3 ...
+    # If false, show custom_label_list
+    auto: false    # Option values: true | false
+
+    # Label array item can be fill one or more
+    custom_label_list: ["GATE", "PLD", "CPLD", "MCU", "DSP", "FPGA"]
+    #["凉凉成长态", "凉凉进化态", "凉凉超进化态", "凉凉超超进化态", "萌新"]
+
   # Post word count
-  # Dependencies: hexo-wordcount (npm install hexo-wordcount)
+  # Dependencies: hexo-wordcount (`npm install hexo-wordcount`)
   # See: https://github.com/willin/hexo-wordcount
   word_count:
-    enable: true
-    wordcount: true # word count, one article
-    min2read: false # time to read, one article
+    enable: true       # Option values: true | false
+    wordcount: true    # Word count, one article. Option values: true | false
+    min2read: true     # Time to read, one article. Option values: true | false
 
-  # Author label
-  author_label:
-    enable: false
-    auto: false # if true, show Lv1, Lv2, Lv3... , If false, show custom label
-    # label array item can be one or more
-    custom_label_list: ["凉凉成长态", "凉凉进化态", "凉凉超进化态", "凉凉超超进化态", "萌新"]
+  # Image align position in the post
+  img_align: left  # Option values: left | center
+
+  # Post copyright info
+  copyright_info: false  # Option values: true | false
 
 # ---------------------------------------------------------------------------------------
-# Code copy
+# Code block
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/code_block.html
 # ---------------------------------------------------------------------------------------
-code_copy:
-  enable: true
-  style: default # values: default | mac
+code_block:
+  # Toolbar include: "code copy", "code block collapse" and "code language"
+  tools:
+    enable: false            # Option values: true | false
+    style: default           # Option values: default | mac
+  highlight_theme: default   # Option values: default | obsidian
 
 # ---------------------------------------------------------------------------------------
 # Table of Contents in the Sidebar
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/toc.html
 # ---------------------------------------------------------------------------------------
 toc:
-  enable: true
+  enable: true      # Option values: true | false
 
-  # Automatically add list number to toc.
-  number: false
+  # Automatically add list number to toc
+  number: false      # Option values: true | false
 
   # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
-  expand_all: false
+  expand_all: false  # Option values: true | false
 
   # If true, open TOC every time when you enter the article page
-  init_open: false
-
-# ---------------------------------------------------------------------------------------
-# Post copyright info
-# ---------------------------------------------------------------------------------------
-copyright_info:
-  enable: false
+  init_open: true   # Option values: true | false
 
 # ---------------------------------------------------------------------------------------
 # Website count
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/website_count.html
 # ---------------------------------------------------------------------------------------
 website_count:
   # busuanzi
   # See: http://ibruce.info/2015/04/04/busuanzi/
   busuanzi_count:
-    enable: true
-    site_uv: true
-    site_pv: true
-    page_pv: false
+    enable: true     # Option values: true | false
+    site_uv: true    # Option values: true | false
+    site_pv: true    # Option values: true | false
+    page_pv: true    # Option values: true | false
 
 # ---------------------------------------------------------------------------------------
 # Local Search
-# Dependencies: hexo-generator-searchdb
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/local_search.html
+# Dependencies: hexo-generator-searchdb (`npm install hexo-generator-searchdb`)
 # See: https://github.com/theme-next/hexo-generator-searchdb
 # ---------------------------------------------------------------------------------------
 local_search:
-  enable: true
-  preload: false # Preload the search data when the page loads
+  enable: true   # Option values: true | false
+  preload: false  # Preload the search data when the page loads. Option values: true | false
 
 # ---------------------------------------------------------------------------------------
 # Comment plugin
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/comment.html
 # ---------------------------------------------------------------------------------------
 comment:
-  enable: true
-  use: gitalk # values: valine | gitalk | twikoo
+  enable: true   # Option values: true | false
+  use: gitalk     # Option values: valine | gitalk | twikoo | waline
 
   # Valine
   # See: https://github.com/xCss/Valine
+  #      https://valine.js.org
   valine:
-    appid: # your leancloud application appid
-    appkey: # your leancloud application appkey
-    placeholder: # your placeholder
+    appid:           # Your leancloud application appid
+    appkey:          # Your leancloud application appkey
+    server_urls:     # Your Server URL
+    placeholder:     # Input box placeholder
 
   # Gitalk
   # See: https://github.com/gitalk/gitalk
+  #      https://gitalk.github.io
   gitalk:
-    github_id: LiangGeQAQ # GitHub repo owner
-    repository: hexo-site-comments # Repository name to store issues
-    client_id: e68b2117517290f1c9fe # GitHub Application Client ID
-    client_secret: e7b2fc7190cb9ce2d632de491ff72a11e648b9b5 # GitHub Application Client Secret
+    github_id: LiangGeQAQ        # GitHub repo owner
+    github_admins:   # GitHub Admins (in Array type), optional
+    repository: hexo-site-comments       # Repository name to store issues
+    client_id: e68b2117517290f1c9fe       # GitHub Application Client ID
+    client_secret: e7b2fc7190cb9ce2d632de491ff72a11e648b9b5   # GitHub Application Client Secret
+    proxy:            # GitHub oauth request reverse proxy for CORS
 
   # Twikoo
   # See: https://github.com/imaegoo/twikoo
+  #      https://twikoo.js.org
   twikoo:
-    env_id: # Tencent Cloud environment id
-    region: # environment region. If select Guangzhou, fill in "ap-guangzhou".
+    env_id:         # Tencent Cloud environment id
+    region:         # Environment region. If select Guangzhou, fill in "ap-guangzhou"
+    version: 1.6.8  # Twikoo version, default use v1.6.8
+
+  # Waline
+  # See: https://github.com/walinejs/waline
+  #      https://waline.js.org/guide/get-started.html
+  waline:
+    server_url:     # Server URL
+    reaction: false # Article reactions, Option values: true | false
+    version: 2      # Waline version, default use v2
 
 # ---------------------------------------------------------------------------------------
 # RSS
-# Dependencies: hexo-generator-feed
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/rss.html
+# Dependencies: hexo-generator-feed (`npm install hexo-generator-feed`)
 # See: https://github.com/hexojs/hexo-generator-feed
 # ---------------------------------------------------------------------------------------
 rss:
-  enable: false
+  enable: false  # Option values: true | false
 
 # ---------------------------------------------------------------------------------------
 # Lazyload image
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/lazyload.html
 # ---------------------------------------------------------------------------------------
 lazyload:
-  enable: false
+  enable: true  # Option values: true | false
 
 # ---------------------------------------------------------------------------------------
 # CDN
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/cdn.html
 # ---------------------------------------------------------------------------------------
 cdn:
-  enable: false
+  enable: true       # Option values: true | false
+  provider: jsdelivr  # Option values: jsdelivr | unpkg
 
 # ---------------------------------------------------------------------------------------
 # PJAX
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/pjax.html
 # ---------------------------------------------------------------------------------------
 pjax:
-  enable: true
+  enable: true  # Option values: true | false
 
 # ---------------------------------------------------------------------------------------
 # Footer settings
+# Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/footer.html
 # ---------------------------------------------------------------------------------------
 footer:
-  since: 2022 # the starting year of your website, Can be null
-  icp: # ICP record number of your website, Can be null
-  upyun: # url
-
-# ---------------------------------------------------------------------------------------
-# Keep version (Please don't modify)
-# ---------------------------------------------------------------------------------------
-version: 3.4.5
+  since: 2022  # The starting year of your website, Can be null
+  icp:         # ICP record number of your website, Can be null
+  site_deploy:
+    enable: false       # Option values: true | false
+    provider: github    # Option values: github | vercel | netlify | gitee | aliyun | tencent_cloud | upyun
+    url:                # Your deployment provider url, Can be null
