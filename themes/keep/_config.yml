@@ -14,7 +14,7 @@ base_info:
   author: 凉凉不冷
   url: https://www.liliaw.com/
   # Logo image (You can use local image, image external link or don’t fill)
-  logo_img: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
+  logo_img: /images/logo.jpg # https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
 
 # ---------------------------------------------------------------------------------------
 # Theme style settings
@@ -26,13 +26,13 @@ style:
 
   # Your blog website logo image
   # You can use local image, image external link or don't fill
-  logo: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
+  logo: /images/logo.jpg # https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
 
   # Favicon (You can use local image or image external link)
-  favicon: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
+  favicon: /images/logo.jpg # https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
 
   # Avatar (You can use local image or image external link)
-  avatar: https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
+  avatar: /images/logo.jpg # https://s3.bmp.ovh/imgs/2022/03/63d0e0edd014c0a0.jpg
 
   # Font size, customize font size. (you don't usually have to fill)
   # e.g. font_size: 18px
