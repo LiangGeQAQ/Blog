@@ -1765,6 +1765,11 @@
     "open" "^7.0.0"
     "serve-static" "^1.14.1"
 
+"hexo-theme-keep@^4.0.7":
+  "integrity" "sha512-2yY0pQz5tKfD50LDLWUtVYeS6vBkqHieirhX6YZ1dNDiXkPft7RT5KLmPs7XWHkkrqRzhP1nGtuqzW4BuErV9w=="
+  "resolved" "https://registry.npmjs.org/hexo-theme-keep/-/hexo-theme-keep-4.0.7.tgz"
+  "version" "4.0.7"
+
 "hexo-util@^0.1.6":
   "integrity" "sha1-/chOG/IbGcTIaVQkWFqp8T7NY1M="
   "resolved" "https://registry.npmjs.org/hexo-util/-/hexo-util-0.1.7.tgz"

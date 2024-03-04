@@ -1,5 +1,5 @@
 ## ======================================================================================
-## Keep v3.6.1
+## Keep v4.0.7
 ## Preview: https://xpoet.cn
 ## Documents: https://keep-docs.xpoet.cn
 ## Repository: https://github.com/XPoet/hexo-theme-keep
@@ -78,6 +78,9 @@ style:
     # Show percent when page scroll
     percent: false      # Option values: true | false
 
+    #hide_header 在页面向下持续滚动时，设置是否自动隐藏 Header 头部，可选值：true 或 false。 该配置项的值默认为 true。
+    hide_header: true   # Option values: true | false
+
 # ---------------------------------------------------------------------------------------
 # Navigation menu
 # Docs: https://keep-docs.xpoet.cn/tutorial/configuration-guide/menu.html
@@ -113,11 +116,12 @@ social_contact:
     github: https://github.com/LiangGeQAQ         # GitHub
     #weixin:          # WeChat
     #qq:              # QQ
-    weibo:           # WeiBo
-    zhihu: https://www.zhihu.com/people/ci-jin-wu-zai-wu-huan-yue          # ZhiHu
+    #weibo:           # WeiBo
+    #zhihu: https://www.zhihu.com/people/ci-jin-wu-zai-wu-huan-yue          # ZhiHu
     #twitter:         # Twitter
     #facebook:        # Facebook
     email: LiangGe233@outlook.com # Email
+    bilibili: https://space.bilibili.com/45024635 # bilibili
 
 # ---------------------------------------------------------------------------------------
 # Home page article block display settings
@@ -144,10 +148,10 @@ post:
 
     # If true, show Lv1, Lv2, Lv3 ...
     # If false, show custom_label_list
-    auto: false    # Option values: true | false
+    auto: true   # Option values: true | false
 
     # Label array item can be fill one or more
-    custom_label_list: ["GATE", "PLD", "CPLD", "MCU", "DSP", "FPGA"]
+    custom_label_list: ["Lv1", "Lv2", "Lv3", "Lv4", "Lv5", "Lv6"]
     #["凉凉成长态", "凉凉进化态", "凉凉超进化态", "凉凉超超进化态", "萌新"]
 
   # Post word count
