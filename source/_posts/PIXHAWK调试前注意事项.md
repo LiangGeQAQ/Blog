@@ -2,8 +2,8 @@
 title: PIXHAWK调试前注意事项
 mathjax: true
 date: 2024-03-04 21:34:41
-tags: [PIXHAWK,飞控]
-categories:  [飞控]
+tags: [PIXHAWK,调试]
+categories:  [PIXHAWK]
 comment: true
 ---
 
