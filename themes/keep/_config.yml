@@ -57,7 +57,7 @@ style:
     header_transparent: false  # Option values: true | false
 
     # First screen background image (You can use local image or image external link)
-    background_img: /images/bg.gif
+    background_img: /images/bg.png
 
     # First screen description
     # You can use the "||" to begin a newline, maximum is two lines.
