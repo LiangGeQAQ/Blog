@@ -3,7 +3,7 @@ title: 如何搭建自己的Blog
 mathjax: true
 date: 2022-03-10 22:34:51
 tags: [Hexo,Github,Vercel,Blog]
-categories: [Hexo]
+updated: 2022-07-08 14:58:43categories: [Hexo]
 comment: true
 ---
 

@@ -3,7 +3,7 @@ title: FPGA学习.PART7
 mathjax: true
 date: 2023-03-03 22:31:22
 tags: [PS,PL]
-categories: [FPGA]
+updated: 2023-03-06 00:41:59categories: [FPGA]
 comment: true
 ---
 # PL和PS协同设计实现对OLED的控制

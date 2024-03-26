@@ -3,7 +3,7 @@ title: 关于C语言动态分配内存
 mathjax: true
 date: 2022-03-10 20:36:49
 tags: [C,malloc,动态分配]
-categories: [C语言]
+updated: 2022-09-24 17:09:14categories: [C语言]
 comment: true
 ---
 ## 传统数组的缺点

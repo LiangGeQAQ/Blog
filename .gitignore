@@ -9,3 +9,4 @@ public/
 .env.build
 .vercel
 themes/keep/backup/
+source/_posts/*.js

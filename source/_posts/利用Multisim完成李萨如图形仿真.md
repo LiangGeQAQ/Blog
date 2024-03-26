@@ -3,7 +3,7 @@ title: 利用Multisim完成李萨如图形仿真
 mathjax: true
 date: 2022-03-16 23:00:42
 tags: [Multisim,李萨如图形]
-categories: [Multisim]
+updated: 2022-03-17 09:20:58categories: [Multisim]
 comment: true
 ---
 

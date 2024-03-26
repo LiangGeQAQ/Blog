@@ -3,7 +3,7 @@ title: FPGA学习.PART8
 mathjax: true
 date: 2023-03-13 21:05:38
 tags: [FPGA,PS,PL,OLED]
-categories: [FPGA]
+updated: 2024-03-04 18:44:38categories: [FPGA]
 comment: true
 ---
 

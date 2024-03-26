@@ -3,7 +3,7 @@ title: FPGA学习.PART2
 mathjax: true
 date: 2022-10-14 20:17:31
 tags: [FPGA,PS,SDK]
-categories: [FPGA]
+updated: 2023-03-03 16:13:09categories: [FPGA]
 comment: true
 ---
 # PS部分HELLO_WORLD

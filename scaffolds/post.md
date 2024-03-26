@@ -2,7 +2,8 @@
 title: {{ title }}
 date: {{ date }}
 tags: 
+updated: 
 categories: 
-comment: 
+comment: true
 mathjax: true
 ---
