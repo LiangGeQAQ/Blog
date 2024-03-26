@@ -20,7 +20,8 @@
     "hexo-renderer-marked": "^3.3.0",
     "hexo-renderer-stylus": "^2.0.1",
     "hexo-server": "^2.0.0",
-    "hexo-theme-keep": "^4.0.7"
+    "hexo-theme-keep": "^4.0.7",
+    "yarn": "^1.22.22"
   },
   "scripts": {
     "dev": "hexo server -p $PORT",
