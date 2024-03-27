@@ -1,5 +1,5 @@
 ---
-title: FPGA学习.PART3
+title: PS与PL协同设计实现GPIO
 mathjax: true
 date: 2022-10-15 21:03:24
 tags: [FPGA,PS,PL,GPIO]
@@ -7,7 +7,7 @@ updated: 2023-01-25 15:59:06
 categories: [FPGA]
 comment: true
 ---
-# PS与PL协同设计实现GPIO
+# FPGA学习.PART3
 
 ## 1. 概述
 

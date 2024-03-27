@@ -1,12 +1,13 @@
 ---
-title: FPGA学习.PART2
+title: PS部分HELLO_WORLD
 mathjax: true
 date: 2022-10-14 20:17:31
 tags: [FPGA,PS,SDK]
-updated: 2023-03-03 16:13:09categories: [FPGA]
+updated: 2023-03-03 16:13:09
+categories: [FPGA]
 comment: true
 ---
-# PS部分HELLO_WORLD
+# FPGA学习.PART2
 
 ## 1. 概述
 

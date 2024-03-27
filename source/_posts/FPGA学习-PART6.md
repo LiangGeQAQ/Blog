@@ -1,12 +1,13 @@
 ---
-title: FPGA学习.PART6
+title: 学习和使用VIO_IP
 mathjax: true
 date: 2023-03-01 19:15:24
 tags: [FPGA,探针,VIO]
-updated: 2023-03-01 19:24:02categories: [FPGA]
+updated: 2023-03-01 19:24:02
+categories: [FPGA]
 comment: true
 ---
-# 学习和使用VIO_IP
+# FPGA学习.PART6
 
 ## 1. 概述
 
