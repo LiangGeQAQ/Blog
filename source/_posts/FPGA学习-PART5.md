@@ -1,13 +1,14 @@
 ---
-title: FPGA学习.PART5
+title: Vivado下的逻辑仿真实验
 mathjax: true
 date: 2023-03-01 15:58:19
 tags:  [FPGA,逻辑仿真]
-updated: 2023-03-06 00:42:50categories: [FPGA]
+updated: 2023-03-06 00:42:50
+categories: [FPGA]
 comment: true
 ---
 
-# Vivado下的逻辑仿真实验
+# FPGA学习.PART5
 
 ## 1. 概述
 

@@ -1,12 +1,13 @@
 ---
-title: FPGA学习.PART1
+title: 使用PL创建一个流水灯
 mathjax: true
 date: 2022-10-09 22:37:45
 tags: [FPGA,ZedBoard,流水灯] 
-updated: 2022-10-14 20:36:30categories: [FPGA]
+updated: 2022-10-14 20:36:30
+categories: [FPGA]
 comment: true
 ---
-# 使用PL创建一个流水灯
+# FPGA学习.PART1
 
 ## 1.1 概念
 

@@ -1,13 +1,14 @@
 ---
-title: FPGA学习.PART8
+title: 综合分析PS和PL部分对OLED驱动进行加速
 mathjax: true
 date: 2023-03-13 21:05:38
 tags: [FPGA,PS,PL,OLED]
-updated: 2024-03-04 18:44:38categories: [FPGA]
+updated: 2024-03-04 18:44:38
+categories: [FPGA]
 comment: true
 ---
 
-# 综合分析PS和PL部分对OLED驱动进行加速
+# FPGA学习.PART8
 
 ## 1. 概述
 

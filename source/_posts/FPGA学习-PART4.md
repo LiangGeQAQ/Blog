@@ -1,12 +1,13 @@
 ---
-title: FPGA学习.PART4
+title: 创建并调用处理器外设的IP核
 mathjax: true
 date: 2023-01-30 22:34:10
 tags: [FPGA,IP核]
-updated: 2023-03-01 15:59:59categories: [FPGA]
+updated: 2023-03-01 15:59:59
+categories: [FPGA]
 comment: true
 ---
-# 创建并调用处理器外设的IP核
+# FPGA学习.PART4
 
 ## 1. 概述
 
