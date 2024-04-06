@@ -3,7 +3,7 @@ title: FM调制解调实验
 mathjax: true
 date: 2022-07-17 21:54:47
 tags: [GNU Radio,FM,WBFM,NBFM,HackRF]
-categories: [FM]
+updated: 2022-07-27 10:08:50categories: [FM]
 comment: true
 ---
 

@@ -3,10 +3,7 @@ title: 创建并调用处理器外设的IP核
 mathjax: true
 date: 2023-01-30 22:34:10
 tags: [FPGA,IP核]
-<<<<<<< HEAD
 updated: 2023-03-01 15:59:59
-=======
->>>>>>> parent of 4e04eaf (uptate)
 categories: [FPGA]
 comment: true
 ---

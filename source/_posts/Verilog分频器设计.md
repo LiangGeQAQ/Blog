@@ -3,7 +3,7 @@ title: Verilog分频器设计
 mathjax: true
 date: 2023-03-06 21:36:41
 tags: [FPGA,分频,Verilog]
-categories: [Verilog]
+updated: 2023-03-06 21:42:57categories: [Verilog]
 comment: true
 ---
 

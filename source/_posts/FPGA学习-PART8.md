@@ -3,10 +3,7 @@ title: 综合分析PS和PL部分对OLED驱动进行加速
 mathjax: true
 date: 2023-03-13 21:05:38
 tags: [FPGA,PS,PL,OLED]
-<<<<<<< HEAD
 updated: 2024-03-04 18:44:38
-=======
->>>>>>> parent of 4e04eaf (uptate)
 categories: [FPGA]
 comment: true
 ---

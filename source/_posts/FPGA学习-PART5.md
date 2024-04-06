@@ -3,10 +3,7 @@ title: Vivado下的逻辑仿真实验
 mathjax: true
 date: 2023-03-01 15:58:19
 tags:  [FPGA,逻辑仿真]
-<<<<<<< HEAD
 updated: 2023-03-06 00:42:50
-=======
->>>>>>> parent of 4e04eaf (uptate)
 categories: [FPGA]
 comment: true
 ---
