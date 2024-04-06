@@ -10,3 +10,6 @@ public/
 .vercel
 themes/keep/backup/
 source/_posts/*.js
+themes/keep/_config.yml
+source/_data/keep.yml
+
