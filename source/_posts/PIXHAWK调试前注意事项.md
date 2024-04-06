@@ -3,7 +3,7 @@ title: PIXHAWK调试前注意事项
 mathjax: true
 date: 2024-03-04 21:34:41
 tags: [PIXHAWK,调试]
-updated: 2024-03-05 19:19:57categories:  [PIXHAWK]
+categories:  [PIXHAWK]
 comment: true
 ---
 

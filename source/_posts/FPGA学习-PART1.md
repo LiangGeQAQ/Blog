@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 title: 使用PL创建一个流水灯
 mathjax: true
 date: 2022-10-09 22:37:45
@@ -8,6 +9,16 @@ categories: [FPGA]
 comment: true
 ---
 # FPGA学习.PART1
+=======
+title: FPGA学习.PART1
+mathjax: true
+date: 2022-10-09 22:37:45
+tags: [FPGA,ZedBoard,流水灯] 
+categories: [FPGA]
+comment: true
+---
+# 使用PL创建一个流水灯
+>>>>>>> parent of 4e04eaf (uptate)
 
 ## 1.1 概念
 

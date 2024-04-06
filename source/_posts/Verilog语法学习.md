@@ -3,7 +3,7 @@ title: Verilog语法学习
 mathjax: true
 date: 2022-06-05 16:12:16
 tags: [Verilog,语法,硬件描述语言]
-updated: 2022-06-05 16:30:53categories: [Verilog]
+categories: [Verilog]
 comment: true
 ---
 

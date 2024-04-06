@@ -8,8 +8,12 @@ public/
 .env
 .env.build
 .vercel
+<<<<<<< HEAD
 themes/keep/backup/
 source/_posts/*.js
 themes/keep/_config.yml
 source/_data/keep.yml
 
+=======
+themes/keep/backup/
+>>>>>>> parent of 4e04eaf (uptate)

@@ -3,7 +3,7 @@ title: FPGA实验报告
 mathjax: true
 date: 2022-06-20 23:20:57
 tags: [FPGA,数字电路,报告]
-updated: 2023-03-03 16:28:58categories: [FPGA]
+categories: [FPGA]
 comment: Ture
 ---
 

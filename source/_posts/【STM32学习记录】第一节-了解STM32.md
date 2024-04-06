@@ -3,7 +3,7 @@ title: 【STM32学习记录】第一节-了解STM32
 mathjax: true
 date: 2022-03-10 20:45:36
 tags: [STM32,C8T6,芯片结构]
-updated: 2022-03-24 09:35:30categories: [STM32]
+categories: [STM32]
 comment: true
 ---
 

@@ -3,7 +3,7 @@ title: 一些近况Ver.1.0
 mathjax: true
 date: 2022-04-06 22:49:12
 tags: [日常,规划,近况]
-updated: 2022-04-07 00:42:03categories: [日常]
+categories: [日常]
 comment: true
 ---
 

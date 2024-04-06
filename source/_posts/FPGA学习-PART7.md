@@ -3,7 +3,10 @@ title: PL和PS协同设计实现对OLED的控制
 mathjax: true
 date: 2023-03-03 22:31:22
 tags: [PS,PL]
+<<<<<<< HEAD
 updated: 2023-03-06 00:41:59
+=======
+>>>>>>> parent of 4e04eaf (uptate)
 categories: [FPGA]
 comment: true
 ---
