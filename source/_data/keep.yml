@@ -242,8 +242,8 @@ comment:
     github_id: LiangGeQAQ        # GitHub repo owner
     github_admins: [LiangGeQAQ]  # GitHub Admins (in Array type), optional
     repository: hexo-site-comments       # Repository name to store issues
-    client_id: e68b2117517290f1c9fe      # GitHub Application Client ID
-    client_secret:  0a70b0ace8fd41dadb84017934f299871e8338a5 # e7b2fc7190cb9ce2d632de491ff72a11e648b9b5   # GitHub Application Client Secret
+    client_id: e68b2117517290f1c9fe       # GitHub Application Client ID
+    client_secret: e7b2fc7190cb9ce2d632de491ff72a11e648b9b5   # GitHub Application Client Secret
     proxy:            # GitHub oauth request reverse proxy for CORS
 
   # Twikoo
