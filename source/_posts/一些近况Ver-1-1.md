@@ -4,7 +4,7 @@ mathjax: true
 date: 2022-05-18 00:18:49
 tags: [日常, 规划, 近况]
 updated: 2022-05-18 00:45:22
-categories: [日常]
+categories: [生活随笔]
 comment: true
 description: "emmm......入学这么久，现在算是悟了，大学真的是需要无时无刻不拼命才能行的，不然四年（不到四年），这么短的时间是很难做到有什么比较可观的进步，同志们还…"
 ---

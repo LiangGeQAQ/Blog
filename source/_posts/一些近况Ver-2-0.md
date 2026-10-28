@@ -4,7 +4,7 @@ mathjax: true
 date: 2023-09-04 20:34:44
 tags: [日常, 规划, 近况]
 updated: 2023-09-04 20:57:56
-categories: [日常]
+categories: [生活随笔]
 comment: true
 description: "不知不觉，距离上一次写下blog已经接近六个月，居然有一整个学期没有进行记录了，看看上学期除了参加了全国电赛，确实是过于怠惰了…甚至信号系统考了58，导致这两…"
 ---

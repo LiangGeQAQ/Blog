@@ -4,7 +4,7 @@ mathjax: true
 date: 2022-04-06 22:49:12
 tags: [日常, 规划, 近况]
 updated: 2022-04-07 00:42:03
-categories: [日常]
+categories: [生活随笔]
 comment: true
 description: "最近的事情实在是又多又杂，所以在这里整理（吐槽一下），好多好烦呐！ 导致我Blog鸽了好多天，之后可能更新的频率也会慢下来……"
 ---

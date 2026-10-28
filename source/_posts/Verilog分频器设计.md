@@ -4,7 +4,7 @@ mathjax: true
 date: 2023-03-06 21:36:41
 tags: [FPGA, 分频, Verilog]
 updated: 2023-03-06 21:42:57
-categories: [Verilog]
+categories: [嵌入式与硬件]
 comment: true
 description: "通常在FPGA中一个时钟源的频率是非常高的，就我们这学期将会使用的 DE1-SoC 这块板子来说，就有4个50MHz的时钟源以及2个25MHz时钟源，而我们在…"
 ---

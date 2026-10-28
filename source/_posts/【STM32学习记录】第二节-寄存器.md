@@ -4,7 +4,7 @@ mathjax: true
 date: 2022-03-24 09:09:52
 tags: [STM32, 寄存器]
 updated: 2022-03-24 09:21:31
-categories: [STM32]
+categories: [嵌入式与硬件]
 comment: true
 description: "本系列文章仅为个人学习记录，若有错误欢迎指出，相关的参考文章会在本文末进行列出，主要参考视频为Blibili@正点原子官方，以及Blibili@野火fireg…"
 ---

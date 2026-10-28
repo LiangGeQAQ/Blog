@@ -2,9 +2,9 @@
 title: LateX并行等式
 mathjax: true
 date: 2022-07-08 14:53:50
-tags: [LateX, 换行]
+tags: [LaTeX, 换行]
 updated: 2022-07-20 17:25:18
-categories: [LateX]
+categories: [工具与效率]
 comment: true
 description: "$$ \\begin{split} S{PM}(t) & = Acps[\\omegact+K{PM}m(t)]\\\\ & = Acos[\\omegact+m{PM…"
 ---

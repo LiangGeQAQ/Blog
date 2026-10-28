@@ -4,7 +4,7 @@ mathjax: true
 date: 2022-06-05 16:12:16
 tags: [Verilog, 语法, 硬件描述语言]
 updated: 2022-06-05 16:30:53
-categories: [Verilog]
+categories: [嵌入式与硬件]
 comment: true
 description: "+ initial【设计不用，仿真时使用】 + task/function【设计不用，仿真很少用】 + for/while/repeat/forever【设计…"
 ---

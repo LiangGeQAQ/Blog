@@ -4,7 +4,7 @@ mathjax: true
 date: 2024-04-06 19:18:06
 tags: [CST, 半波偶极子天线]
 updated: 2024-04-06 19:18:06
-categories: [CST]
+categories: [通信与射频]
 comment: true
 description: "文中使用了两种参数来实现 2.724GHz 天线，一种是文内步骤图中所使用的参数（此种方式天线间隙需自行调整得小一些，并且计算式并未考虑间隙），一种是实验原理…"
 ---

@@ -5,7 +5,7 @@ mathjax: true
 date: 2024-04-01 19:36:36
 tags: [C++, string2int, 优先队列]
 updated: 2024-04-01 20:02:30
-categories: [C++]
+categories: [编程与算法]
 description: "明明生成了 N 个 1 到 500 之间的随机整数。请你删去其中重复的数字，即相同的数字只保留一个，把其余相同的数去掉，然后再把这些数从小到大排序，按照排好的…"
 ---
 

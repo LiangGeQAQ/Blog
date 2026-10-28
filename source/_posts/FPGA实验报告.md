@@ -4,7 +4,7 @@ mathjax: true
 date: 2022-06-20 23:20:57
 tags: [FPGA, 数字电路, 报告]
 updated: 2023-03-03 16:28:58
-categories: [FPGA]
+categories: [嵌入式与硬件]
 comment: Ture
 description: "​ 因为时间比较赶（马上期末考试了，还没学多少呢），所以说直接挂报告的内容了，可能仍有很多没有完全描述详尽的地方，有疑问可以在评论区说一下，这个工程其实也是有…"
 ---

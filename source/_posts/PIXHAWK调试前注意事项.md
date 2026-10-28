@@ -4,7 +4,7 @@ mathjax: true
 date: 2024-03-04 21:34:41
 tags: [PIXHAWK, 调试]
 updated: 2024-03-05 19:19:57
-categories: [PIXHAWK]
+categories: [嵌入式与硬件]
 comment: true
 description: "拿到PIXHAWK飞控后，需根据情况刷对应飞机的固件，有的tb店出厂默认刷好四轴固件。"
 ---

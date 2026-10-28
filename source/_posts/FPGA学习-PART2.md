@@ -4,7 +4,7 @@ mathjax: true
 date: 2022-10-14 20:17:31
 tags: [FPGA, PS, SDK]
 updated: 2023-03-03 16:13:09
-categories: [FPGA]
+categories: [嵌入式与硬件]
 comment: true
 description: "PS是Processer system的缩写，即处理器系统，此次实验将ZYNQ7当作一个ARM处理器进行设计。 先在Vivado中配置处理器，再在SDK中设计…"
 ---

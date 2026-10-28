@@ -4,7 +4,7 @@ mathjax: true
 date: 2023-03-01 19:15:24
 tags: [FPGA, 探针, VIO]
 updated: 2023-03-01 19:24:02
-categories: [FPGA]
+categories: [嵌入式与硬件]
 comment: true
 description: "VIO是 Virtual Input/Output 的缩写，是Vivado提供的一个IP核； 可以用于驱动FPGA的内部信号，并监测其内部特征， 也就是实时监…"
 ---

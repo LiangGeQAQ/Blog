@@ -2,9 +2,9 @@
 title: 如何搭建自己的Blog
 mathjax: true
 date: 2022-03-10 22:34:51
-tags: [Hexo, Github, Vercel, Blog]
+tags: [Hexo, GitHub, Vercel, Blog]
 updated: 2022-07-08 14:58:43
-categories: [Hexo]
+categories: [工具与效率]
 comment: true
 description: "本文旨在将搭建本Blog的流程记录下来，并且让更多比我还小白的小白能看得明白 （也方便以后自己更改调试这些页面...），本文作者相关的基础也还在学习中， 有错…"
 ---

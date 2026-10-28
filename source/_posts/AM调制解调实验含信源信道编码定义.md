@@ -4,7 +4,7 @@ mathjax: true
 date: 2022-07-19 21:00:03
 tags: [AM, GNU Radio, 信源编码, 信道编码, 调制解调]
 updated: 2022-07-27 18:00:50
-categories: [AM]
+categories: [通信与射频]
 comment: true
 description: "系统：Ubuntu 20.04 软件：GNU Radio 3.8.1.0"
 ---
