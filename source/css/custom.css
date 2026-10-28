@@ -15,9 +15,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
     "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
   font-size: 16px;
-  line-height: 1.85;
+  line-height: 1.6; /* 主题很多组件是固定行高布局，这里不能放大；正文行高见下方 .keep-markdown-body */
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
+}
+
+.keep-markdown-body {
+  line-height: 1.85;
 }
 
 .keep-markdown-body h1,
@@ -497,9 +501,25 @@ body {
   transform: translateY(-2px);
 }
 
-.friends-link-container .friends-link-list .friends-link-item .content .name {
+.friends-link-container .friends-link-list .friends-link-item .content .info .name {
   color: var(--text-color-1);
   font-weight: 600;
+  height: auto !important;
+  font-size: 17px;
+  line-height: 26px;
+}
+
+.friends-link-container .friends-link-list .friends-link-item .content .info .description {
+  height: auto !important;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+/* 名称 + 简介在卡片内垂直居中 */
+.friends-link-container .friends-link-list .friends-link-item .content .info {
+  justify-content: center;
+  height: 100% !important;
+  padding: 0 12px !important;
 }
 
 .friends-link-container .friends-link-list .friends-link-item .content:hover .info .name {
