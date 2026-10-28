@@ -25,9 +25,9 @@
       <stop offset="1" stop-color="#7b63e6"/>
     </linearGradient>
     <linearGradient id="iris" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#3f2f96"/>
-      <stop offset="0.5" stop-color="#7b68e0"/>
-      <stop offset="1" stop-color="#bda9ff"/>
+      <stop offset="0" stop-color="#4a3a9e"/>
+      <stop offset="0.55" stop-color="#7b68e0"/>
+      <stop offset="1" stop-color="#ae9bf2"/>
     </linearGradient>
     <radialGradient id="skin" cx="0.42" cy="0.32" r="0.78">
       <stop offset="0" stop-color="#fffaf6"/>
@@ -35,7 +35,7 @@
       <stop offset="1" stop-color="#f4d2c4"/>
     </radialGradient>
     <radialGradient id="blush" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#ff9db6" stop-opacity="0.8"/>
+      <stop offset="0" stop-color="#ff9db6" stop-opacity="0.7"/>
       <stop offset="1" stop-color="#ff9db6" stop-opacity="0"/>
     </radialGradient>
     <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
@@ -46,18 +46,16 @@
     </filter>
   </defs>
 
-  <!-- ===== 后发（体积感：暗部 → 主色 → 高光） ===== -->
+  <!-- ===== 后发（不随头部转动） ===== -->
   <path d="M64 12c-21 0-34 14-34 32 0 9 1.6 16 3.8 22l-4.4 34c-0.7 4.4 2 6.6 5.8 6.6h57.6c3.8 0 6.5-2.2 5.8-6.6l-4.4-34c2.2-6 3.8-13 3.8-22 0-18-13-32-34-32z"
         fill="#cdc8e3"/>
   <path d="M64 14c-19 0-31 12-31 29 0 9 1.5 16 3.5 22l-4 33c-0.6 4 1.8 6 5.2 6h52.6c3.4 0 5.8-2 5.2-6l-4-33c2-6 3.5-13 3.5-22 0-17-12-29-31-29z"
         fill="url(#hairTop)"/>
 
-  <!-- ===== 肩膀 / 裙 ===== -->
+  <!-- ===== 身体（不随头部转动） ===== -->
   <path d="M64 92c-15 0-25 7-28 17l-3.4 15h62.8L92 109c-3-10-13-17-28-17z" fill="url(#dressBody)"/>
   <path d="M64 92c-7 0-13 1.6-17.5 4.6C51 100 57 102 64 102s13-2 17.5-5.4C77 93.6 71 92 64 92z" fill="#ffffff" opacity="0.72"/>
-  <!-- 领口紫边 -->
   <path d="M52 96c3.2 6.6 7.4 9.8 12 9.8s8.8-3.2 12-9.8" fill="none" stroke="#9c88ee" stroke-width="2.6" stroke-linecap="round"/>
-  <!-- 胸口蝴蝶结（Emilia 的紫色缎带） -->
   <g transform="translate(64,105)">
     <path d="M0 0l-8.4-4.6v9.2z" fill="url(#ribbon)"/>
     <path d="M0 0l8.4-4.6v9.2z" fill="url(#ribbon)"/>
@@ -65,95 +63,100 @@
     <circle r="2.2" fill="#ffffff"/>
   </g>
 
-  <!-- ===== 桌沿（上高光 + 投影） ===== -->
+  <!-- ===== 桌沿 ===== -->
   <ellipse cx="64" cy="118" rx="50" ry="6.5" fill="#3a2b86" opacity="0.3" filter="url(#soft)"/>
   <rect x="2" y="116" width="124" height="20" rx="10" fill="url(#ledgeTop)"/>
   <rect x="8" y="118" width="112" height="3.4" rx="1.7" fill="#ffffff" opacity="0.5"/>
   <rect x="8" y="130" width="112" height="2.6" rx="1.3" fill="#4a3799" opacity="0.35"/>
 
-  <!-- ===== 手臂（搭在桌沿，带明暗） ===== -->
+  <!-- ===== 手臂 ===== -->
   <path d="M41 100c-6 3.4-9.4 9-9.4 14.6 0 2.4 2 3.8 4.4 3.8 3.4 0 5.6-2.2 6.6-5.6 1.2-4.2 2.4-8.6 4.4-10.8z" fill="#ffe9de"/>
   <path d="M87 100c6 3.4 9.4 9 9.4 14.6 0 2.4-2 3.8-4.4 3.8-3.4 0-5.6-2.2-6.6-5.6-1.2-4.2-2.4-8.6-4.4-10.8z" fill="#ffe9de"/>
   <path d="M33 105c-1.6 4-1 8 1.8 10.2 2.2 1.7 5.4 1.2 7-1" fill="none" stroke="#eec7b8" stroke-width="1.4" stroke-linecap="round" opacity="0.75"/>
   <path d="M95 105c1.6 4 1 8-1.8 10.2-2.2 1.7-5.4 1.2-7-1" fill="none" stroke="#eec7b8" stroke-width="1.4" stroke-linecap="round" opacity="0.75"/>
-  <!-- 手背 -->
   <ellipse cx="36" cy="115" rx="6.6" ry="4.6" fill="#fff4ee"/>
   <ellipse cx="92" cy="115" rx="6.6" ry="4.6" fill="#fff4ee"/>
   <path d="M31 116q5 3 12 1" fill="none" stroke="#f0cdbf" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
   <path d="M97 116q-5 3-12 1" fill="none" stroke="#f0cdbf" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
 
-  <!-- ===== 脖子（带阴影） ===== -->
+  <!-- ===== 脖子 ===== -->
   <path d="M56 80h16v11c0 3.4-3.4 5.6-8 5.6s-8-2.2-8-5.6z" fill="#f7d9cb"/>
   <ellipse cx="64" cy="88" rx="10" ry="4.4" fill="#3a2b86" opacity="0.2" filter="url(#soft2)"/>
 
-  <!-- ===== 脸 ===== -->
-  <ellipse cx="64" cy="56" rx="27" ry="25.5" fill="url(#skin)"/>
-  <path d="M86 36c5.4 5.4 7.6 11.6 7.6 17.4 0 14-11.6 25.4-27 25.4-4.6 0-9-1.2-13-3.4 5.4 6.4 13 10.2 19.4 10.2 14 0 25.4-11 25.4-24.4 0-6.6-4.4-17.6-12.4-25.2z"
-        fill="#e8b7a5" opacity="0.3" filter="url(#soft2)"/>
+  <!-- ===== 头部（含轻微转头 + 眨眼） ===== -->
+  <g id="pet-head">
+    <animateTransform attributeName="transform" type="rotate"
+      values="0 64 88; -6.5 64 88; 0 64 88; 5.5 64 88; 0 64 88"
+      keyTimes="0; 0.2; 0.48; 0.76; 1"
+      calcMode="spline"
+      keySplines="0.45 0 0.25 1; 0.45 0 0.25 1; 0.45 0 0.25 1; 0.45 0 0.25 1"
+      dur="14s" repeatCount="indefinite"/>
 
-  <!-- ===== 刘海（中分 + 两侧发绺，分层） ===== -->
-  <path d="M37 52c0-16 12-27 27-27s27 11 27 27c0 3-0.6 5.4-1.8 7.6-2.2-7.4-6.4-10.8-11.6-11.8 1 4.2 0.6 7.6-1 10.6-2.2-6.4-6.4-9.6-11.6-10.2 0.6 3.2-0.6 6.4-2.8 8.6-2.2-5.4-5.6-7.6-9.8-7.6-3.2 0-6 1.6-8.2 4.2-2 2.2-3.2 5-3.2 7.4-2-2.2-3-5.2-3-8.8z"
-        fill="url(#hairTop)"/>
-  <!-- 刘海暗部 -->
-  <path d="M43 36c4.4-8.4 12-12.6 21-12.6 7.6 0 14 3 18.4 9-3.4-2-7.6-3-12-3-10 0-19.4 2.4-27.4 6.6z" fill="#c6c1dd" opacity="0.62"/>
-  <!-- 刘海高光（顶部一圈亮面） -->
-  <path d="M46 27c5.4-4.4 12-6.6 18.4-6.6 4.4 0 8.6 1 12 2.6-6.6-0.6-14 0.6-20.4 3.2-4.4 2-7.6 4.4-10 7.4z" fill="#ffffff" opacity="0.9"/>
-  <!-- 发绺阴影线 -->
-  <path d="M57 30c-1.6 6-2 11.6-1 16.6M70 30c1.4 5.6 1.8 11 0.8 15.6" stroke="#d8d3ec" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <!-- 脸 -->
+    <ellipse cx="64" cy="56" rx="27" ry="25.5" fill="url(#skin)"/>
+    <path d="M86 36c5.4 5.4 7.6 11.6 7.6 17.4 0 14-11.6 25.4-27 25.4-4.6 0-9-1.2-13-3.4 5.4 6.4 13 10.2 19.4 10.2 14 0 25.4-11 25.4-24.4 0-6.6-4.4-17.6-12.4-25.2z"
+          fill="#e8b7a5" opacity="0.28" filter="url(#soft2)"/>
 
-  <!-- 侧发（长及胸口） -->
-  <path d="M37 46c-4.6 10-5.6 22-4.4 34 0.6 6.6 2.8 10 6.2 11.4-2.4-12.4-3-27.6-1.8-45.4z" fill="url(#hairLock)"/>
-  <path d="M91 46c4.6 10 5.6 22 4.4 34-0.6 6.6-2.8 10-6.2 11.4 2.4-12.4 3-27.6 1.8-45.4z" fill="url(#hairLock)"/>
-  <path d="M40 52c-3 9-3.6 19-2.8 28" stroke="#ffffff" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.7"/>
-  <path d="M88 52c3 9 3.6 19 2.8 28" stroke="#ffffff" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- 刘海 -->
+    <path d="M37 52c0-16 12-27 27-27s27 11 27 27c0 3-0.6 5.4-1.8 7.6-2.2-7.4-6.4-10.8-11.6-11.8 1 4.2 0.6 7.6-1 10.6-2.2-6.4-6.4-9.6-11.6-10.2 0.6 3.2-0.6 6.4-2.8 8.6-2.2-5.4-5.6-7.6-9.8-7.6-3.2 0-6 1.6-8.2 4.2-2 2.2-3.2 5-3.2 7.4-2-2.2-3-5.2-3-8.8z"
+          fill="url(#hairTop)"/>
+    <path d="M43 36c4.4-8.4 12-12.6 21-12.6 7.6 0 14 3 18.4 9-3.4-2-7.6-3-12-3-10 0-19.4 2.4-27.4 6.6z" fill="#c6c1dd" opacity="0.6"/>
+    <path d="M46 27c5.4-4.4 12-6.6 18.4-6.6 4.4 0 8.6 1 12 2.6-6.6-0.6-14 0.6-20.4 3.2-4.4 2-7.6 4.4-10 7.4z" fill="#ffffff" opacity="0.8"/>
+    <path d="M57 30c-1.6 6-2 11.6-1 16.6M70 30c1.4 5.6 1.8 11 0.8 15.6" stroke="#d8d3ec" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.8"/>
+    <path d="M37 46c-4.6 10-5.6 22-4.4 34 0.6 6.6 2.8 10 6.2 11.4-2.4-12.4-3-27.6-1.8-45.4z" fill="url(#hairLock)"/>
+    <path d="M91 46c4.6 10 5.6 22 4.4 34-0.6 6.6-2.8 10-6.2 11.4 2.4-12.4 3-27.6 1.8-45.4z" fill="url(#hairLock)"/>
 
-  <!-- ===== 发饰：紫色小花 + 星星 ===== -->
-  <g transform="translate(92,34)">
-    <g fill="#b9a7f5">
-      <ellipse cx="0" cy="-5" rx="2.6" ry="3.6"/>
-      <ellipse cx="4.8" cy="-1.5" rx="2.6" ry="3.6" transform="rotate(72 4.8 -1.5)"/>
-      <ellipse cx="3" cy="4" rx="2.6" ry="3.6" transform="rotate(144 3 4)"/>
-      <ellipse cx="-3" cy="4" rx="2.6" ry="3.6" transform="rotate(216 -3 4)"/>
-      <ellipse cx="-4.8" cy="-1.5" rx="2.6" ry="3.6" transform="rotate(288 -4.8 -1.5)"/>
+    <!-- 发饰 -->
+    <g transform="translate(92,34)">
+      <g fill="#b9a7f5">
+        <ellipse cx="0" cy="-5" rx="2.6" ry="3.6"/>
+        <ellipse cx="4.8" cy="-1.5" rx="2.6" ry="3.6" transform="rotate(72 4.8 -1.5)"/>
+        <ellipse cx="3" cy="4" rx="2.6" ry="3.6" transform="rotate(144 3 4)"/>
+        <ellipse cx="-3" cy="4" rx="2.6" ry="3.6" transform="rotate(216 -3 4)"/>
+        <ellipse cx="-4.8" cy="-1.5" rx="2.6" ry="3.6" transform="rotate(288 -4.8 -1.5)"/>
+      </g>
+      <circle r="2.2" fill="#fff3b0"/>
     </g>
-    <circle r="2.2" fill="#fff3b0"/>
-  </g>
 
-  <!-- ===== 眼睛 ===== -->
-  <g>
-    <ellipse cx="52" cy="58" rx="7.2" ry="8.4" fill="url(#iris)"/>
-    <ellipse cx="76" cy="58" rx="7.2" ry="8.4" fill="url(#iris)"/>
-    <ellipse cx="52" cy="59.6" rx="4.2" ry="5.6" fill="#332377" opacity="0.9"/>
-    <ellipse cx="76" cy="59.6" rx="4.2" ry="5.6" fill="#332377" opacity="0.9"/>
-    <circle cx="54.4" cy="54" r="2.4" fill="#ffffff"/>
-    <circle cx="78.4" cy="54" r="2.4" fill="#ffffff"/>
-    <circle cx="50" cy="62" r="1.3" fill="#ffffff" opacity="0.9"/>
-    <circle cx="74" cy="62" r="1.3" fill="#ffffff" opacity="0.9"/>
-    <!-- 上眼睑（睫毛线） -->
-    <path d="M44.4 51.2q7.6-4 15.2-0.6" stroke="#4b3aa0" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.75"/>
-    <path d="M68.4 50.6q7.6-3.4 15.2 0.6" stroke="#4b3aa0" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.75"/>
-    <!-- 下眼睑淡线 -->
-    <path d="M46 65q6 2.4 12 0.4" stroke="#c9a7d8" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
-    <path d="M70 65.4q6 2 12-0.4" stroke="#c9a7d8" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+    <!-- 眼睛（缩小、降低高光强度） -->
+    <g id="pet-eyes">
+      <animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.9;0.925;0.965;0.99;1" dur="7.5s" repeatCount="indefinite"/>
+      <ellipse cx="52" cy="58" rx="5.6" ry="6.6" fill="url(#iris)"/>
+      <ellipse cx="76" cy="58" rx="5.6" ry="6.6" fill="url(#iris)"/>
+      <ellipse cx="52" cy="59.2" rx="3.2" ry="4.2" fill="#3b2c86" opacity="0.82"/>
+      <ellipse cx="76" cy="59.2" rx="3.2" ry="4.2" fill="#3b2c86" opacity="0.82"/>
+      <circle cx="53.8" cy="55.4" r="1.6" fill="#ffffff" opacity="0.92"/>
+      <circle cx="77.8" cy="55.4" r="1.6" fill="#ffffff" opacity="0.92"/>
+      <circle cx="50.4" cy="61.6" r="0.8" fill="#ffffff" opacity="0.6"/>
+      <circle cx="74.4" cy="61.6" r="0.8" fill="#ffffff" opacity="0.6"/>
+      <path d="M46.4 52.6q5.6-2.8 11.2-0.4" stroke="#54429f" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M70.4 52.2q5.6-2.4 11.2 0.4" stroke="#54429f" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+    </g>
+    <!-- 闭眼时露出的睫毛线 -->
+    <g id="pet-eyes-closed" opacity="0">
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.9;0.925;0.965;0.99;1" dur="7.5s" repeatCount="indefinite"/>
+      <path d="M46.8 58.6q5.2 2.6 10.4 0" stroke="#6b57bd" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M70.8 58.6q5.2 2.6 10.4 0" stroke="#6b57bd" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- 眉（略柔化） -->
+    <path d="M45.6 45.4q5.6-2.2 10.8-0.4M71.6 45q5.2-1.8 10.8 0.4" stroke="#c1bbdb" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <!-- 腮红 -->
+    <ellipse cx="46.6" cy="67.6" rx="5.4" ry="3.2" fill="url(#blush)"/>
+    <ellipse cx="81.4" cy="67.6" rx="5.4" ry="3.2" fill="url(#blush)"/>
+    <!-- 嘴 -->
+    <path d="M60.4 72q3.6 2.8 7.2 0" stroke="#d98195" stroke-width="1.5" fill="none" stroke-linecap="round"/>
   </g>
-  <!-- 眉 -->
-  <path d="M45 45q6-2.6 11.6-0.6M71.4 44.4q5.6-2 11.6 0.6" stroke="#b9b3d6" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.9"/>
-  <!-- 腮红 -->
-  <ellipse cx="46" cy="68" rx="6" ry="3.8" fill="url(#blush)"/>
-  <ellipse cx="82" cy="68" rx="6" ry="3.8" fill="url(#blush)"/>
-  <!-- 嘴 -->
-  <path d="M60 72.4q4 3.4 8 0" stroke="#d97f93" stroke-width="1.7" fill="none" stroke-linecap="round"/>
-  <path d="M61.6 76.6q2.4 1.4 4.8 0" stroke="#e8b0bd" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.7"/>
 
   <!-- ===== 漂浮星星 ===== -->
   <g fill="#ffe08a">
-    <path d="M17 28l1.5 3.2 3.4.4-2.6 2.3.8 3.4-3.1-1.9-3.1 1.9.8-3.4-2.6-2.3 3.4-.4z" opacity="0.9">
-      <animate attributeName="opacity" values="0.25;1;0.25" dur="3s" begin="0s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3.4; 0 0" dur="3s" begin="0s" repeatCount="indefinite"/>
+    <path d="M17 28l1.5 3.2 3.4.4-2.6 2.3.8 3.4-3.1-1.9-3.1 1.9.8-3.4-2.6-2.3 3.4-.4z" opacity="0.85">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="3.4s" begin="0s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="3.4s" begin="0s" repeatCount="indefinite"/>
     </path>
-    <path d="M112 66l1.1 2.4 2.6.3-2 1.8.6 2.6-2.4-1.4-2.4 1.4.6-2.6-2-1.8 2.6-.3z" opacity="0.8">
-      <animate attributeName="opacity" values="0.2;0.95;0.2" dur="3.4s" begin="0.8s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -2.8; 0 0" dur="3.4s" begin="0.8s" repeatCount="indefinite"/>
+    <path d="M112 66l1.1 2.4 2.6.3-2 1.8.6 2.6-2.4-1.4-2.4 1.4.6-2.6-2-1.8 2.6-.3z" opacity="0.75">
+      <animate attributeName="opacity" values="0.15;0.9;0.15" dur="3.8s" begin="0.9s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -2.6; 0 0" dur="3.8s" begin="0.9s" repeatCount="indefinite"/>
     </path>
   </g>
 </svg>
