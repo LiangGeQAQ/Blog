@@ -2,21 +2,37 @@
 const tagList = (site.tags && site.tags.toArray) ? site.tags.toArray() : (site.tags || [])
 const sortedTags = tagList.slice().sort((a, b) => b.length - a.length)
 const totalTags = sortedTags.length
+const totalPosts = sortedTags.reduce((sum, t) => sum + t.length, 0)
+const hotTags = sortedTags.slice(0, 8)
+const restTags = sortedTags.slice(8)
+const hotSize = [1.9, 1.65, 1.45, 1.3, 1.18, 1.1, 1.04, 1.0]
 %>
 <div class="tag-wall fade-in-down-animation">
     <div class="tag-wall-head">
         <h1 class="tag-wall-title"><%- __('tags') %></h1>
-        <p class="tag-wall-sub">共 <%= totalTags %> 个标签 · 按文章数排序</p>
+        <p class="tag-wall-sub"><%= totalTags %> 个标签 · <%= totalPosts %> 次使用</p>
     </div>
-    <div class="tag-wall-body">
-        <% sortedTags.forEach(function (t) { %>
-            <a class="tag-wall-item"
-               href="<%- url_for(t.path) %>"
-               style="font-size: <%= (0.94 + Math.min(t.length, 8) * 0.055).toFixed(2) %>rem"
-            >
-                <span class="tag-wall-name"><%= t.name %></span>
-                <span class="tag-wall-count"><%= t.length %></span>
-            </a>
-        <% }) %>
-    </div>
+
+    <% if (hotTags.length) { %>
+        <div class="tag-wall-hot">
+            <% hotTags.forEach(function (t, i) { %>
+                <a class="tag-hot-item"
+                   href="<%- url_for(t.path) %>"
+                   style="font-size: <%= hotSize[i] %>rem"
+                ><%= t.name %><span class="tag-hot-count"><%= t.length %></span></a>
+            <% }) %>
+        </div>
+    <% } %>
+
+    <% if (restTags.length) { %>
+        <div class="tag-wall-index">
+            <% restTags.forEach(function (t) { %>
+                <a class="tag-index-item" href="<%- url_for(t.path) %>">
+                    <span class="tag-index-name"><%= t.name %></span>
+                    <span class="tag-index-dots"></span>
+                    <span class="tag-index-count"><%= t.length %></span>
+                </a>
+            <% }) %>
+        </div>
+    <% } %>
 </div>

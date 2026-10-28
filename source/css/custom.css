@@ -365,75 +365,120 @@ body {
   background: var(--background-color-2);
 }
 
-/* ---------- 8. 标签墙（tags 页重做） ---------- */
+/* ---------- 8. 标签墙（tags 页重做：热门标签 + 索引式列表） ---------- */
 .tag-wall {
-  max-width: 900px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 8px 0 46px;
+  padding: 8px 0 48px;
 }
 
 .tag-wall-head {
   text-align: center;
-  margin: 10px 0 30px;
+  margin: 10px 0 28px;
 }
 
 .tag-wall-title {
   font-size: 1.55rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--text-color-1);
   margin: 0;
 }
 
 .tag-wall-sub {
   margin: 8px 0 0;
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
   color: var(--text-color-4);
 }
 
-.tag-wall-body {
+/* 热门标签：字号递变，居中排布 */
+.tag-wall-hot {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px 12px;
-}
-
-.tag-wall-item {
-  display: inline-flex;
   align-items: baseline;
-  gap: 7px;
-  padding: 6px 13px;
-  border: 1px solid transparent;
-  border-radius: 9px;
-  color: var(--text-color-3);
+  justify-content: center;
+  gap: 6px 26px;
+  padding: 6px 0 30px;
+  margin-bottom: 26px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.tag-hot-item {
+  color: var(--text-color-2);
   text-decoration: none;
-  line-height: 1.6;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease,
-    transform 0.18s ease;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  transition: color 0.18s ease, letter-spacing 0.18s ease;
 }
 
-.tag-wall-item:hover {
+.tag-hot-item:hover {
   color: var(--primary-color);
-  border-color: color-mix(in srgb, var(--primary-color) 28%, transparent);
-  background: color-mix(in srgb, var(--primary-color) 6%, transparent);
-  transform: translateY(-2px);
+  letter-spacing: 0.03em;
 }
 
-.tag-wall-count {
-  font-size: 0.68em;
+.tag-hot-count {
+  font-size: 0.42em;
   font-weight: 400;
   color: var(--text-color-5);
-  padding: 0 5px;
-  border-radius: 6px;
-  background: var(--background-color-2);
+  margin-left: 4px;
+  vertical-align: super;
+}
+
+/* 其余标签：多栏索引，点线引导 + 计数 */
+.tag-wall-index {
+  columns: 3 210px;
+  column-gap: 38px;
+}
+
+.tag-index-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 2px;
+  color: var(--text-color-3);
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  break-inside: avoid;
   transition: color 0.18s ease;
 }
 
-.tag-wall-item:hover .tag-wall-count {
+.tag-index-item:hover {
   color: var(--primary-color);
+}
+
+.tag-index-name {
+  flex: 0 0 auto;
+  max-width: 75%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tag-index-dots {
+  flex: 1 1 auto;
+  border-bottom: 1px dotted color-mix(in srgb, var(--text-color-5) 55%, transparent);
+  transform: translateY(-3px);
+  min-width: 12px;
+}
+
+.tag-index-count {
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  color: var(--text-color-5);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 768px) {
+  .tag-wall-hot {
+    gap: 4px 18px;
+  }
+  .tag-wall-index {
+    columns: 2 150px;
+    column-gap: 22px;
+  }
 }
 
 /* ---------- 9. 友链页（网格卡片） ---------- */
