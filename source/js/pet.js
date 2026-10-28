@@ -1,6 +1,7 @@
 /*!
  * 站点桌宠（桌面端限定）
- * 设计：仅在「正文两侧有空白」且非首页时从页面边缘探出，可拖动，窄屏自动缩回。
+ * 设计：非首页、正文两侧有空白时出现；可拖到页面任意位置悬浮，不强制贴边；
+ *      正文占满屏幕时滑向最近一侧隐藏。
  * 说明：角色为原创绘制的 Q 版银发少女形象（SVG），不含任何第三方素材或 Live2D 模型，
  *      故不涉及第三方版权与运行时依赖；交互思路参考 oneko.js 的轻量精灵做法。
  * 兼容：主题开启 PJAX，站内跳转不会重新加载文档，因此必须响应 pjax 事件重建实例。
@@ -11,8 +12,8 @@
   var MIN_GUTTER = 110;   // 两侧空白小于该值就缩回（内容占满屏幕）
   var MOBILE_MAX = 900;   // 低于该宽度视为移动端（手机不加载）
   var PET_W = 96;
-  var PET_H = 128;
-  var STORE_KEY = 'pet:pos:v1';
+  var PET_H = 136;
+  var STORE_KEY = 'pet:pos:v2';
 
   var LINES = [
     '今天也要加油呀～',
@@ -22,13 +23,14 @@
     '我在这儿陪你一会儿。'
   ];
 
-  var el = null, bubble = null, side = 'right', y = 0;
+  var FORCE = /[?&]pet=1\b/.test(location.search);   // ?pet=1 强制显示（排障用）
+  var OFF = /[?&]pet=0\b/.test(location.search);     // ?pet=0 临时关闭
+
+  var el = null, bubble = null, side = 'right';
+  var x = 0, y = 0;
   var dragging = false, moved = false;
   var startX = 0, startY = 0, originLeft = 0, originTop = 0;
   var bubbleTimer = null, lastPath = null, raf = 0;
-
-  var FORCE = /[?&]pet=1\b/.test(location.search);   // ?pet=1 强制显示（排障用）
-  var OFF = /[?&]pet=0\b/.test(location.search);     // ?pet=0 临时关闭
 
   function mqMobile() { return !FORCE && window.matchMedia('(max-width:' + MOBILE_MAX + 'px)').matches; }
 
@@ -45,13 +47,13 @@
   function loadState() {
     try {
       var s = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
-      if (s.side === 'left' || s.side === 'right') side = s.side;
+      if (typeof s.x === 'number') x = s.x;
       if (typeof s.y === 'number') y = s.y;
     } catch (e) { /* ignore */ }
   }
 
   function saveState() {
-    try { localStorage.setItem(STORE_KEY, JSON.stringify({ side: side, y: Math.round(y) })); } catch (e) {}
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ x: Math.round(x), y: Math.round(y) })); } catch (e) {}
   }
 
   function contentWidth() {
@@ -64,18 +66,17 @@
     return (window.innerWidth - Math.min(contentWidth(), window.innerWidth)) / 2;
   }
 
-  function clampY(v) {
-    var max = window.innerHeight - PET_H - 12;
-    return Math.max(12, Math.min(max, v));
-  }
+  function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 
   function applyPosition() {
     if (!el) return;
-    if (!dragging) y = clampY(y);
+    x = clamp(x, 0, window.innerWidth - PET_W);
+    y = clamp(y, 12, window.innerHeight - PET_H - 12);
+    side = (x + PET_W / 2) < window.innerWidth / 2 ? 'left' : 'right';
     el.classList.toggle('side-left', side === 'left');
     el.classList.toggle('side-right', side === 'right');
+    el.style.left = Math.round(x) + 'px';
     el.style.top = Math.round(y) + 'px';
-    el.style.left = (side === 'left' ? 0 : window.innerWidth - PET_W) + 'px';
   }
 
   function updateVisibility() {
@@ -109,12 +110,13 @@
     if (!dragging) return;
     var dx = e.clientX - startX, dy = e.clientY - startY;
     if (Math.abs(dx) > 4 || Math.abs(dy) > 4) moved = true;
-    var left = Math.max(0, Math.min(window.innerWidth - PET_W, originLeft + dx));
-    var top = Math.max(12, Math.min(window.innerHeight - PET_H - 12, originTop + dy));
-    el.style.left = Math.round(left) + 'px';
-    el.style.top = Math.round(top) + 'px';
-    y = top;
-    side = left + PET_W / 2 < window.innerWidth / 2 ? 'left' : 'right';
+    x = clamp(originLeft + dx, 0, window.innerWidth - PET_W);
+    y = clamp(originTop + dy, 12, window.innerHeight - PET_H - 12);
+    side = (x + PET_W / 2) < window.innerWidth / 2 ? 'left' : 'right';
+    el.classList.toggle('side-left', side === 'left');
+    el.classList.toggle('side-right', side === 'right');
+    el.style.left = Math.round(x) + 'px';
+    el.style.top = Math.round(y) + 'px';
   }
 
   function onPointerUp() {
@@ -154,7 +156,10 @@
 
     document.body.appendChild(el);
     loadState();
-    y = clampY(y || window.innerHeight - PET_H - 80);
+    if (!x && !y) {
+      x = window.innerWidth - PET_W - 24;
+      y = window.innerHeight - PET_H - 96;
+    }
     applyPosition();
     updateVisibility();
   }
@@ -177,7 +182,7 @@
 
   function schedule() {
     cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(function () { updateVisibility(); });
+    raf = requestAnimationFrame(function () { applyPosition(); updateVisibility(); });
   }
 
   function boot() {
@@ -208,14 +213,15 @@
         gutter: Math.round(gutter()),
         minGutter: MIN_GUTTER,
         hidden: el ? el.classList.contains('is-hidden') : null,
+        pos: { x: Math.round(x), y: Math.round(y) },
         force: FORCE,
         off: OFF
       };
     };
   }
 
-  /* 站点资源较重（首屏背景图近 9MB），页面可能长时间停在 loading，
-     defer/ DOMContentLoaded 会被拖住，因此这里用 async 加载 + 轮询 body 就绪 */
+  /* 站点资源较重，页面可能长时间停在 loading，defer/DOMContentLoaded 会被拖住，
+     因此用 async 加载 + 轮询 body 就绪 */
   var started = false;
   function start() {
     if (started || !document.body) return;
