@@ -1,0 +1,366 @@
+/* =====================================================================
+   custom.css — 全站自定义样式（覆盖 hexo-theme-keep 默认样式）
+   维护：OpenClaw Agent ｜ 规则见 BLOG_GUIDE.md
+   只用主题已有的 CSS 变量，保证亮/暗色模式都能用
+   ===================================================================== */
+
+/* ---------- 1. 基础排版 ---------- */
+:root {
+  --oc-radius: 14px;
+  --oc-radius-sm: 8px;
+  --oc-max-width: 1180px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+.keep-markdown-body h1,
+.keep-markdown-body h2,
+.keep-markdown-body h3,
+.keep-markdown-body h4 {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  margin-top: 1.9em;
+  margin-bottom: 0.7em;
+}
+
+.keep-markdown-body h2 {
+  padding-left: 12px;
+  border-left: 4px solid var(--primary-color);
+  line-height: 1.4;
+}
+
+.keep-markdown-body h3 {
+  color: var(--text-color-1);
+}
+
+.keep-markdown-body p {
+  margin: 0.9em 0;
+}
+
+.keep-markdown-body a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--primary-color) 45%, transparent);
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.keep-markdown-body a:hover {
+  border-bottom-style: solid;
+  opacity: 0.85;
+}
+
+.keep-markdown-body img {
+  border-radius: var(--oc-radius-sm);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.09);
+}
+
+/* 引用块 */
+.keep-markdown-body blockquote {
+  border-left: 4px solid var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 6%, transparent);
+  border-radius: 0 var(--oc-radius-sm) var(--oc-radius-sm) 0;
+  padding: 0.8em 1.1em;
+  color: var(--text-color-3);
+  margin: 1.2em 0;
+}
+
+/* 行内代码 */
+.keep-markdown-body code:not([class*="language-"]) {
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  color: var(--primary-color-dark-1);
+  padding: 0.15em 0.4em;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+/* 代码块 */
+.keep-markdown-body pre,
+.keep-markdown-body .highlight {
+  border-radius: var(--oc-radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.keep-markdown-body pre {
+  padding: 14px 16px;
+  line-height: 1.65;
+}
+
+/* 表格 */
+.keep-markdown-body table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border-color);
+  border-radius: var(--oc-radius-sm);
+  overflow: hidden;
+  width: 100%;
+}
+
+.keep-markdown-body table th {
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+  font-weight: 600;
+  text-align: left;
+}
+
+.keep-markdown-body table th,
+.keep-markdown-body table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.keep-markdown-body table tr:last-child td {
+  border-bottom: none;
+}
+
+.keep-markdown-body table tbody tr:hover td {
+  background: var(--background-color-2);
+}
+
+/* ---------- 2. 顶部导航 ---------- */
+.header-wrapper {
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--border-color) 60%, transparent);
+}
+
+.header-content .logo-title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.menu-list .menu-item > a {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: var(--oc-radius-sm);
+  padding: 6px 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.menu-list .menu-item > a:hover {
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+}
+
+.menu-list .menu-item > a.active {
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
+}
+
+/* ---------- 3. 首页文章列表 ---------- */
+.home-article-list {
+  max-width: var(--oc-max-width);
+  margin: 0 auto;
+}
+
+.home-article-item {
+  border-radius: var(--oc-radius);
+  border: 1px solid var(--border-color);
+  background: var(--content-background-color);
+  padding: 22px 24px;
+  margin-bottom: 18px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.home-article-item:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--primary-color) 45%, var(--border-color));
+  box-shadow: 0 14px 34px var(--shadow-hover-color);
+}
+
+.home-article-title,
+.home-article-item .home-article-title a {
+  font-size: 1.22em;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.home-article-meta-info {
+  font-size: 0.86em;
+  color: var(--text-color-4);
+}
+
+.home-article-category a,
+.home-article-tag a,
+.article-tags a,
+.article-categories a {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  color: var(--primary-color);
+  font-size: 0.82em;
+  text-decoration: none;
+  border-bottom: none;
+  transition: background 0.2s ease;
+}
+
+.home-article-category a:hover,
+.home-article-tag a:hover,
+.article-tags a:hover,
+.article-categories a:hover {
+  background: color-mix(in srgb, var(--primary-color) 20%, transparent);
+}
+
+/* ---------- 4. 分类 / 标签页 ---------- */
+.category-list-container,
+.tag-list-container {
+  max-width: var(--oc-max-width);
+  margin: 0 auto;
+}
+
+.all-category-list,
+.all-tag-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin: 20px 0;
+  list-style: none;
+}
+
+.all-category-list-item,
+.all-tag-list-item {
+  border: 1px solid var(--border-color);
+  border-radius: var(--oc-radius);
+  background: var(--content-background-color);
+  padding: 14px 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.all-category-list-item:hover,
+.all-tag-list-item:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--primary-color) 45%, var(--border-color));
+  box-shadow: 0 10px 24px var(--shadow-color);
+}
+
+.all-category-list-link,
+.all-tag-list-link {
+  font-weight: 600;
+  color: var(--text-color-1);
+  text-decoration: none;
+}
+
+.all-category-list-count,
+.all-tag-list-count {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.75em;
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 12%, transparent);
+  vertical-align: 1px;
+}
+
+/* ---------- 5. 页脚 ---------- */
+.footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: 18px;
+  padding-bottom: 26px;
+}
+
+.footer .info-container {
+  font-size: 0.88em;
+  color: var(--text-color-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  justify-content: center;
+}
+
+.footer .info-item a {
+  color: var(--text-color-3);
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.footer .info-item a:hover {
+  color: var(--primary-color);
+}
+
+/* ---------- 6. 细节 ---------- */
+::selection {
+  background: color-mix(in srgb, var(--primary-color) 22%, transparent);
+}
+
+/* 返回顶部 / 工具栏圆角 */
+.fas.fa-arrow-up,
+.fas.fa-arrow-down {
+  transition: transform 0.2s ease;
+}
+
+/* 移动端留白 */
+@media (max-width: 768px) {
+  body {
+    font-size: 15.5px;
+  }
+  .home-article-item {
+    padding: 16px 16px;
+    border-radius: 12px;
+  }
+  .all-category-list,
+  .all-tag-list {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+}
+
+/* ---------- 7. 标签云（tags 页） ---------- */
+.tagcloud-container {
+  max-width: var(--oc-max-width);
+  margin: 0 auto;
+}
+
+.tagcloud-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0 20px;
+}
+
+.tagcloud-content a {
+  display: inline-block;
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: rgba(0, 102, 204, 0.08);
+  background: color-mix(in srgb, var(--primary-color) 9%, transparent);
+  border: 1px solid var(--border-color);
+  color: var(--text-color-2);
+  text-decoration: none;
+  line-height: 1.5;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.tagcloud-content a:hover {
+  transform: translateY(-2px);
+  color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 18%, transparent);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
+}
+
+/* 归档页年份标题 */
+.archive-year-wrap .archive-year,
+.archive-list .archive-year {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* 文章页上一页/下一页 */
+.article-nav .article-nav-link-wrap {
+  border: 1px solid var(--border-color);
+  border-radius: var(--oc-radius-sm);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.article-nav .article-nav-link-wrap:hover {
+  border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
+  background: var(--background-color-2);
+}
