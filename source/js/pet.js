@@ -27,13 +27,17 @@
   var startX = 0, startY = 0, originLeft = 0, originTop = 0;
   var bubbleTimer = null, lastPath = null, raf = 0;
 
-  function mqMobile() { return window.matchMedia('(max-width:' + MOBILE_MAX + 'px)').matches; }
+  var FORCE = /[?&]pet=1\b/.test(location.search);   // ?pet=1 强制显示（排障用）
+  var OFF = /[?&]pet=0\b/.test(location.search);     // ?pet=0 临时关闭
+
+  function mqMobile() { return !FORCE && window.matchMedia('(max-width:' + MOBILE_MAX + 'px)').matches; }
 
   function currentPath() {
     return location.pathname.replace(/index\.html$/, '');
   }
 
   function isHome() {
+    if (FORCE) return false;
     var p = currentPath();
     return p === '/' || p === '';
   }
@@ -76,7 +80,7 @@
 
   function updateVisibility() {
     if (!el) return;
-    var ok = gutter() >= MIN_GUTTER && !mqMobile();
+    var ok = FORCE ? true : (gutter() >= MIN_GUTTER && !mqMobile());
     el.classList.toggle('is-hidden', !ok);
     el.setAttribute('aria-hidden', ok ? 'false' : 'true');
     if (ok) applyPosition();
@@ -163,6 +167,7 @@
 
   /* 根据当前 URL / 视口决定挂载还是卸载 */
   function sync(force) {
+    if (OFF) { destroy(); return; }
     if (!force && currentPath() === lastPath) { updateVisibility(); return; }
     lastPath = currentPath();
     if (isHome() || mqMobile()) { destroy(); return; }
@@ -190,6 +195,23 @@
     setInterval(function () {
       if (currentPath() !== lastPath) sync(true);
     }, 1200);
+
+    // 排障用：控制台执行 __petDebug() 查看当前判定
+    window.__petDebug = function () {
+      return {
+        mounted: !!el,
+        path: currentPath(),
+        home: isHome(),
+        mobileMQ: mqMobile(),
+        innerWidth: window.innerWidth,
+        contentWidth: Math.round(contentWidth()),
+        gutter: Math.round(gutter()),
+        minGutter: MIN_GUTTER,
+        hidden: el ? el.classList.contains('is-hidden') : null,
+        force: FORCE,
+        off: OFF
+      };
+    };
   }
 
   if (document.readyState === 'loading') {
