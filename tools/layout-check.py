@@ -188,7 +188,7 @@ def main():
                 time.sleep(0.3)
         targets = http_get(f"http://127.0.0.1:{port}/json")
         page = [t for t in targets if t["type"] == "page"][0]
-        ws = websocket.create_connection(page["webSocketDebuggerUrl"], timeout=30)
+        ws = websocket.create_connection(page["webSocketDebuggerUrl"], timeout=180)
         seq = [0]
         send = cdp(ws, seq)
         send("Page.enable")
@@ -199,7 +199,13 @@ def main():
             for path in pages:
                 url = base + path
                 send("Page.navigate", {"url": url})
-                time.sleep(1.2)
+                # 等待真正加载完成（线上站点比本地慢）
+                for _ in range(30):
+                    st = send("Runtime.evaluate", {"expression": "document.readyState", "returnByValue": True})
+                    if st.get("result", {}).get("result", {}).get("value") == "complete":
+                        break
+                    time.sleep(0.5)
+                time.sleep(0.5)
                 r = send("Runtime.evaluate", {"expression": JS, "returnByValue": True})
                 raw = r.get("result", {}).get("result", {}).get("value")
                 issues = json.loads(raw) if raw else []
