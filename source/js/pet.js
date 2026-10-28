@@ -11,8 +11,8 @@
 
   var MIN_GUTTER = 110;   // 两侧空白小于该值就缩回（内容占满屏幕）
   var MOBILE_MAX = 900;   // 低于该宽度视为移动端（手机不加载）
-  var PET_W = 96;
-  var PET_H = 136;
+  var PET_W = 104;
+  var PET_H = 114;
   var STORE_KEY = 'pet:pos:v2';
 
   var LINES = [

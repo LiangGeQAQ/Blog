@@ -2,8 +2,8 @@
 #pet-widget {
   position: fixed;
   z-index: 90;
-  width: 96px;
-  height: 136px;
+  width: 104px;
+  height: 114px;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
