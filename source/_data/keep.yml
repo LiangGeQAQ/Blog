@@ -88,12 +88,12 @@ style:
 # If you want to enable Categories and Tags, you need to create categories and tags pages
 # e.g. `hexo new page categories` or `hexo new page tags`
 menu:
-  Home: /
-  Archives: /archives
-  Categories: /categories
-  Tags: /tags
-  Links: /links
-  About: /about
+  首页: /
+  归档: /archives
+  分类: /categories
+  标签: /tags
+  友链: /links
+  关于: /about
   # Tags: /tags
   # Categories: /categories
   # Links: /links

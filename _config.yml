@@ -8,7 +8,7 @@ subtitle: ""
 description: ""
 keywords: ""
 author: John Doe
-language: zh_CN
+language: zh-CN
 timezone: ""
 
 # URL
@@ -64,6 +64,8 @@ index_generator:
 default_category: uncategorized
 category_map:
 tag_map:
+  'C++': cpp
+  'A*': a-star
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
