@@ -214,9 +214,18 @@
     };
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
+  /* 站点资源较重（首屏背景图近 9MB），页面可能长时间停在 loading，
+     defer/ DOMContentLoaded 会被拖住，因此这里用 async 加载 + 轮询 body 就绪 */
+  var started = false;
+  function start() {
+    if (started || !document.body) return;
+    started = true;
     boot();
   }
+  document.addEventListener('DOMContentLoaded', start);
+  var waitBody = setInterval(function () {
+    if (started) { clearInterval(waitBody); return; }
+    if (document.body) { start(); clearInterval(waitBody); }
+  }, 250);
+  start();
 })();
