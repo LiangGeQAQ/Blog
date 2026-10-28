@@ -2,10 +2,11 @@
 title: 使用PL创建一个流水灯
 mathjax: true
 date: 2022-10-09 22:37:45
-tags: [FPGA,ZedBoard,流水灯] 
+tags: [FPGA, ZedBoard, 流水灯]
 updated: 2022-10-14 20:36:30
 categories: [FPGA]
 comment: true
+description: "PL 即 Programmable Logic 的缩写，意为可编程逻辑部分，此部分即将ZYNQ7当作一个单纯的FPGA来使用."
 ---
 # FPGA学习.PART1
 

@@ -2,10 +2,11 @@
 title: Vivado下的逻辑仿真实验
 mathjax: true
 date: 2023-03-01 15:58:19
-tags:  [FPGA,逻辑仿真]
+tags: [FPGA, 逻辑仿真]
 updated: 2023-03-06 00:42:50
 categories: [FPGA]
 comment: true
+description: "在此次实验中仅使用FPGA的PL部分，适用于所有可以在Vivado中使用的FPGA FPGA设计至少包含两部分文件：硬件描述文件、引脚约束文件； 逻辑仿真旨在…"
 ---
 
 # FPGA学习.PART5

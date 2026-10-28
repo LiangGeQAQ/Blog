@@ -3,8 +3,10 @@ title: 第一次做UI的小作业
 mathjax: true
 date: 2022-07-20 18:28:14
 tags: [UI]
-updated: 2022-07-20 20:26:09categories: [UI]
+updated: 2022-07-20 20:26:09
+categories: [UI]
 comment: true
+description: "写的笔记不小心删了只剩下PDF了，可以将将就就一下，又挂一次PDF叭。"
 ---
 
 <center>做UI好好玩<center/>

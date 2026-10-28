@@ -2,9 +2,11 @@
 title: 利用Multisim完成李萨如图形仿真
 mathjax: true
 date: 2022-03-16 23:00:42
-tags: [Multisim,李萨如图形]
-updated: 2022-03-17 09:20:58categories: [Multisim]
+tags: [Multisim, 李萨如图形]
+updated: 2022-03-17 09:20:58
+categories: [Multisim]
 comment: true
+description: "因为大物实验的课上 李萨如图形 在 3 : 2 时显现的图形与老师PPT上的图形有些许出入， 所以回来以后尝试自己用 Multisim 做一个仿真看看在此时…"
 ---
 
 >   因为大物实验的课上 李萨如图形 在 *3 : 2* 时显现的图形与老师PPT上的图形有些许出入，

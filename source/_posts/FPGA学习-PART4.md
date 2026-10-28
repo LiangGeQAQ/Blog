@@ -2,10 +2,11 @@
 title: 创建并调用处理器外设的IP核
 mathjax: true
 date: 2023-01-30 22:34:10
-tags: [FPGA,IP核]
+tags: [FPGA, IP核]
 updated: 2023-03-01 15:59:59
 categories: [FPGA]
 comment: true
+description: "Vivado自带了一些处理器外设，如PART3中调用的GPIO核； 我们实际应用中要创建自己的外设挂在处理器总线上，将寄存器映射到处理器得寻址空间，达到软件软…"
 ---
 # FPGA学习.PART4
 

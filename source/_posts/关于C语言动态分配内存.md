@@ -2,9 +2,11 @@
 title: 关于C语言动态分配内存
 mathjax: true
 date: 2022-03-10 20:36:49
-tags: [C,malloc,动态分配]
-updated: 2022-09-24 17:09:14categories: [C语言]
+tags: [C, malloc, 动态分配]
+updated: 2022-09-24 17:09:14
+categories: [C语言]
 comment: true
+description: "数组长度必须事先指定，只能是常量，不能是变量； 长度不能再函数运行的过程中动态地扩充或缩小； 数组所占内存空间程序员无法手动编程释放；"
 ---
 ## 传统数组的缺点
 

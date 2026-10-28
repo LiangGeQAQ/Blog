@@ -2,9 +2,11 @@
 title: FM调制解调实验
 mathjax: true
 date: 2022-07-17 21:54:47
-tags: [GNU Radio,FM,WBFM,NBFM,HackRF]
-updated: 2022-07-27 10:08:50categories: [FM]
+tags: [GNU Radio, FM, WBFM, NBFM, HackRF]
+updated: 2022-07-27 10:08:50
+categories: [FM]
 comment: true
+description: "​ 正弦载波有三个参量：幅度、频率、相位。"
 ---
 
 # GNU radio FM调制解调实验

@@ -2,10 +2,11 @@
 title: Vivado单核程序固化
 mathjax: true
 date: 2023-03-13 22:54:38
-tags: [FAPG,Vivado,固化]
+tags: [FAPG, Vivado, 固化]
 updated: 2023-03-13 22:59:25
 categories: [FPGA]
 comment: true
+description: "By Vivado 2018.3 On Zedboard"
 ---
 # Vivado单核程序固化
 

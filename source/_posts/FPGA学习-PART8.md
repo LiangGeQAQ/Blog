@@ -2,10 +2,11 @@
 title: 综合分析PS和PL部分对OLED驱动进行加速
 mathjax: true
 date: 2023-03-13 21:05:38
-tags: [FPGA,PS,PL,OLED]
+tags: [FPGA, PS, PL, OLED]
 updated: 2024-03-04 18:44:38
 categories: [FPGA]
 comment: true
+description: "+ 本节展示软硬件协调性设计的加速方法分析与实现，使软件PS部分和PL部分合理分工； + 本节实验基于上节的代码进行优化与分析；"
 ---
 
 # FPGA学习.PART8

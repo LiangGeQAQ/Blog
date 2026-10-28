@@ -2,9 +2,11 @@
 title: The-Beginning
 mathjax: true
 date: 2022-03-08 14:22:22
-tags: [Hexo,Beginning]
-updated: 2022-03-12 01:38:50categories: 日常
+tags: [Hexo, Beginning]
+updated: 2022-03-12 01:38:50
+categories: [日常]
 comment: true
+description: "至于为什么会突然想到 Start a Blog， 是想要记录一下自己的日常以及成长历程（也许算是成长...？）， 也是想把自己的问题，或者学习历程记录下来，…"
 ---
 
 >   至于为什么会突然想到 **Start a Blog**，

@@ -2,10 +2,11 @@
 title: PS与PL协同设计实现GPIO
 mathjax: true
 date: 2022-10-15 21:03:24
-tags: [FPGA,PS,PL,GPIO]
+tags: [FPGA, PS, PL, GPIO]
 updated: 2023-01-25 15:59:06
 categories: [FPGA]
 comment: true
+description: "ZYNQ7的逻辑部分PL与处理器部分PS协同工作，才能体现其强大， 在本实例中将FPGA当作一个PS处理器的外设，通过寄存器地址映射到PS的寻址空间， 在处理…"
 ---
 # FPGA学习.PART3
 

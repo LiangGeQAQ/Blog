@@ -2,10 +2,11 @@
 title: PL和PS协同设计实现对OLED的控制
 mathjax: true
 date: 2023-03-03 22:31:22
-tags: [PS,PL]
+tags: [PS, PL]
 updated: 2023-03-06 00:41:59
 categories: [FPGA]
 comment: true
+description: "+ 本节涉及到编写AXI总线外设，以及映射到处理器寻址空间最终在处理器系统编程调用。（最基本软硬件协同的操作过程，必须要掌握）可以参考PART3 + 提供一个…"
 ---
 # FPGA学习.PART7
 

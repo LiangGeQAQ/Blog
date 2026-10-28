@@ -3,9 +3,10 @@ title: cin的iostate
 comment: true
 mathjax: true
 date: 2024-03-26 20:20:45
-tags: [C++,cin]
+tags: [C++, cin]
 updated: 2024-03-26 20:20:45
 categories: [C++]
+description: "今天在做机考题的时候看到了一种把 cin 写进 while 括号里的写法，而在练习平台能运行，在本地却会被一直要求进行输入，有点好奇原理是什么，所以就查阅了一…"
 ---
 
 # cin的iostate
