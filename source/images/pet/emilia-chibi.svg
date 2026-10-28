@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" width="120" height="160" role="img" aria-label="银发少女桌宠">
+  <defs>
+    <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f4fb"/>
+      <stop offset="1" stop-color="#d5d3e6"/>
+    </linearGradient>
+    <linearGradient id="dressGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eceafb"/>
+    </linearGradient>
+    <radialGradient id="cheek" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffb3c8" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ffb3c8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <g id="pet-body">
+    <!-- 后发 -->
+    <path d="M60 18c-22 0-36 15-36 34 0 13 3 25 6 34l6-3c-3-11-5-22-4-31 1-12 11-21 28-21s27 9 28 21c1 9-1 20-4 31l6 3c3-9 6-21 6-34 0-19-14-34-36-34z"
+          fill="url(#hairGrad)" stroke="#c9c7dc" stroke-width="1"/>
+
+    <!-- 身体 / 裙子 -->
+    <path d="M60 78c-13 0-21 6-24 15l-5 26c-1 6 2 9 8 9h42c6 0 9-3 8-9l-5-26c-3-9-11-15-24-15z"
+          fill="url(#dressGrad)" stroke="#d6d2ee" stroke-width="1"/>
+    <!-- 领口 -->
+    <path d="M52 78c2 5 5 8 8 8s6-3 8-8" fill="none" stroke="#b9a7f0" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- 领结 -->
+    <path d="M60 86l-6-4v8l6-4 6 4v-8z" fill="#b9a7f0"/>
+    <circle cx="60" cy="86" r="2.2" fill="#8b7fe8"/>
+    <!-- 裙摆纹 -->
+    <path d="M40 118h40" stroke="#cbbcf5" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 5"/>
+
+    <!-- 手臂 -->
+    <path d="M38 92c-5 3-7 8-7 13" fill="none" stroke="#ffe1d8" stroke-width="6" stroke-linecap="round"/>
+    <path d="M82 92c5 3 7 8 7 13" fill="none" stroke="#ffe1d8" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- 腿 -->
+    <path d="M53 128v12M67 128v12" stroke="#ffe1d8" stroke-width="6" stroke-linecap="round"/>
+    <path d="M50 141h8M63 141h8" stroke="#8b7fe8" stroke-width="3.2" stroke-linecap="round"/>
+
+    <!-- 头（脸） -->
+    <ellipse cx="60" cy="52" rx="27" ry="26" fill="#ffefe8" stroke="#f0d8cd" stroke-width="1"/>
+
+    <!-- 刘海 -->
+    <path d="M33 50c0-16 12-27 27-27s27 11 27 27c0 3-1 6-2 8-3-8-7-11-12-12 1 4 1 8-1 11-2-7-6-10-11-11 0 4-1 7-3 9-2-5-6-8-11-8-3 0-6 2-8 5-2 2-3 5-3 8-2-3-3-6-3-10z"
+          fill="url(#hairGrad)" stroke="#cfcde2" stroke-width="1"/>
+    <!-- 侧发 -->
+    <path d="M35 44c-4 8-5 18-4 27 1 6 4 9 7 9-2-9-2-20 0-30z" fill="url(#hairGrad)" stroke="#cfcde2" stroke-width="1"/>
+    <path d="M85 44c4 8 5 18 4 27-1 6-4 9-7 9 2-9 2-20 0-30z" fill="url(#hairGrad)" stroke="#cfcde2" stroke-width="1"/>
+
+    <!-- 发饰（花） -->
+    <g transform="translate(86,34)">
+      <circle r="4.2" fill="#f7b7d3"/>
+      <circle r="1.6" fill="#fff0f7"/>
+    </g>
+
+    <!-- 眼睛 -->
+    <g>
+      <ellipse cx="49" cy="55" rx="5.4" ry="6.4" fill="#8b7fe8"/>
+      <ellipse cx="71" cy="55" rx="5.4" ry="6.4" fill="#8b7fe8"/>
+      <ellipse cx="49" cy="56.5" rx="3.4" ry="4" fill="#5b4bb8"/>
+      <ellipse cx="71" cy="56.5" rx="3.4" ry="4" fill="#5b4bb8"/>
+      <circle cx="50.6" cy="53" r="1.7" fill="#ffffff"/>
+      <circle cx="72.6" cy="53" r="1.7" fill="#ffffff"/>
+    </g>
+    <!-- 眉毛 -->
+    <path d="M44 46q5-2 9 0M67 46q5-2 9 0" stroke="#cfcde2" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <!-- 腮红 -->
+    <ellipse cx="44" cy="63" rx="5" ry="3.4" fill="url(#cheek)"/>
+    <ellipse cx="76" cy="63" rx="5" ry="3.4" fill="url(#cheek)"/>
+    <!-- 嘴 -->
+    <path d="M57 66q3 3 6 0" stroke="#e08a9b" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>
