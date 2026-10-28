@@ -8,12 +8,26 @@ public/
 .env
 .env.build
 .vercel
-<<<<<<< HEAD
 themes/keep/backup/
-source/_posts/*.js
 themes/keep/_config.yml
 source/_data/keep.yml
 
-=======
-themes/keep/backup/
->>>>>>> parent of 4e04eaf (uptate)
+# 本机私有媒体与临时文件（绝不入库）
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.wmv
+*.flv
+*.m4a
+*.mp3
+*.zip
+*.7z
+*.rar
+*.psd
+*.ai
+*.sketch
+.DS_Store?
+*~
+.idea/
+*.swp
