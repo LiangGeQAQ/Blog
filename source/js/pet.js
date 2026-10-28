@@ -3,12 +3,13 @@
  * 设计：仅在「正文两侧有空白」且非首页时从页面边缘探出，可拖动，窄屏自动缩回。
  * 说明：角色为原创绘制的 Q 版银发少女形象（SVG），不含任何第三方素材或 Live2D 模型，
  *      故不涉及第三方版权与运行时依赖；交互思路参考 oneko.js 的轻量精灵做法。
+ * 兼容：主题开启 PJAX，站内跳转不会重新加载文档，因此必须响应 pjax 事件重建实例。
  */
 (function () {
   'use strict';
 
   var MIN_GUTTER = 110;   // 两侧空白小于该值就缩回（内容占满屏幕）
-  var MOBILE_MAX = 900;   // 低于该宽度视为移动端
+  var MOBILE_MAX = 900;   // 低于该宽度视为移动端（手机不加载）
   var PET_W = 96;
   var PET_H = 128;
   var STORE_KEY = 'pet:pos:v1';
@@ -21,17 +22,21 @@
     '我在这儿陪你一会儿。'
   ];
 
-  // 移动端/触屏：直接不加载
-  var mqMobile = window.matchMedia('(max-width:' + MOBILE_MAX + 'px)');
-  var mqCoarse = window.matchMedia('(pointer: coarse)');
-  if (mqMobile.matches || mqCoarse.matches) return;
-  // 首页不出现
-  var path = location.pathname.replace(/index\.html$/, '');
-  if (path === '/' || path === '') return;
-
-  var el, bubble, side = 'right', y = 0, dragging = false, moved = false;
+  var el = null, bubble = null, side = 'right', y = 0;
+  var dragging = false, moved = false;
   var startX = 0, startY = 0, originLeft = 0, originTop = 0;
-  var bubbleTimer = null;
+  var bubbleTimer = null, lastPath = null, raf = 0;
+
+  function mqMobile() { return window.matchMedia('(max-width:' + MOBILE_MAX + 'px)').matches; }
+
+  function currentPath() {
+    return location.pathname.replace(/index\.html$/, '');
+  }
+
+  function isHome() {
+    var p = currentPath();
+    return p === '/' || p === '';
+  }
 
   function loadState() {
     try {
@@ -47,8 +52,8 @@
 
   function contentWidth() {
     var main = document.querySelector('.main-content') || document.querySelector('main') || document.body;
-    var r = main.getBoundingClientRect();
-    return r.width || 0;
+    if (!main) return 0;
+    return main.getBoundingClientRect().width || 0;
   }
 
   function gutter() {
@@ -66,22 +71,15 @@
     el.classList.toggle('side-left', side === 'left');
     el.classList.toggle('side-right', side === 'right');
     el.style.top = Math.round(y) + 'px';
-    if (side === 'left') {
-      el.style.left = '0px';
-      el.style.right = 'auto';
-    } else {
-      el.style.left = (window.innerWidth - PET_W) + 'px';
-      el.style.right = 'auto';
-    }
+    el.style.left = (side === 'left' ? 0 : window.innerWidth - PET_W) + 'px';
   }
 
   function updateVisibility() {
     if (!el) return;
-    var g = gutter();
-    var canShow = g >= MIN_GUTTER && !mqMobile.matches;
-    el.classList.toggle('is-hidden', !canShow);
-    el.setAttribute('aria-hidden', canShow ? 'false' : 'true');
-    if (canShow) applyPosition();
+    var ok = gutter() >= MIN_GUTTER && !mqMobile();
+    el.classList.toggle('is-hidden', !ok);
+    el.setAttribute('aria-hidden', ok ? 'false' : 'true');
+    if (ok) applyPosition();
   }
 
   function showBubble() {
@@ -92,7 +90,6 @@
     bubbleTimer = setTimeout(function () { bubble.classList.remove('is-on'); }, 2600);
   }
 
-  // ---- 拖动 ----
   function onPointerDown(e) {
     if (e.button !== undefined && e.button !== 0) return;
     dragging = true; moved = false;
@@ -125,6 +122,7 @@
   }
 
   function build() {
+    if (el) return;
     el = document.createElement('div');
     el.id = 'pet-widget';
     el.className = 'is-hidden';
@@ -151,24 +149,52 @@
     });
 
     document.body.appendChild(el);
-
     loadState();
     y = clampY(y || window.innerHeight - PET_H - 80);
     applyPosition();
     updateVisibility();
   }
 
-  var raf = 0;
+  function destroy() {
+    if (!el) return;
+    el.remove();
+    el = null; bubble = null; dragging = false;
+  }
+
+  /* 根据当前 URL / 视口决定挂载还是卸载 */
+  function sync(force) {
+    if (!force && currentPath() === lastPath) { updateVisibility(); return; }
+    lastPath = currentPath();
+    if (isHome() || mqMobile()) { destroy(); return; }
+    build();
+    updateVisibility();
+  }
+
   function schedule() {
     cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(function () { applyPosition(); updateVisibility(); });
+    raf = requestAnimationFrame(function () { updateVisibility(); });
+  }
+
+  function boot() {
+    sync(true);
+    window.addEventListener('resize', schedule, { passive: true });
+    window.addEventListener('load', function () { sync(true); });
+
+    // PJAX：站内跳转不会触发 DOMContentLoaded，必须监听 pjax 事件
+    ['pjax:success', 'pjax:end', 'pjax:complete', 'pjax:popstate'].forEach(function (ev) {
+      window.addEventListener(ev, function () { setTimeout(function () { sync(true); }, 60); });
+    });
+    window.addEventListener('popstate', function () { setTimeout(function () { sync(true); }, 120); });
+
+    // 兜底：某些主题/脚本不发事件，URL 变了就重建
+    setInterval(function () {
+      if (currentPath() !== lastPath) sync(true);
+    }, 1200);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', build);
+    document.addEventListener('DOMContentLoaded', boot);
   } else {
-    build();
+    boot();
   }
-  window.addEventListener('resize', schedule, { passive: true });
-  window.addEventListener('load', schedule);
 })();
