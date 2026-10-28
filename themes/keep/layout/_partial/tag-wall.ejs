@@ -1,0 +1,22 @@
+<%
+const tagList = (site.tags && site.tags.toArray) ? site.tags.toArray() : (site.tags || [])
+const sortedTags = tagList.slice().sort((a, b) => b.length - a.length)
+const totalTags = sortedTags.length
+%>
+<div class="tag-wall fade-in-down-animation">
+    <div class="tag-wall-head">
+        <h1 class="tag-wall-title"><%- __('tags') %></h1>
+        <p class="tag-wall-sub">共 <%= totalTags %> 个标签 · 按文章数排序</p>
+    </div>
+    <div class="tag-wall-body">
+        <% sortedTags.forEach(function (t) { %>
+            <a class="tag-wall-item"
+               href="<%- url_for(t.path) %>"
+               style="font-size: <%= (0.94 + Math.min(t.length, 8) * 0.055).toFixed(2) %>rem"
+            >
+                <span class="tag-wall-name"><%= t.name %></span>
+                <span class="tag-wall-count"><%= t.length %></span>
+            </a>
+        <% }) %>
+    </div>
+</div>

@@ -364,3 +364,151 @@ body {
   border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
   background: var(--background-color-2);
 }
+
+/* ---------- 8. 标签墙（tags 页重做） ---------- */
+.tag-wall {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 8px 0 46px;
+}
+
+.tag-wall-head {
+  text-align: center;
+  margin: 10px 0 30px;
+}
+
+.tag-wall-title {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-color-1);
+  margin: 0;
+}
+
+.tag-wall-sub {
+  margin: 8px 0 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--text-color-4);
+}
+
+.tag-wall-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 12px;
+}
+
+.tag-wall-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 6px 13px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: var(--text-color-3);
+  text-decoration: none;
+  line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.tag-wall-item:hover {
+  color: var(--primary-color);
+  border-color: color-mix(in srgb, var(--primary-color) 28%, transparent);
+  background: color-mix(in srgb, var(--primary-color) 6%, transparent);
+  transform: translateY(-2px);
+}
+
+.tag-wall-count {
+  font-size: 0.68em;
+  font-weight: 400;
+  color: var(--text-color-5);
+  padding: 0 5px;
+  border-radius: 6px;
+  background: var(--background-color-2);
+  transition: color 0.18s ease;
+}
+
+.tag-wall-item:hover .tag-wall-count {
+  color: var(--primary-color);
+}
+
+/* ---------- 9. 友链页（网格卡片） ---------- */
+.friends-link-container .friends-link-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+  gap: 14px;
+  margin: 6px 0 26px;
+}
+
+.friends-link-container .friends-link-item {
+  float: none;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.friends-link-container .friends-link-item:nth-child(odd) {
+  padding-right: 0;
+}
+
+.friends-link-container .friends-link-item > a {
+  display: block;
+  padding: 14px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--oc-radius);
+  background: var(--content-background-color);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.friends-link-container .friends-link-item > a:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--primary-color) 40%, var(--border-color));
+  box-shadow: 0 12px 28px var(--shadow-color);
+}
+
+.friends-link-container .friends-link-item .content {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.friends-link-container .friends-link-item .avatar {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--background-color-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.friends-link-container .friends-link-item .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.friends-link-container .friends-link-item .info {
+  min-width: 0;
+  flex: 1;
+}
+
+.friends-link-container .friends-link-item .name {
+  font-weight: 600;
+  color: var(--text-color-1);
+  line-height: 1.5;
+}
+
+.friends-link-container .friends-link-item .description {
+  font-size: 0.82rem;
+  color: var(--text-color-4);
+  line-height: 1.5;
+  margin-top: 2px;
+}
