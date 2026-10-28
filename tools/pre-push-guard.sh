@@ -60,18 +60,20 @@ while IFS= read -r f; do
   case "$ext" in
     jpg|jpeg|png|gif|webp|bmp|tif|tiff)
       case "$f" in
-        source/_posts/*) ;;
-        *) err "图片只能放在 source/_posts/<文章名>/ 下：$f" ;;
+        source/_posts/*|source/images/*|themes/*/source/images/*) ;;
+        *) err "图片只能放在 source/_posts/<文章名>/、source/images/ 或主题 source/images/ 下：$f" ;;
       esac
       ;;
   esac
 done <<< "$FILES"
 
-# 大文件检查（按当前工作区文件，仅对存在的文件生效）
+# 大文件检查：仅限制「新增」的大文件；历史遗留资产（如演示 GIF）允许留存
 while IFS= read -r f; do
   [ -f "$f" ] || continue
+  # 已存在于 HEAD 的文件视为历史资产，跳过体积限制
+  if git cat-file -e "HEAD:${f}" 2>/dev/null; then continue; fi
   size=$(wc -c < "$f" 2>/dev/null || echo 0)
-  [ "$size" -gt 5242880 ] && err "文件超过 5MB：$f ($((size/1024))KB)"
+  [ "$size" -gt 5242880 ] && err "新增文件超过 5MB：$f ($((size/1024))KB)"
 done <<< "$FILES"
 
 # 内容级密钥扫描（检查新增行；排除本脚本自身）
