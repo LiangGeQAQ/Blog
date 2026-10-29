@@ -33,20 +33,21 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var SPRITE_1X = '/images/pet/front_208.webp';
-  var SPRITE_2X = '/images/pet/front_416.webp';
-  var SPRITE_3X = '/images/pet/front_624.webp';
-  var SPRITE_CLOSED_1X = '/images/pet/front_closed_208.webp';
-  var SPRITE_CLOSED_2X = '/images/pet/front_closed_416.webp';
-  var SPRITE_CLOSED_3X = '/images/pet/front_closed_624.webp';
+  var ASSET_V = '?v=20261029c';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var SPRITE_1X = '/images/pet/front_208.webp' + ASSET_V;
+  var SPRITE_2X = '/images/pet/front_416.webp' + ASSET_V;
+  var SPRITE_3X = '/images/pet/front_624.webp' + ASSET_V;
+  var SPRITE_CLOSED_1X = '/images/pet/front_closed_208.webp' + ASSET_V;
+  var SPRITE_CLOSED_2X = '/images/pet/front_closed_416.webp' + ASSET_V;
+  var SPRITE_CLOSED_3X = '/images/pet/front_closed_624.webp' + ASSET_V;
   // 三层结构：底图（眼内已铺满眼白）+ 会动的虹膜 + 固定在最上层的睫毛/眼眶
   var EYES = [
-    { src: '/images/pet/iris_l.webp', src2: '/images/pet/iris_l@2x.webp', src3: '/images/pet/iris_l@3x.webp', x: 32.29, y: 29.87, w: 11.11, h: 6.68 },
-    { src: '/images/pet/iris_r.webp', src2: '/images/pet/iris_r@2x.webp', src3: '/images/pet/iris_r@3x.webp', x: 62.33, y: 31.30, w: 10.94, h: 5.34 }
+    { src: '/images/pet/iris_l.webp' + ASSET_V, src2: '/images/pet/iris_l@2x.webp' + ASSET_V, src3: '/images/pet/iris_l@3x.webp' + ASSET_V, x: 32.29, y: 29.87, w: 11.11, h: 6.68 },
+    { src: '/images/pet/iris_r.webp' + ASSET_V, src2: '/images/pet/iris_r@2x.webp' + ASSET_V, src3: '/images/pet/iris_r@3x.webp' + ASSET_V, x: 62.33, y: 31.30, w: 10.94, h: 5.34 }
   ];
   var LASHES = [
-    { src: '/images/pet/lash_l.webp', src2: '/images/pet/lash_l@2x.webp', src3: '/images/pet/lash_l@3x.webp', x: 26.91, y: 27.96, w: 17.88, h: 9.73 },
-    { src: '/images/pet/lash_r.webp', src2: '/images/pet/lash_r@2x.webp', src3: '/images/pet/lash_r@3x.webp', x: 60.94, y: 28.63, w: 17.19, h: 8.49 }
+    { src: '/images/pet/lash_l.webp' + ASSET_V, src2: '/images/pet/lash_l@2x.webp' + ASSET_V, src3: '/images/pet/lash_l@3x.webp' + ASSET_V, x: 26.91, y: 27.96, w: 17.88, h: 9.73 },
+    { src: '/images/pet/lash_r.webp' + ASSET_V, src2: '/images/pet/lash_r@2x.webp' + ASSET_V, src3: '/images/pet/lash_r@3x.webp' + ASSET_V, x: 60.94, y: 28.63, w: 17.19, h: 8.49 }
   ];
   var MAX_EYE_X = 2.0, MAX_EYE_Y = 1.3;   // 虹膜最大位移（CSS px，1x）
   var TILT_START = 0.62;                  // 指针偏移超过这个比例才开始带头部倾斜
@@ -182,7 +183,7 @@
     el2.alt = '';
     el2.draggable = false;
     el2.src = cfg.src;
-    el2.srcset = cfg.src2 + ' 2x, ' + cfg.src3 + ' 3x';
+    el2.srcset = cfg.src2 + ' 2x';
     el2.style.left = cfg.x + '%';
     el2.style.top = cfg.y + '%';
     el2.style.width = cfg.w + '%';
@@ -200,11 +201,11 @@
     for (var j = 0; j < LASHES.length; j++) addLayer(card, LASHES[j], 'pet-lash', lashEls);
   }
 
-  function mountArt(card, img) {
+  function mountArt(card) {
     if (reduced) { return; }
     artEl = card;
     buildEyeLayers(card);
-    startBlink(img);
+    startBlink();
     card.style.transformOrigin = '50% 88%;';
     card.style.transformOrigin = '50% 88%';
     window.addEventListener('pointermove', onWindowMove, { passive: true });
@@ -215,13 +216,10 @@
 
 
   /* ---------- 眨眼：两帧换图（闭眼帧已预载，切换无闪烁） ---------- */
-  var blinkTimer = null, blinkOn = false, blinkImg = null;
+  var blinkTimer = null, blinkOn = false, closedEl = null;
 
-  function swapFrame(img, closed) {
-    img.srcset = closed
-      ? SPRITE_CLOSED_2X + ' 2x, ' + SPRITE_CLOSED_3X + ' 3x'
-      : SPRITE_2X + ' 2x, ' + SPRITE_3X + ' 3x';
-    img.src = closed ? SPRITE_CLOSED_1X : SPRITE_1X;
+  function setClosed(on) {
+    if (closedEl) closedEl.style.opacity = on ? '1' : '0';
   }
 
   function scheduleBlink() {
@@ -234,23 +232,17 @@
     blinkOn = true;
     for (var i = 0; i < eyeEls.length; i++) eyeEls[i].style.opacity = '0';
     for (var k = 0; k < lashEls.length; k++) lashEls[k].style.opacity = '0';
-    swapFrame(blinkImg, true);
+    setClosed(true);
     setTimeout(function () {
       blinkOn = false;
+      setClosed(false);
       for (var j = 0; j < eyeEls.length; j++) eyeEls[j].style.opacity = '1';
       for (var m = 0; m < lashEls.length; m++) lashEls[m].style.opacity = '1';
-      if (blinkImg) swapFrame(blinkImg, false);
       scheduleBlink();
     }, 135);
   }
 
-  function startBlink(img) {
-    blinkImg = img;
-    // 预载闭眼帧，避免首次切换闪白
-    try {
-      var pre = new Image();
-      pre.src = SPRITE_CLOSED_1X;
-    } catch (e) {}
+  function startBlink() {
     scheduleBlink();
   }
 
@@ -314,10 +306,21 @@
     img.draggable = false;
     img.decoding = 'async';
     card.appendChild(img);
+
+    var closed = document.createElement('img');
+    closed.className = 'pet-closed';
+    closed.alt = '';
+    closed.draggable = false;
+    closed.src = SPRITE_CLOSED_1X;
+    closed.srcset = SPRITE_CLOSED_2X + ' 2x, ' + SPRITE_CLOSED_3X + ' 3x';
+    closed.style.opacity = '0';
+    card.appendChild(closed);
+    closedEl = closed;
+
     art.appendChild(card);
     art.setAttribute('data-credit', '角色形象：阿万提供（AI 生成三视图），见 /images/pet/ATTRIBUTION.md');
     el.appendChild(art);
-    mountArt(card, img);
+    mountArt(card);
 
     bubble = document.createElement('div');
     bubble.className = 'pet-bubble';
