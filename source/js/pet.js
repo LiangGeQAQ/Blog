@@ -33,8 +33,8 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261030j';
-  var PET_VER = '20261030.10';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var ASSET_V = '?v=20261030k';
+  var PET_VER = '20261030.11';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_HALF_1X = '/images/pet/front_half_310.webp' + ASSET_V;
   var SPRITE_HALF_2X = '/images/pet/front_half_620.webp' + ASSET_V;
   var SPRITE_HALF_3X = '/images/pet/front_half_930.webp' + ASSET_V;
@@ -214,6 +214,7 @@
 
 
   /* ---------- 眨眼：两帧换图（闭眼帧已预载，切换无闪烁） ---------- */
+  var BLINK_ON = false;   // 暂时关闭：闭眼帧尚未与原画像素级对齐，开启会产生错位/白边
   var blinkTimer = null, blinkOn = false, closedEl = null, halfEl = null;
 
   function setClosed(on) {
@@ -221,6 +222,7 @@
   }
 
   function scheduleBlink() {
+    if (!BLINK_ON) return;
     clearTimeout(blinkTimer);
     blinkTimer = setTimeout(blinkOnce, 3600 + Math.random() * 3200);
   }
