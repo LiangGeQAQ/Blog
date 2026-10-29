@@ -33,8 +33,8 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261029h';
-  var PET_VER = '20261029.4';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var ASSET_V = '?v=20261029k';
+  var PET_VER = '20261029.7';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_1X = '/images/pet/front_312.webp' + ASSET_V;
   var SPRITE_2X = '/images/pet/front_624.webp' + ASSET_V;
   var SPRITE_3X = '/images/pet/front_936.webp' + ASSET_V;
@@ -44,8 +44,8 @@
     { src: '/images/pet/iris_r.webp' + ASSET_V, src2: '/images/pet/iris_r@2x.webp' + ASSET_V, x: 62.85, y: 31.58, w: 9.9, h: 4.77 }
   ];
   var LIDS = [
-    { src: '/images/pet/lid_l.webp', src2: '/images/pet/lid_l@2x.webp', x: 27.43, y: 28.63, w: 17.19, h: 8.40 },
-    { src: '/images/pet/lid_r.webp', src2: '/images/pet/lid_r@2x.webp', x: 60.94, y: 28.63, w: 17.19, h: 7.92 }
+    { src: '/images/pet/lid_l.webp', src2: '/images/pet/lid_l@2x.webp', x: 27.78, y: 28.91, w: 16.49, h: 8.02 },
+    { src: '/images/pet/lid_r.webp', src2: '/images/pet/lid_r@2x.webp', x: 61.28, y: 28.91, w: 16.49, h: 7.54 }
   ];
   var LASHES = [
     { src: '/images/pet/lash_l.webp' + ASSET_V, src2: '/images/pet/lash_l@2x.webp' + ASSET_V, x: 27.43, y: 28.63, w: 17.19, h: 8.4 },
