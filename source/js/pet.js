@@ -12,7 +12,7 @@
   var MIN_GUTTER = 110;   // 两侧空白小于该值就缩回（内容占满屏幕）
   var MOBILE_MAX = 900;   // 低于该宽度视为移动端（手机不加载）
   var PET_W = 171;
-  var PET_H = 312;
+  var PET_H = 310;
   var STORE_KEY = 'pet:pos:v2';
 
   var LINES = [
@@ -33,30 +33,25 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261029k';
-  var PET_VER = '20261029.7';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
-  var SPRITE_1X = '/images/pet/front_312.webp' + ASSET_V;
-  var SPRITE_2X = '/images/pet/front_624.webp' + ASSET_V;
-  var SPRITE_3X = '/images/pet/front_936.webp' + ASSET_V;
+  var ASSET_V = '?v=20261030a';
+  var PET_VER = '20261030.1';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var SPRITE_1X = '/images/pet/front_310.webp' + ASSET_V;
+  var SPRITE_2X = '/images/pet/front_620.webp' + ASSET_V;
+  var SPRITE_3X = '/images/pet/front_930.webp' + ASSET_V;
   // 三层结构：底图（眼内已铺满眼白）+ 会动的虹膜 + 固定在最上层的睫毛/眼眶
   var EYES = [
-    { src: '/images/pet/iris_l.webp' + ASSET_V, src2: '/images/pet/iris_l@2x.webp' + ASSET_V, x: 32.81, y: 30.15, w: 10.07, h: 6.11 },
-    { src: '/images/pet/iris_r.webp' + ASSET_V, src2: '/images/pet/iris_r@2x.webp' + ASSET_V, x: 62.85, y: 31.58, w: 9.9, h: 4.77 }
+    { src: '/images/pet/iris_l.webp' + ASSET_V, src2: '/images/pet/iris_l@2x.webp' + ASSET_V, x: 34.12, y: 27.9, w: 8.97, h: 5.84 },
+    { src: '/images/pet/iris_r.webp' + ASSET_V, src2: '/images/pet/iris_r@2x.webp' + ASSET_V, x: 61.76, y: 27.82, w: 8.82, h: 5.84 }
   ];
   var LIDS = [
-    { src: '/images/pet/lid_l.webp', src2: '/images/pet/lid_l@2x.webp', x: 27.78, y: 28.91, w: 16.49, h: 8.02 },
-    { src: '/images/pet/lid_r.webp', src2: '/images/pet/lid_r@2x.webp', x: 61.28, y: 28.91, w: 16.49, h: 7.54 }
-  ];
-  var LASHES = [
-    { src: '/images/pet/lash_l.webp' + ASSET_V, src2: '/images/pet/lash_l@2x.webp' + ASSET_V, x: 27.43, y: 28.63, w: 17.19, h: 8.4 },
-    { src: '/images/pet/lash_r.webp' + ASSET_V, src2: '/images/pet/lash_r@2x.webp' + ASSET_V, x: 60.94, y: 28.63, w: 17.19, h: 7.92 }
+    { src: '/images/pet/lid_l.webp', src2: '/images/pet/lid_l@2x.webp', x: 29.12, y: 26.44, w: 15.74, h: 7.7 },
+    { src: '/images/pet/lid_r.webp', src2: '/images/pet/lid_r@2x.webp', x: 59.85, y: 26.36, w: 15.59, h: 7.46 }
   ];
   var MAX_EYE_X = 1.2, MAX_EYE_Y = 0.8;   // 幅度收敛：只在眼眶内小幅游移   // 虹膜最大位移（CSS px，1x）
   var TILT_START = 0.68;                  // 指针偏移超过这个比例才开始带头部倾斜
   var MAX_TILT_Y = 1.5, MAX_TILT_X = 1.0;   // 头部倾斜幅度（比原来收敛一半以上）
   var artEl = null;             // 承载倾斜的 card
   var eyeEls = [];              // 虹膜补丁（跟随）
-  var lashEls = [];             // 睫毛/眼眶补丁（固定，置于最上层）
   var lidEls = [];              // 眼睑补丁（眨眼瞬间显示）
   var layers = [];              // 兼容旧接口，sprite 模式恒为空
   var headTilt = null;
@@ -198,10 +193,8 @@
 
   function buildEyeLayers(card) {
     eyeEls = [];
-    lashEls = [];
     for (var i = 0; i < EYES.length; i++) addLayer(card, EYES[i], 'pet-eye', eyeEls);
     // 睫毛层最后添加 → 永远盖在虹膜之上，虹膜移动时被它裁住不会越界
-    for (var j = 0; j < LASHES.length; j++) addLayer(card, LASHES[j], 'pet-lash', lashEls);
     // 眼睑层最后 → 眨眼时只盖住眼睛，底图不换，避免“眨一下突然变清晰”
     lidEls = [];
     for (var n = 0; n < LIDS.length; n++) {
@@ -240,13 +233,11 @@
     if (!el || document.hidden) { scheduleBlink(); return; }
     blinkOn = true;
     for (var i = 0; i < eyeEls.length; i++) eyeEls[i].style.opacity = '0';
-    for (var k = 0; k < lashEls.length; k++) lashEls[k].style.opacity = '0';
     for (var n = 0; n < lidEls.length; n++) lidEls[n].style.opacity = '1';
     setTimeout(function () {
       blinkOn = false;
       for (var n2 = 0; n2 < lidEls.length; n2++) lidEls[n2].style.opacity = '0';
       for (var j = 0; j < eyeEls.length; j++) eyeEls[j].style.opacity = '1';
-      for (var m = 0; m < lashEls.length; m++) lashEls[m].style.opacity = '1';
       scheduleBlink();
     }, 135);
   }

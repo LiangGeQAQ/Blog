@@ -3,7 +3,7 @@
   position: fixed;
   z-index: 90;
   width: 171px;
-  height: 312px;
+  height: 310px;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
@@ -33,7 +33,6 @@
 
 /* 眼睛跟随补丁：叠在精灵上，只做小范围位移 */
 #pet-widget .pet-eye,
-#pet-widget .pet-lash,
 #pet-widget .pet-lid {
   position: absolute;
   pointer-events: none;
