@@ -37,7 +37,15 @@
   var SPRITE_2X = '/images/pet/front_416.webp';
   var SPRITE_CLOSED_1X = '/images/pet/front_closed_208.png';
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_416.webp';
-  var artEl = null;             // 承载倾斜的 <img>
+  var EYES = [
+    { src: '/images/pet/eye_l.webp', src2: '/images/pet/eye_l@2x.webp', x: 24.48, y: 27.00, w: 23.09, h: 11.64 },
+    { src: '/images/pet/eye_r.webp', src2: '/images/pet/eye_r@2x.webp', x: 57.99, y: 27.00, w: 23.09, h: 11.16 }
+  ];
+  var MAX_EYE_X = 2.4, MAX_EYE_Y = 1.7;   // 眼睛最大位移（CSS px，1x）
+  var TILT_START = 0.62;                  // 指针偏移超过这个比例才开始带头部倾斜
+  var MAX_TILT_Y = 3.2, MAX_TILT_X = 2.2;
+  var artEl = null;             // 承载倾斜的 card
+  var eyeEls = [];              // 眼睛跟随补丁层
   var layers = [];              // 兼容旧接口，sprite 模式恒为空
   var headTilt = null;
   var target = { x: 0, y: 0 };  // 归一化指针方向 [-1,1]
@@ -103,14 +111,26 @@
 
   /* ===== 伪 2.5D（sprite 版：透视倾斜 + 视差位移） ===== */
 
+  // 超过阈值才缓慢加入头部倾斜：阈值内完全静止，避免“跟着鼠标晃”
+  function tiltAmount(v) {
+    var a = Math.abs(v);
+    if (a <= TILT_START) return 0;
+    var t = (a - TILT_START) / (1 - TILT_START);
+    return (v < 0 ? -1 : 1) * t * t;   // 平方过渡，越靠边越明显
+  }
+
   function applyTilt() {
+    // 1) 眼睛跟随（主效果）
+    for (var i = 0; i < eyeEls.length; i++) {
+      var e = eyeEls[i];
+      e.style.transform = 'translate3d(' + (cur.x * MAX_EYE_X).toFixed(2) + 'px,' +
+                          (cur.y * MAX_EYE_Y).toFixed(2) + 'px,0)';
+    }
+    // 2) 角度大时才轻微带头部倾斜（次效果）
     if (!artEl) return;
-    var ry = (cur.x * 7).toFixed(2);       // 左右转头（伪 3D）
-    var rx = (-cur.y * 5).toFixed(2);      // 上下俯仰
-    var tx = (cur.x * 2.6).toFixed(2);
-    var ty = (cur.y * 1.8).toFixed(2);
-    artEl.style.transform =
-      'perspective(560px) rotateY(' + ry + 'deg) rotateX(' + rx + 'deg) translate3d(' + tx + 'px,' + ty + 'px,0)';
+    var ry = tiltAmount(cur.x) * MAX_TILT_Y;
+    var rx = -tiltAmount(cur.y) * MAX_TILT_X;
+    artEl.style.transform = 'perspective(700px) rotateY(' + ry.toFixed(2) + 'deg) rotateX(' + rx.toFixed(2) + 'deg)';
   }
 
   function tick() {
@@ -148,9 +168,29 @@
     kickTilt();
   }
 
+  function buildEyeLayers(card) {
+    eyeEls = [];
+    for (var i = 0; i < EYES.length; i++) {
+      var cfg = EYES[i];
+      var el2 = document.createElement('img');
+      el2.className = 'pet-eye';
+      el2.alt = '';
+      el2.draggable = false;
+      el2.src = cfg.src;
+      el2.srcset = cfg.src2 + ' 2x';
+      el2.style.left = cfg.x + '%';
+      el2.style.top = cfg.y + '%';
+      el2.style.width = cfg.w + '%';
+      el2.style.height = cfg.h + '%';
+      card.appendChild(el2);
+      eyeEls.push(el2);
+    }
+  }
+
   function mountArt(card, img) {
-    if (reduced) return;
+    if (reduced) { return; }
     artEl = card;
+    buildEyeLayers(card);
     startBlink(img);
     card.style.transformOrigin = '50% 88%;';
     card.style.transformOrigin = '50% 88%';
@@ -177,9 +217,11 @@
   function blinkOnce() {
     if (!blinkImg || !el || document.hidden) { scheduleBlink(); return; }
     blinkOn = true;
+    for (var i = 0; i < eyeEls.length; i++) eyeEls[i].style.opacity = '0';
     swapFrame(blinkImg, true);
     setTimeout(function () {
       blinkOn = false;
+      for (var j = 0; j < eyeEls.length; j++) eyeEls[j].style.opacity = '1';
       if (blinkImg) swapFrame(blinkImg, false);
       scheduleBlink();
     }, 135);

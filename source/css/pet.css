@@ -31,6 +31,15 @@
   backface-visibility: hidden;
 }
 
+/* 眼睛跟随补丁：叠在精灵上，只做小范围位移 */
+#pet-widget .pet-eye {
+  position: absolute;
+  pointer-events: none;
+  opacity: 1;
+  will-change: transform;
+  transition: opacity 0.08s linear;
+}
+
 #pet-widget .pet-card > img {
   position: absolute;
   inset: 0;
