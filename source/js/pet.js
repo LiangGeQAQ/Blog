@@ -11,8 +11,8 @@
 
   var MIN_GUTTER = 110;   // 两侧空白小于该值就缩回（内容占满屏幕）
   var MOBILE_MAX = 900;   // 低于该宽度视为移动端（手机不加载）
-  var PET_W = 114;
-  var PET_H = 208;
+  var PET_W = 171;
+  var PET_H = 312;
   var STORE_KEY = 'pet:pos:v2';
 
   var LINES = [
@@ -33,13 +33,13 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261029e';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
-  var SPRITE_1X = '/images/pet/front_208.webp' + ASSET_V;
-  var SPRITE_2X = '/images/pet/front_416.webp' + ASSET_V;
-  var SPRITE_3X = '/images/pet/front_624.webp' + ASSET_V;
-  var SPRITE_CLOSED_1X = '/images/pet/front_closed_208.webp' + ASSET_V;
-  var SPRITE_CLOSED_2X = '/images/pet/front_closed_416.webp' + ASSET_V;
-  var SPRITE_CLOSED_3X = '/images/pet/front_closed_624.webp' + ASSET_V;
+  var ASSET_V = '?v=20261029f';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var SPRITE_1X = '/images/pet/front_312.webp' + ASSET_V;
+  var SPRITE_2X = '/images/pet/front_624.webp' + ASSET_V;
+  var SPRITE_3X = '/images/pet/front_936.webp' + ASSET_V;
+  var SPRITE_CLOSED_1X = '/images/pet/front_closed_312.webp' + ASSET_V;
+  var SPRITE_CLOSED_2X = '/images/pet/front_closed_624.webp' + ASSET_V;
+  var SPRITE_CLOSED_3X = '/images/pet/front_closed_936.webp' + ASSET_V;
   // 三层结构：底图（眼内已铺满眼白）+ 会动的虹膜 + 固定在最上层的睫毛/眼眶
   var EYES = [
     { src: '/images/pet/iris_l.webp' + ASSET_V, src2: '/images/pet/iris_l@2x.webp' + ASSET_V, x: 32.64, y: 30.06, w: 10.42, h: 6.3 },
@@ -228,7 +228,7 @@
   }
 
   function blinkOnce() {
-    if (!blinkImg || !el || document.hidden) { scheduleBlink(); return; }
+    if (!closedEl || !el || document.hidden) { scheduleBlink(); return; }
     blinkOn = true;
     for (var i = 0; i < eyeEls.length; i++) eyeEls[i].style.opacity = '0';
     for (var k = 0; k < lashEls.length; k++) lashEls[k].style.opacity = '0';
