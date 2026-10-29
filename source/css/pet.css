@@ -32,7 +32,8 @@
 }
 
 /* 眼睛跟随补丁：叠在精灵上，只做小范围位移 */
-#pet-widget .pet-card > .pet-closed {
+#pet-widget .pet-card > .pet-closed,
+#pet-widget .pet-card > .pet-half {
   position: absolute;
   inset: 0;
   width: 100%;
