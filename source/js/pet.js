@@ -37,11 +37,12 @@
   var SPRITE_2X = '/images/pet/front_416.webp';
   var SPRITE_CLOSED_1X = '/images/pet/front_closed_208.png';
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_416.webp';
+  // 只覆盖虹膜本体（底图里的虹膜已被抹成眼白），眼眶/睫毛不动
   var EYES = [
-    { src: '/images/pet/eye_l.webp', src2: '/images/pet/eye_l@2x.webp', x: 24.48, y: 27.00, w: 23.09, h: 11.64 },
-    { src: '/images/pet/eye_r.webp', src2: '/images/pet/eye_r@2x.webp', x: 57.99, y: 27.00, w: 23.09, h: 11.16 }
+    { src: '/images/pet/iris_l.webp', src2: '/images/pet/iris_l@2x.webp', x: 32.81, y: 30.15, w: 9.90, h: 6.01 },
+    { src: '/images/pet/iris_r.webp', src2: '/images/pet/iris_r@2x.webp', x: 63.02, y: 30.25, w: 9.55, h: 5.92 }
   ];
-  var MAX_EYE_X = 2.4, MAX_EYE_Y = 1.7;   // 眼睛最大位移（CSS px，1x）
+  var MAX_EYE_X = 2.0, MAX_EYE_Y = 1.3;   // 虹膜最大位移（CSS px，1x）
   var TILT_START = 0.62;                  // 指针偏移超过这个比例才开始带头部倾斜
   var MAX_TILT_Y = 3.2, MAX_TILT_X = 2.2;
   var artEl = null;             // 承载倾斜的 card
