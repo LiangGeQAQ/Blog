@@ -33,18 +33,19 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261029f';
-  var PET_VER = '20261029.2';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var ASSET_V = '?v=20261029h';
+  var PET_VER = '20261029.4';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_1X = '/images/pet/front_312.webp' + ASSET_V;
   var SPRITE_2X = '/images/pet/front_624.webp' + ASSET_V;
   var SPRITE_3X = '/images/pet/front_936.webp' + ASSET_V;
-  var SPRITE_CLOSED_1X = '/images/pet/front_closed_312.webp' + ASSET_V;
-  var SPRITE_CLOSED_2X = '/images/pet/front_closed_624.webp' + ASSET_V;
-  var SPRITE_CLOSED_3X = '/images/pet/front_closed_936.webp' + ASSET_V;
   // 三层结构：底图（眼内已铺满眼白）+ 会动的虹膜 + 固定在最上层的睫毛/眼眶
   var EYES = [
-    { src: '/images/pet/iris_l.webp' + ASSET_V, src2: '/images/pet/iris_l@2x.webp' + ASSET_V, x: 32.64, y: 30.06, w: 10.42, h: 6.3 },
-    { src: '/images/pet/iris_r.webp' + ASSET_V, src2: '/images/pet/iris_r@2x.webp' + ASSET_V, x: 62.85, y: 31.49, w: 10.07, h: 4.96 }
+    { src: '/images/pet/iris_l.webp' + ASSET_V, src2: '/images/pet/iris_l@2x.webp' + ASSET_V, x: 32.81, y: 30.15, w: 10.07, h: 6.11 },
+    { src: '/images/pet/iris_r.webp' + ASSET_V, src2: '/images/pet/iris_r@2x.webp' + ASSET_V, x: 62.85, y: 31.58, w: 9.9, h: 4.77 }
+  ];
+  var LIDS = [
+    { src: '/images/pet/lid_l.webp', src2: '/images/pet/lid_l@2x.webp', x: 27.43, y: 28.63, w: 17.19, h: 8.40 },
+    { src: '/images/pet/lid_r.webp', src2: '/images/pet/lid_r@2x.webp', x: 60.94, y: 28.63, w: 17.19, h: 7.92 }
   ];
   var LASHES = [
     { src: '/images/pet/lash_l.webp' + ASSET_V, src2: '/images/pet/lash_l@2x.webp' + ASSET_V, x: 27.43, y: 28.63, w: 17.19, h: 8.4 },
@@ -56,6 +57,7 @@
   var artEl = null;             // 承载倾斜的 card
   var eyeEls = [];              // 虹膜补丁（跟随）
   var lashEls = [];             // 睫毛/眼眶补丁（固定，置于最上层）
+  var lidEls = [];              // 眼睑补丁（眨眼瞬间显示）
   var layers = [];              // 兼容旧接口，sprite 模式恒为空
   var headTilt = null;
   var target = { x: 0, y: 0 };  // 归一化指针方向 [-1,1]
@@ -200,6 +202,12 @@
     for (var i = 0; i < EYES.length; i++) addLayer(card, EYES[i], 'pet-eye', eyeEls);
     // 睫毛层最后添加 → 永远盖在虹膜之上，虹膜移动时被它裁住不会越界
     for (var j = 0; j < LASHES.length; j++) addLayer(card, LASHES[j], 'pet-lash', lashEls);
+    // 眼睑层最后 → 眨眼时只盖住眼睛，底图不换，避免“眨一下突然变清晰”
+    lidEls = [];
+    for (var n = 0; n < LIDS.length; n++) {
+      var le = addLayer(card, LIDS[n], 'pet-lid', lidEls);
+      le.style.opacity = '0';
+    }
   }
 
   function mountArt(card) {
@@ -217,7 +225,7 @@
 
 
   /* ---------- 眨眼：两帧换图（闭眼帧已预载，切换无闪烁） ---------- */
-  var blinkTimer = null, blinkOn = false, closedEl = null;
+  var blinkTimer = null, blinkOn = false;
 
   function setClosed(on) {
     if (closedEl) closedEl.style.opacity = on ? '1' : '0';
@@ -229,14 +237,14 @@
   }
 
   function blinkOnce() {
-    if (!closedEl || !el || document.hidden) { scheduleBlink(); return; }
+    if (!el || document.hidden) { scheduleBlink(); return; }
     blinkOn = true;
     for (var i = 0; i < eyeEls.length; i++) eyeEls[i].style.opacity = '0';
     for (var k = 0; k < lashEls.length; k++) lashEls[k].style.opacity = '0';
-    setClosed(true);
+    for (var n = 0; n < lidEls.length; n++) lidEls[n].style.opacity = '1';
     setTimeout(function () {
       blinkOn = false;
-      setClosed(false);
+      for (var n2 = 0; n2 < lidEls.length; n2++) lidEls[n2].style.opacity = '0';
       for (var j = 0; j < eyeEls.length; j++) eyeEls[j].style.opacity = '1';
       for (var m = 0; m < lashEls.length; m++) lashEls[m].style.opacity = '1';
       scheduleBlink();
@@ -307,16 +315,6 @@
     img.draggable = false;
     img.decoding = 'async';
     card.appendChild(img);
-
-    var closed = document.createElement('img');
-    closed.className = 'pet-closed';
-    closed.alt = '';
-    closed.draggable = false;
-    closed.src = SPRITE_CLOSED_1X;
-    closed.srcset = SPRITE_CLOSED_2X + ' 2x, ' + SPRITE_CLOSED_3X + ' 3x';
-    closed.style.opacity = '0';
-    card.appendChild(closed);
-    closedEl = closed;
 
     art.appendChild(card);
     art.setAttribute('data-credit', '角色形象：阿万提供（AI 生成三视图），见 /images/pet/ATTRIBUTION.md');
