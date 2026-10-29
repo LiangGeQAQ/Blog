@@ -33,8 +33,8 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261030r';
-  var PET_VER = '20261030.16';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var ASSET_V = '?v=20261030s';
+  var PET_VER = '20261030.17';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_CLOSED_1X = '/images/pet/front_closed_310.webp' + ASSET_V;
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_620.webp' + ASSET_V;
   var SPRITE_CLOSED_3X = '/images/pet/front_closed_930.webp' + ASSET_V;
