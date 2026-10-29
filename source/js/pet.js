@@ -33,11 +33,8 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261030m';
-  var PET_VER = '20261030.12';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
-  var SPRITE_HALF_1X = '/images/pet/front_half_310.webp' + ASSET_V;
-  var SPRITE_HALF_2X = '/images/pet/front_half_620.webp' + ASSET_V;
-  var SPRITE_HALF_3X = '/images/pet/front_half_930.webp' + ASSET_V;
+  var ASSET_V = '?v=20261030n';
+  var PET_VER = '20261030.13';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_CLOSED_1X = '/images/pet/front_closed_310.webp' + ASSET_V;
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_620.webp' + ASSET_V;
   var SPRITE_CLOSED_3X = '/images/pet/front_closed_930.webp' + ASSET_V;
@@ -215,7 +212,7 @@
 
   /* ---------- 眨眼：两帧换图（闭眼帧已预载，切换无闪烁） ---------- */
   var BLINK_ON = true;   // 暂时关闭：闭眼帧尚未与原画像素级对齐，开启会产生错位/白边
-  var blinkTimer = null, blinkOn = false, closedEl = null, halfEl = null;
+  var blinkTimer = null, blinkOn = false, closedEl = null;
 
   function setClosed(on) {
     if (closedEl) closedEl.style.opacity = on ? '1' : '0';
@@ -228,7 +225,7 @@
   }
 
   function blinkOnce() {
-    if (!el || !closedEl || !halfEl || document.hidden) { scheduleBlink(); return; }
+    if (!el || !closedEl || document.hidden) { scheduleBlink(); return; }
     blinkOn = true;
     for (var i = 0; i < eyeEls.length; i++) eyeEls[i].style.opacity = '0';
     // 交叉溶解到闭眼原画：半程 → 全闭 → 睁（不做任何贴片/绘制）
@@ -317,15 +314,6 @@
       cimg.style.opacity = '0';
       card.appendChild(cimg);
       closedEl = cimg;
-      var himg = document.createElement('img');
-      himg.className = 'pet-half';
-      himg.alt = '';
-      himg.draggable = false;
-      himg.src = SPRITE_HALF_1X;
-      himg.srcset = SPRITE_HALF_2X + ' 2x, ' + SPRITE_HALF_3X + ' 3x';
-      himg.style.opacity = '0';
-      card.appendChild(himg);
-      halfEl = himg;
     }
     art.appendChild(card);
     art.setAttribute('data-credit', '角色形象：阿万提供（AI 生成三视图），见 /images/pet/ATTRIBUTION.md');
