@@ -33,14 +33,16 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var SPRITE_1X = '/images/pet/front_208.png';
+  var SPRITE_1X = '/images/pet/front_208.webp';
   var SPRITE_2X = '/images/pet/front_416.webp';
-  var SPRITE_CLOSED_1X = '/images/pet/front_closed_208.png';
+  var SPRITE_3X = '/images/pet/front_624.webp';
+  var SPRITE_CLOSED_1X = '/images/pet/front_closed_208.webp';
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_416.webp';
+  var SPRITE_CLOSED_3X = '/images/pet/front_closed_624.webp';
   // 只覆盖虹膜本体（底图里的虹膜已被抹成眼白），眼眶/睫毛不动
   var EYES = [
-    { src: '/images/pet/iris_l.webp', src2: '/images/pet/iris_l@2x.webp', x: 32.81, y: 30.15, w: 9.90, h: 6.01 },
-    { src: '/images/pet/iris_r.webp', src2: '/images/pet/iris_r@2x.webp', x: 63.02, y: 30.25, w: 9.55, h: 5.92 }
+    { src: '/images/pet/iris_l.webp', src2: '/images/pet/iris_l@2x.webp', src3: '/images/pet/iris_l@3x.webp', x: 32.81, y: 30.15, w: 9.90, h: 6.01 },
+    { src: '/images/pet/iris_r.webp', src2: '/images/pet/iris_r@2x.webp', src3: '/images/pet/iris_r@3x.webp', x: 63.02, y: 30.25, w: 9.55, h: 5.92 }
   ];
   var MAX_EYE_X = 2.0, MAX_EYE_Y = 1.3;   // 虹膜最大位移（CSS px，1x）
   var TILT_START = 0.62;                  // 指针偏移超过这个比例才开始带头部倾斜
@@ -178,7 +180,7 @@
       el2.alt = '';
       el2.draggable = false;
       el2.src = cfg.src;
-      el2.srcset = cfg.src2 + ' 2x';
+      el2.srcset = cfg.src2 + ' 2x, ' + cfg.src3 + ' 3x';
       el2.style.left = cfg.x + '%';
       el2.style.top = cfg.y + '%';
       el2.style.width = cfg.w + '%';
@@ -206,7 +208,9 @@
   var blinkTimer = null, blinkOn = false, blinkImg = null;
 
   function swapFrame(img, closed) {
-    img.srcset = (closed ? SPRITE_CLOSED_2X : SPRITE_2X) + ' 2x';
+    img.srcset = closed
+      ? SPRITE_CLOSED_2X + ' 2x, ' + SPRITE_CLOSED_3X + ' 3x'
+      : SPRITE_2X + ' 2x, ' + SPRITE_3X + ' 3x';
     img.src = closed ? SPRITE_CLOSED_1X : SPRITE_1X;
   }
 
@@ -233,7 +237,7 @@
     // 预载闭眼帧，避免首次切换闪白
     try {
       var pre = new Image();
-      pre.srcset = SPRITE_CLOSED_2X + ' 2x';
+      pre.srcset = SPRITE_CLOSED_2X + ' 2x, ' + SPRITE_CLOSED_3X + ' 3x';
       pre.src = SPRITE_CLOSED_1X;
     } catch (e) {}
     scheduleBlink();
@@ -294,7 +298,7 @@
     card.className = 'pet-card';
     var img = document.createElement('img');
     img.src = SPRITE_1X;
-    img.srcset = SPRITE_2X + ' 2x';
+    img.srcset = SPRITE_2X + ' 2x, ' + SPRITE_3X + ' 3x';
     img.alt = '';
     img.draggable = false;
     img.decoding = 'async';
