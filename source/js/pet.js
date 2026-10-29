@@ -33,7 +33,7 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261029d';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var ASSET_V = '?v=20261029e';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_1X = '/images/pet/front_208.webp' + ASSET_V;
   var SPRITE_2X = '/images/pet/front_416.webp' + ASSET_V;
   var SPRITE_3X = '/images/pet/front_624.webp' + ASSET_V;
@@ -49,7 +49,7 @@
     { src: '/images/pet/lash_l.webp' + ASSET_V, src2: '/images/pet/lash_l@2x.webp' + ASSET_V, x: 27.43, y: 28.63, w: 17.19, h: 8.4 },
     { src: '/images/pet/lash_r.webp' + ASSET_V, src2: '/images/pet/lash_r@2x.webp' + ASSET_V, x: 60.94, y: 28.63, w: 17.19, h: 7.92 }
   ];
-  var MAX_EYE_X = 2.0, MAX_EYE_Y = 1.3;   // 虹膜最大位移（CSS px，1x）
+  var MAX_EYE_X = 1.2, MAX_EYE_Y = 0.8;   // 幅度收敛：只在眼眶内小幅游移   // 虹膜最大位移（CSS px，1x）
   var TILT_START = 0.62;                  // 指针偏移超过这个比例才开始带头部倾斜
   var MAX_TILT_Y = 3.2, MAX_TILT_X = 2.2;
   var artEl = null;             // 承载倾斜的 card
