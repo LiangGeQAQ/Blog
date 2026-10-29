@@ -33,8 +33,8 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261030b';
-  var PET_VER = '20261030.2';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var ASSET_V = '?v=20261030d';
+  var PET_VER = '20261030.4';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_1X = '/images/pet/front_310.webp' + ASSET_V;
   var SPRITE_2X = '/images/pet/front_620.webp' + ASSET_V;
   var SPRITE_3X = '/images/pet/front_930.webp' + ASSET_V;
@@ -44,8 +44,8 @@
     { src: '/images/pet/iris_r.webp' + ASSET_V, src2: '/images/pet/iris_r@2x.webp' + ASSET_V, x: 61.76, y: 27.82, w: 8.82, h: 5.84 }
   ];
   var LIDS = [
-    { src: '/images/pet/lid_l.webp', src2: '/images/pet/lid_l@2x.webp', x: 29.12, y: 26.44, w: 15.74, h: 7.7 },
-    { src: '/images/pet/lid_r.webp', src2: '/images/pet/lid_r@2x.webp', x: 59.85, y: 26.36, w: 15.59, h: 7.46 }
+    { src: '/images/pet/lid_l.webp', src2: '/images/pet/lid_l@2x.webp', x: 29.41, y: 26.6, w: 15.15, h: 7.38 },
+    { src: '/images/pet/lid_r.webp', src2: '/images/pet/lid_r@2x.webp', x: 60.15, y: 26.52, w: 15.0, h: 7.06 }
   ];
   var MAX_EYE_X = 1.2, MAX_EYE_Y = 0.8;   // 幅度收敛：只在眼眶内小幅游移   // 虹膜最大位移（CSS px，1x）
   var TILT_START = 0.68;                  // 指针偏移超过这个比例才开始带头部倾斜
