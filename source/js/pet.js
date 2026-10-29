@@ -34,7 +34,7 @@
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
   var ASSET_V = '?v=20261030t';
-  var PET_VER = '20261030.18';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var PET_VER = '20261030.19';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_CLOSED_1X = '/images/pet/front_closed_310.webp' + ASSET_V;
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_620.webp' + ASSET_V;
   var SPRITE_CLOSED_3X = '/images/pet/front_closed_930.webp' + ASSET_V;
@@ -212,11 +212,6 @@
 
   /* ---------- 眨眼：两帧换图（闭眼帧已预载，切换无闪烁） ---------- */
   var BLINK_ON = true;
-  // 调试：?fdy=像素 可微调闭眼帧的垂直位置（正值下移）
-  var FACE_DY = (function () {
-    var m = location.search.match(/[?&]fdy=(-?[0-9.]+)/);
-    return m ? parseFloat(m[1]) : 0;
-  })();   // 暂时关闭：闭眼帧尚未与原画像素级对齐，开启会产生错位/白边
   var blinkTimer = null, blinkOn = false, closedEl = null;
 
   function setClosed(on) {
@@ -241,7 +236,7 @@
       if (closedEl) closedEl.style.opacity = '0';
       for (var j = 0; j < eyeEls.length; j++) eyeEls[j].style.opacity = '1';
       scheduleBlink();
-    }, 300);
+    }, 430);
   }
 
   function startBlink() {
@@ -319,7 +314,6 @@
       cimg.style.opacity = '0';
       card.appendChild(cimg);
       closedEl = cimg;
-      if (FACE_DY) cimg.style.transform = 'translateY(' + FACE_DY + 'px)';
     }
     art.appendChild(card);
     art.setAttribute('data-credit', '角色形象：阿万提供（AI 生成三视图），见 /images/pet/ATTRIBUTION.md');
