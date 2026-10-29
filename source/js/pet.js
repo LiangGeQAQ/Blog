@@ -33,8 +33,11 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261030d';
-  var PET_VER = '20261030.4';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var ASSET_V = '?v=20261030e';
+  var PET_VER = '20261030.5';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var SPRITE_CLOSED_1X = '/images/pet/front_closed_310.webp' + ASSET_V;
+  var SPRITE_CLOSED_2X = '/images/pet/front_closed_620.webp' + ASSET_V;
+  var SPRITE_CLOSED_3X = '/images/pet/front_closed_930.webp' + ASSET_V;
   var SPRITE_1X = '/images/pet/front_310.webp' + ASSET_V;
   var SPRITE_2X = '/images/pet/front_620.webp' + ASSET_V;
   var SPRITE_3X = '/images/pet/front_930.webp' + ASSET_V;
@@ -43,16 +46,11 @@
     { src: '/images/pet/iris_l.webp' + ASSET_V, src2: '/images/pet/iris_l@2x.webp' + ASSET_V, x: 34.12, y: 27.9, w: 8.97, h: 5.84 },
     { src: '/images/pet/iris_r.webp' + ASSET_V, src2: '/images/pet/iris_r@2x.webp' + ASSET_V, x: 61.76, y: 27.82, w: 8.82, h: 5.84 }
   ];
-  var LIDS = [
-    { src: '/images/pet/lid_l.webp', src2: '/images/pet/lid_l@2x.webp', x: 29.41, y: 26.6, w: 15.15, h: 7.38 },
-    { src: '/images/pet/lid_r.webp', src2: '/images/pet/lid_r@2x.webp', x: 60.15, y: 26.52, w: 15.0, h: 7.06 }
-  ];
   var MAX_EYE_X = 1.2, MAX_EYE_Y = 0.8;   // 幅度收敛：只在眼眶内小幅游移   // 虹膜最大位移（CSS px，1x）
   var TILT_START = 0.68;                  // 指针偏移超过这个比例才开始带头部倾斜
   var MAX_TILT_Y = 1.5, MAX_TILT_X = 1.0;   // 头部倾斜幅度（比原来收敛一半以上）
   var artEl = null;             // 承载倾斜的 card
   var eyeEls = [];              // 虹膜补丁（跟随）
-  var lidEls = [];              // 眼睑补丁（眨眼瞬间显示）
   var layers = [];              // 兼容旧接口，sprite 模式恒为空
   var headTilt = null;
   var target = { x: 0, y: 0 };  // 归一化指针方向 [-1,1]
@@ -195,12 +193,7 @@
     eyeEls = [];
     for (var i = 0; i < EYES.length; i++) addLayer(card, EYES[i], 'pet-eye', eyeEls);
     // 睫毛层最后添加 → 永远盖在虹膜之上，虹膜移动时被它裁住不会越界
-    // 眼睑层最后 → 眨眼时只盖住眼睛，底图不换，避免“眨一下突然变清晰”
-    lidEls = [];
-    for (var n = 0; n < LIDS.length; n++) {
-      var le = addLayer(card, LIDS[n], 'pet-lid', lidEls);
-      le.style.opacity = '0';
-    }
+
   }
 
   function mountArt(card) {
@@ -218,7 +211,7 @@
 
 
   /* ---------- 眨眼：两帧换图（闭眼帧已预载，切换无闪烁） ---------- */
-  var blinkTimer = null, blinkOn = false;
+  var blinkTimer = null, blinkOn = false, closedEl = null;
 
   function setClosed(on) {
     if (closedEl) closedEl.style.opacity = on ? '1' : '0';
@@ -230,13 +223,13 @@
   }
 
   function blinkOnce() {
-    if (!el || document.hidden) { scheduleBlink(); return; }
+    if (!el || !closedEl || document.hidden) { scheduleBlink(); return; }
     blinkOn = true;
     for (var i = 0; i < eyeEls.length; i++) eyeEls[i].style.opacity = '0';
-    for (var n = 0; n < lidEls.length; n++) lidEls[n].style.opacity = '1';
+    if (closedEl) closedEl.style.opacity = '1';
     setTimeout(function () {
       blinkOn = false;
-      for (var n2 = 0; n2 < lidEls.length; n2++) lidEls[n2].style.opacity = '0';
+      if (closedEl) closedEl.style.opacity = '0';
       for (var j = 0; j < eyeEls.length; j++) eyeEls[j].style.opacity = '1';
       scheduleBlink();
     }, 135);
@@ -307,6 +300,17 @@
     img.decoding = 'async';
     card.appendChild(img);
 
+    if (!card.querySelector('.pet-closed')) {
+      var cimg = document.createElement('img');
+      cimg.className = 'pet-closed';
+      cimg.alt = '';
+      cimg.draggable = false;
+      cimg.src = SPRITE_CLOSED_1X;
+      cimg.srcset = SPRITE_CLOSED_2X + ' 2x, ' + SPRITE_CLOSED_3X + ' 3x';
+      cimg.style.opacity = '0';
+      card.appendChild(cimg);
+      closedEl = cimg;
+    }
     art.appendChild(card);
     art.setAttribute('data-credit', '角色形象：阿万提供（AI 生成三视图），见 /images/pet/ATTRIBUTION.md');
     el.appendChild(art);
