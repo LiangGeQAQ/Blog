@@ -39,16 +39,21 @@
   var SPRITE_CLOSED_1X = '/images/pet/front_closed_208.webp';
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_416.webp';
   var SPRITE_CLOSED_3X = '/images/pet/front_closed_624.webp';
-  // 只覆盖虹膜本体（底图里的虹膜已被抹成眼白），眼眶/睫毛不动
+  // 三层结构：底图（眼内已铺满眼白）+ 会动的虹膜 + 固定在最上层的睫毛/眼眶
   var EYES = [
-    { src: '/images/pet/iris_l.webp', src2: '/images/pet/iris_l@2x.webp', src3: '/images/pet/iris_l@3x.webp', x: 32.81, y: 30.15, w: 9.90, h: 6.01 },
-    { src: '/images/pet/iris_r.webp', src2: '/images/pet/iris_r@2x.webp', src3: '/images/pet/iris_r@3x.webp', x: 63.02, y: 30.25, w: 9.55, h: 5.92 }
+    { src: '/images/pet/iris_l.webp', src2: '/images/pet/iris_l@2x.webp', src3: '/images/pet/iris_l@3x.webp', x: 32.29, y: 29.87, w: 11.11, h: 6.68 },
+    { src: '/images/pet/iris_r.webp', src2: '/images/pet/iris_r@2x.webp', src3: '/images/pet/iris_r@3x.webp', x: 62.33, y: 31.30, w: 10.94, h: 5.34 }
+  ];
+  var LASHES = [
+    { src: '/images/pet/lash_l.webp', src2: '/images/pet/lash_l@2x.webp', src3: '/images/pet/lash_l@3x.webp', x: 26.91, y: 27.96, w: 17.88, h: 9.73 },
+    { src: '/images/pet/lash_r.webp', src2: '/images/pet/lash_r@2x.webp', src3: '/images/pet/lash_r@3x.webp', x: 60.94, y: 28.63, w: 17.19, h: 8.49 }
   ];
   var MAX_EYE_X = 2.0, MAX_EYE_Y = 1.3;   // 虹膜最大位移（CSS px，1x）
   var TILT_START = 0.62;                  // 指针偏移超过这个比例才开始带头部倾斜
   var MAX_TILT_Y = 3.2, MAX_TILT_X = 2.2;
   var artEl = null;             // 承载倾斜的 card
-  var eyeEls = [];              // 眼睛跟随补丁层
+  var eyeEls = [];              // 虹膜补丁（跟随）
+  var lashEls = [];             // 睫毛/眼眶补丁（固定，置于最上层）
   var layers = [];              // 兼容旧接口，sprite 模式恒为空
   var headTilt = null;
   var target = { x: 0, y: 0 };  // 归一化指针方向 [-1,1]
@@ -171,23 +176,28 @@
     kickTilt();
   }
 
+  function addLayer(card, cfg, cls, collect) {
+    var el2 = document.createElement('img');
+    el2.className = cls;
+    el2.alt = '';
+    el2.draggable = false;
+    el2.src = cfg.src;
+    el2.srcset = cfg.src2 + ' 2x, ' + cfg.src3 + ' 3x';
+    el2.style.left = cfg.x + '%';
+    el2.style.top = cfg.y + '%';
+    el2.style.width = cfg.w + '%';
+    el2.style.height = cfg.h + '%';
+    card.appendChild(el2);
+    if (collect) collect.push(el2);
+    return el2;
+  }
+
   function buildEyeLayers(card) {
     eyeEls = [];
-    for (var i = 0; i < EYES.length; i++) {
-      var cfg = EYES[i];
-      var el2 = document.createElement('img');
-      el2.className = 'pet-eye';
-      el2.alt = '';
-      el2.draggable = false;
-      el2.src = cfg.src;
-      el2.srcset = cfg.src2 + ' 2x, ' + cfg.src3 + ' 3x';
-      el2.style.left = cfg.x + '%';
-      el2.style.top = cfg.y + '%';
-      el2.style.width = cfg.w + '%';
-      el2.style.height = cfg.h + '%';
-      card.appendChild(el2);
-      eyeEls.push(el2);
-    }
+    lashEls = [];
+    for (var i = 0; i < EYES.length; i++) addLayer(card, EYES[i], 'pet-eye', eyeEls);
+    // 睫毛层最后添加 → 永远盖在虹膜之上，虹膜移动时被它裁住不会越界
+    for (var j = 0; j < LASHES.length; j++) addLayer(card, LASHES[j], 'pet-lash', lashEls);
   }
 
   function mountArt(card, img) {
@@ -223,10 +233,12 @@
     if (!blinkImg || !el || document.hidden) { scheduleBlink(); return; }
     blinkOn = true;
     for (var i = 0; i < eyeEls.length; i++) eyeEls[i].style.opacity = '0';
+    for (var k = 0; k < lashEls.length; k++) lashEls[k].style.opacity = '0';
     swapFrame(blinkImg, true);
     setTimeout(function () {
       blinkOn = false;
       for (var j = 0; j < eyeEls.length; j++) eyeEls[j].style.opacity = '1';
+      for (var m = 0; m < lashEls.length; m++) lashEls[m].style.opacity = '1';
       if (blinkImg) swapFrame(blinkImg, false);
       scheduleBlink();
     }, 135);
@@ -237,7 +249,6 @@
     // 预载闭眼帧，避免首次切换闪白
     try {
       var pre = new Image();
-      pre.srcset = SPRITE_CLOSED_2X + ' 2x, ' + SPRITE_CLOSED_3X + ' 3x';
       pre.src = SPRITE_CLOSED_1X;
     } catch (e) {}
     scheduleBlink();

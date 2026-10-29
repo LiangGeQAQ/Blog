@@ -32,7 +32,8 @@
 }
 
 /* 眼睛跟随补丁：叠在精灵上，只做小范围位移 */
-#pet-widget .pet-eye {
+#pet-widget .pet-eye,
+#pet-widget .pet-lash {
   position: absolute;
   pointer-events: none;
   opacity: 1;
