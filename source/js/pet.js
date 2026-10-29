@@ -33,8 +33,8 @@
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
-  var ASSET_V = '?v=20261030h';
-  var PET_VER = '20261030.8';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var ASSET_V = '?v=20261030i';
+  var PET_VER = '20261030.9';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_HALF_1X = '/images/pet/front_half_310.webp' + ASSET_V;
   var SPRITE_HALF_2X = '/images/pet/front_half_620.webp' + ASSET_V;
   var SPRITE_HALF_3X = '/images/pet/front_half_930.webp' + ASSET_V;
@@ -229,17 +229,15 @@
     if (!el || !closedEl || !halfEl || document.hidden) { scheduleBlink(); return; }
     blinkOn = true;
     for (var i = 0; i < eyeEls.length; i++) eyeEls[i].style.opacity = '0';
-    if (halfEl) halfEl.style.opacity = '1';
-    setTimeout(function () {
-      if (halfEl) halfEl.style.opacity = '0';
-      if (closedEl) closedEl.style.opacity = '1';
-    }, 70);
+    // 交叉溶解到闭眼原画：半程 → 全闭 → 睁（不做任何贴片/绘制）
+    if (closedEl) closedEl.style.opacity = '0.65';
+    setTimeout(function () { if (closedEl) closedEl.style.opacity = '1'; }, 90);
     setTimeout(function () {
       blinkOn = false;
       if (closedEl) closedEl.style.opacity = '0';
       for (var j = 0; j < eyeEls.length; j++) eyeEls[j].style.opacity = '1';
       scheduleBlink();
-    }, 330);
+    }, 300);
   }
 
   function startBlink() {
