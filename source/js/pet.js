@@ -400,6 +400,7 @@
         force: FORCE,
         off: OFF,
         sprite: !!artEl,
+        ver: ASSET_V.replace('?v=', ''),
         tilt: { x: +cur.x.toFixed(3), y: +cur.y.toFixed(3) }
       };
     };
