@@ -2,8 +2,8 @@
 #pet-widget {
   position: fixed;
   z-index: 90;
-  width: 124px;
-  height: 132px;
+  width: 114px;
+  height: 208px;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
@@ -12,17 +12,44 @@
   will-change: transform;
 }
 
-#pet-widget img {
+#pet-widget .pet-art {
   width: 100%;
   height: 100%;
   display: block;
   pointer-events: none;
   filter: drop-shadow(0 6px 12px rgba(60, 40, 100, 0.16));
   transform-origin: 50% 90%;
-  animation: pet-breathe 4.6s ease-in-out infinite;
+  animation: pet-breathe 6.2s ease-in-out infinite;
 }
 
-#pet-widget:hover img {
+/* 卡片层：承载透视倾斜；图片与眨眼层同尺寸叠放 */
+#pet-widget .pet-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 88%;
+  backface-visibility: hidden;
+}
+
+#pet-widget .pet-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* 待机：呼吸起伏 + 极轻微左右摆（只动 transform，不触发重排） */
+@keyframes pet-breathe {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  25%  { transform: translate3d(0.6px, -1.4px, 0) rotate(-0.5deg) scale(1.004); }
+  50%  { transform: translate3d(0, -2.2px, 0) rotate(0deg) scale(1.008); }
+  75%  { transform: translate3d(-0.6px, -1.2px, 0) rotate(0.5deg) scale(1.004); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
+#pet-widget:hover .pet-art {
   animation-play-state: paused;
 }
 
@@ -31,7 +58,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #pet-widget img { animation: none; }
+  #pet-widget .pet-art { animation: none; }
   #pet-widget { transition: none; }
 }
 
