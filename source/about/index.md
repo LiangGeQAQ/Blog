@@ -29,3 +29,8 @@ date: 2022-03-08 19:45:10
 - [基于 FPGA 的时钟与数码管小游戏](https://www.liliaw.com/2022/06/20/FPGA%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/)，演示视频在 [Bilibili](https://www.bilibili.com/video/BV12U4y1X7Vj/)
 
 > 本站文章的参考资料、文献与配图，默认标注在文末；二次元配图来自网络，仅作学习记录，如有侵权请联系删除。
+
+## 素材致谢
+
+- 站点桌宠形象：由站方提供的角色三视图（AI 生成）切出并去底处理，仅作本站非商业装饰使用；登记明细见仓库 `source/images/pet/ATTRIBUTION.md`。
+- 主题：Hexo + [hexo-theme-keep](https://github.com/XPoet/hexo-theme-keep)（MIT）。

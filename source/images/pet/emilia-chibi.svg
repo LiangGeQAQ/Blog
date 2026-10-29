@@ -1,177 +1,250 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 136" width="128" height="136" role="img" aria-label="银发紫瞳少女桌宠">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 112 224" width="112" height="224" role="img" aria-label="Q 版银发紫瞳全身桌宠">
   <defs>
-    <linearGradient id="hairTop" x1="0.15" y1="0" x2="0.9" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="0.45" stop-color="#efeefa"/>
-      <stop offset="1" stop-color="#c7c2e0"/>
-    </linearGradient>
-    <linearGradient id="hairLock" x1="0" y1="0" x2="0.7" y2="1">
-      <stop offset="0" stop-color="#fdfdff"/>
-      <stop offset="0.5" stop-color="#e3dff5"/>
-      <stop offset="1" stop-color="#b8b2d6"/>
-    </linearGradient>
-    <linearGradient id="dressBody" x1="0.1" y1="0" x2="0.9" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="0.6" stop-color="#f2effc"/>
-      <stop offset="1" stop-color="#d4cdee"/>
-    </linearGradient>
-    <!-- 桌面：薄板，上表面亮、立面暗 -->
-    <linearGradient id="deskTop" x1="0" y1="0" x2="0.2" y2="1">
-      <stop offset="0" stop-color="#ded4fc"/>
-      <stop offset="0.6" stop-color="#b8a7f1"/>
-      <stop offset="1" stop-color="#a08ce8"/>
-    </linearGradient>
-    <linearGradient id="deskFront" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#6d57c9"/>
-      <stop offset="0.5" stop-color="#584796"/>
-      <stop offset="1" stop-color="#40317f"/>
-    </linearGradient>
-    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#cbbaff"/>
-      <stop offset="1" stop-color="#7b63e6"/>
-    </linearGradient>
-    <linearGradient id="iris" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#453496"/>
-      <stop offset="0.58" stop-color="#7b68e0"/>
-      <stop offset="1" stop-color="#ad9aef"/>
-    </linearGradient>
-    <radialGradient id="skin" cx="0.45" cy="0.28" r="0.82">
-      <stop offset="0" stop-color="#fffaf7"/>
-      <stop offset="0.7" stop-color="#ffe9dd"/>
-      <stop offset="1" stop-color="#f1cbbc"/>
-    </radialGradient>
-    <radialGradient id="blush" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#ff9db6" stop-opacity="0.65"/>
-      <stop offset="1" stop-color="#ff9db6" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="2.6"/>
-    </filter>
-    <filter id="soft2">
-      <feGaussianBlur stdDeviation="1.3"/>
-    </filter>
-    <!-- 脖子裁剪：阴影只在脖子轮廓内 -->
-    <clipPath id="neckClip">
-      <path d="M56 84h16v12l-8 4-8-4z"/>
+    <!-- 赛璐璐配色：低饱和、高明度；每块只有「底色 + 一层硬阴影」 -->
+    <clipPath id="faceClip">
+      <path d="M56 9 C79 9 101 27 102 56 C103 80 89 103 70 111.5 C61 115.5 51 115.5 42 111.5 C23 103 9 80 10 56 C11 27 33 9 56 9 Z"/>
+    </clipPath>
+    <clipPath id="hairBackClip">
+      <path d="M56 4 C84 4 106 26 107 58 C108 92 105 132 101 166 C99 186 94 196 84 197 C86 166 87 132 84 108 C70 101 42 101 28 108 C25 132 26 166 28 197 C18 196 13 186 11 166 C7 132 4 92 5 58 C6 26 28 4 56 4 Z"/>
+    </clipPath>
+    <clipPath id="bangsClip">
+      <path d="M14 56 C15 32 32 14 56 14 C80 14 97 32 98 56 C98 60 97 63 96 64 C93 52 88 44 82 40 C80 50 74 58 66 62 C67 52 65 44 61 38 C55 46 47 52 38 55 C36 47 33 41 29 37 C24 45 20 54 18 64 C16 62 14 59 14 56 Z"/>
+    </clipPath>
+    <clipPath id="torsoClip">
+      <path d="M56 114 C72 114 88 117 96 123 C101 127 102 134 100 140 C98 146 96 149 94 151 C80 156 32 156 18 151 C16 149 14 146 12 140 C10 134 11 127 16 123 C24 117 40 114 56 114 Z"/>
+    </clipPath>
+    <clipPath id="skirtClip">
+      <path d="M56 146 C74 146 92 150 98 158 C102 164 104 172 104 180 C86 186 26 186 8 180 C8 172 10 164 14 158 C20 150 38 146 56 146 Z"/>
+    </clipPath>
+    <clipPath id="armLClip">
+      <path d="M20 122 C13 128 9 139 8 151 C7 160 9 167 13 168 C17 169 19 163 20 156 C22 144 24 132 28 126 Z"/>
+    </clipPath>
+    <clipPath id="armRClip">
+      <path d="M94 122 C101 116 105 106 106 96 C106.5 90 103 86 99 88 C95 90 93 99 91 107 C89 116 89 121 89 125 Z"/>
+    </clipPath>
+    <clipPath id="legLClip">
+      <path d="M37 176 C33 185 31 196 32 204 C32.5 208 34 210 38 210 L45 210 C49 210 50 207 49.5 203 C48.5 194 48 185 47 176 Z"/>
+    </clipPath>
+    <clipPath id="legRClip">
+      <path d="M75 176 C79 185 81 196 80 204 C79.5 208 78 210 74 210 L67 210 C63 210 62 207 62.5 203 C63.5 194 64 185 65 176 Z"/>
     </clipPath>
   </defs>
 
-  <!-- ===== 后发（尖角收尾） ===== -->
-  <path d="M64 12 L78 17 L88 30 L90 47 L84 62 L88 92 L90 104 L38 104 L40 92 L44 62 L38 47 L40 30 L50 17 Z"
-        fill="#cdc8e3"/>
-  <path d="M64 14 L76 19 L85 31 L87 47 L81 61 L85 92 L86 101 L42 101 L43 92 L47 61 L41 47 L43 31 L52 19 Z"
-        fill="url(#hairTop)"/>
+  <g id="pet-3d">
 
-  <!-- ===== 身体（直线肩线） ===== -->
-  <path d="M64 92 L78 95 L86 100 L90 112 L38 112 L42 100 L50 95 Z" fill="url(#dressBody)"/>
-  <path d="M64 92 L74 94 L78 97 L64 101 L50 97 L54 94 Z" fill="#ffffff" opacity="0.72"/>
-  <path d="M53 96.5 L64 105 L75 96.5" fill="none" stroke="#9c88ee" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="butt"/>
-  <g transform="translate(64,106)">
-    <path d="M0 0l-7.6-4.2v8.4z" fill="url(#ribbon)"/>
-    <path d="M0 0l7.6-4.2v8.4z" fill="url(#ribbon)"/>
-    <path d="M0 0l-2.1 6.4 2.1 1.6 2.1-1.6z" fill="#6a55d6" opacity="0.9"/>
-    <path d="M-1.9 -1.9 L1.9 -1.9 L1.9 1.9 L-1.9 1.9 Z" fill="#ffffff"/>
-  </g>
+    <!-- ========== 后发 + 躯干 + 腿（远层） ========== -->
+    <g id="pet-chibi">
 
-  <!-- ===== 桌面：薄长方体（俯视） ===== -->
-  <ellipse cx="64" cy="129" rx="58" ry="5.4" fill="#33256f" opacity="0.3" filter="url(#soft)"/>
-  <!-- 上表面：远边 116、近边 124（轻微收缩），高度 10 -->
-  <path d="M6 112 L122 112 L126 122 L2 122 Z" fill="url(#deskTop)"/>
-  <!-- 前立面：高度 8，近似垂直 -->
-  <path d="M2 122 L126 122 L125 130 L3 130 Z" fill="url(#deskFront)"/>
-  <!-- 硬边高光 -->
-  <path d="M6 112 L122 112" stroke="#f3eeff" stroke-width="1.6" stroke-linecap="butt"/>
-  <path d="M9 114 L119 114" stroke="#ffffff" stroke-width="0.9" opacity="0.35" stroke-linecap="butt"/>
-  <path d="M2 122 L126 122" stroke="#33256f" stroke-width="1.1" opacity="0.55" stroke-linecap="butt"/>
+      <!-- 地面投影 -->
+      <g id="pet-shadow">
+        <ellipse cx="56" cy="216" rx="30" ry="4.2" fill="#6a5a92" opacity="0.2"/>
+      </g>
 
-  <!-- ===== 手臂（搭在桌面上，硬朗轮廓） ===== -->
-  <path d="M42 99 L34 107 L31 116 L32 120 L38 120 L41 114 L45 103 Z" fill="#ffe9de"/>
-  <path d="M86 99 L94 107 L97 116 L96 120 L90 120 L87 114 L83 103 Z" fill="#ffe9de"/>
-  <path d="M33 108 L31.5 116 L33 119.5" fill="none" stroke="#eec7b8" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
-  <path d="M95 108 L96.5 116 L95 119.5" fill="none" stroke="#eec7b8" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
-  <!-- 手背 -->
-  <path d="M30 120 L28 124 L36 125 L41 122 L40 119 Z" fill="#fff5ef"/>
-  <path d="M98 120 L100 124 L92 125 L87 122 L88 119 Z" fill="#fff5ef"/>
+      <!-- 后发 -->
+      <path d="M56 4 C84 4 106 26 107 58 C108 92 105 132 101 166 C99 186 94 196 84 197 C86 166 87 132 84 108 C70 101 42 101 28 108 C25 132 26 166 28 197 C18 196 13 186 11 166 C7 132 4 92 5 58 C6 26 28 4 56 4 Z"
+            fill="#e9e6f5" stroke="#8d84a8" stroke-width="1.1" stroke-linejoin="round"/>
+      <g clip-path="url(#hairBackClip)">
+        <!-- 一层硬阴影（右后侧） -->
+        <path d="M56 4 L107 58 C108 92 105 132 101 166 C99 186 94 196 84 197 C86 166 87 132 84 108 C80 106 74 105 68 104 C70 130 70 160 68 197 L56 197 Z"
+              fill="#d3cde8"/>
+        <!-- 发梢切面 -->
+        <path d="M28 197 L40 197 L38 188 L29 190 Z" fill="#cac2e2" opacity="0.85"/>
+        <path d="M84 197 L72 197 L74 188 L83 190 Z" fill="#cac2e2" opacity="0.85"/>
+      </g>
 
-  <!-- ===== 脖子（裁剪阴影） ===== -->
-  <path d="M56 84 L72 84 L72 96 L64 100 L56 96 Z" fill="#f6d7c9"/>
-  <g clip-path="url(#neckClip)">
-    <ellipse cx="64" cy="85.5" rx="11" ry="5.5" fill="#b98a78" opacity="0.45" filter="url(#soft2)"/>
-    <ellipse cx="64" cy="98" rx="9" ry="3.2" fill="#b98a78" opacity="0.25" filter="url(#soft2)"/>
-  </g>
+      <!-- 腿 -->
+      <path d="M37 176 C33 185 31 196 32 204 C32.5 208 34 210 38 210 L45 210 C49 210 50 207 49.5 203 C48.5 194 48 185 47 176 Z"
+            fill="#fdeee6" stroke="#b98a77" stroke-width="1.05" stroke-linejoin="round"/>
+      <path d="M75 176 C79 185 81 196 80 204 C79.5 208 78 210 74 210 L67 210 C63 210 62 207 62.5 203 C63.5 194 64 185 65 176 Z"
+            fill="#fdeee6" stroke="#b98a77" stroke-width="1.05" stroke-linejoin="round"/>
+      <g clip-path="url(#legLClip)"><path d="M47 176 C48 186 48.5 196 49.5 203 C49 208 46 210 43 210 L49 210 Z" fill="#f2d3c6"/></g>
+      <g clip-path="url(#legRClip)"><path d="M65 176 C64 186 63.5 196 62.5 203 C63 208 66 210 69 210 L63 210 Z" fill="#f2d3c6"/></g>
 
-  <!-- ===== 头部（转头 + 眨眼） ===== -->
-  <g id="pet-head">
-    <animateTransform attributeName="transform" type="rotate"
-      values="0 64 88; -5.5 64 88; 0 64 88; 4.8 64 88; 0 64 88"
-      keyTimes="0; 0.2; 0.48; 0.76; 1"
-      calcMode="spline"
-      keySplines="0.45 0 0.25 1; 0.45 0 0.25 1; 0.45 0 0.25 1; 0.45 0 0.25 1"
-      dur="14s" repeatCount="indefinite"/>
+      <!-- 鞋 -->
+      <path d="M32 202 C29 208 30 215 36 216 C42 217 48 214 49 207 C49.5 202 46 200 41 200 C36 200 33.5 200.5 32 202 Z"
+            fill="#a894f0" stroke="#7a67c4" stroke-width="1.05" stroke-linejoin="round"/>
+      <path d="M80 202 C83 208 82 215 76 216 C70 217 64 214 63 207 C62.5 202 66 200 71 200 C76 200 78.5 200.5 80 202 Z"
+            fill="#a894f0" stroke="#7a67c4" stroke-width="1.05" stroke-linejoin="round"/>
+      <path d="M34 206 C37 205 43 205 47 206" fill="none" stroke="#ffffff" stroke-width="1.1" opacity="0.6" stroke-linecap="round"/>
+      <path d="M78 206 C75 205 69 205 65 206" fill="none" stroke="#ffffff" stroke-width="1.1" opacity="0.6" stroke-linecap="round"/>
 
-    <!-- 脸：多边形轮廓（棱角分明） -->
-    <path d="M64 29 L76 31 L85 39 L88.5 51 L88 60 L83 71 L75 80 L67 85.5 L61 85.5 L53 80 L45 71 L40 60 L39.5 51 L43 39 L52 31 Z"
-          fill="url(#skin)"/>
-    <!-- 右侧暗面（切面感） -->
-    <path d="M76 31 L85 39 L88.5 51 L88 60 L83 71 L75 80 L67 85.5 L64 85.5 L64 31 Z" fill="#e9b6a3" opacity="0.22"/>
-    <!-- 下颌高光 -->
-    <path d="M58 77 L64 82.5 L70 77 L64 79.5 Z" fill="#ffffff" opacity="0.4"/>
+      <!-- 裙子 -->
+      <path d="M56 146 C74 146 92 150 98 158 C102 164 104 172 104 180 C86 186 26 186 8 180 C8 172 10 164 14 158 C20 150 38 146 56 146 Z"
+            fill="#fbfaff" stroke="#9c93b8" stroke-width="1.1" stroke-linejoin="round"/>
+      <g clip-path="url(#skirtClip)">
+        <path d="M56 146 C74 146 92 150 98 158 C102 164 104 172 104 180 L104 186 L64 186 C66 172 62 158 56 146 Z" fill="#ddd8ee"/>
+        <path d="M30 158 C34 168 36 176 36 184" fill="none" stroke="#c8c0e0" stroke-width="1" stroke-linecap="round"/>
+        <path d="M82 158 C78 168 76 176 76 184" fill="none" stroke="#c8c0e0" stroke-width="1" stroke-linecap="round"/>
+        <path d="M8 176 C26 182 86 182 104 176 L104 180 C86 186 26 186 8 180 Z" fill="#cdc5e6" opacity="0.9"/>
+      </g>
 
-    <!-- 刘海：尖锐发梢 -->
-    <path d="M39.5 52 L43 38 L51 30 L58 26 L64 30 L70 26 L77 30 L85 38 L88.5 52 L87 59 L79 47 L72 41 L67 52 L61 41 L54 47 L47 57 L43 63 L41 55 Z"
-          fill="url(#hairTop)"/>
-    <path d="M47 33 L56 28 L64 32 L58 40 L50 41 Z" fill="#ffffff" opacity="0.6"/>
-    <path d="M72 33 L79 38 L74 45 L68 40 Z" fill="#ffffff" opacity="0.42"/>
-    <path d="M61 28 L64 41 L67 28" fill="url(#hairTop)"/>
-    <!-- 侧发（直角收尾） -->
-    <path d="M39.5 50 L34 62 L35 96 L43 100 L43.5 66 Z" fill="url(#hairLock)"/>
-    <path d="M88.5 50 L94 62 L93 96 L85 100 L84.5 66 Z" fill="url(#hairLock)"/>
-    <path d="M37.5 62 L38.5 92" stroke="#ffffff" stroke-width="1.4" opacity="0.7" stroke-linecap="butt"/>
-    <path d="M90.5 62 L89.5 92" stroke="#ffffff" stroke-width="1.4" opacity="0.7" stroke-linecap="butt"/>
+      <!-- 长袍前襟图腾（似魔之鸟，线稿简化） -->
+      <g transform="translate(56,166)" fill="none" stroke="#a894f0" stroke-width="1.15" stroke-linejoin="round" stroke-linecap="round" opacity="0.95">
+        <path d="M0 -13 C4.6 -13 7.6 -9.6 7.6 -5.2 C7.6 -1 4.6 2.6 0 2.6 C-4.6 2.6 -7.6 -1 -7.6 -5.2 C-7.6 -9.6 -4.6 -13 0 -13 Z"/>
+        <path d="M0 -13 C-1.6 -16.4 -4.4 -17.6 -6.8 -17 C-5.4 -14.4 -3.4 -12.8 0 -13"/>
+        <path d="M0 -13 C1.6 -16.4 4.4 -17.6 6.8 -17 C5.4 -14.4 3.4 -12.8 0 -13"/>
+        <path d="M-7.4 -3.4 C-12.6 -1 -15.4 3.4 -14.6 7.4 C-11 5.4 -8.2 2.2 -7.4 -3.4"/>
+        <path d="M7.4 -3.4 C12.6 -1 15.4 3.4 14.6 7.4 C11 5.4 8.2 2.2 7.4 -3.4"/>
+        <path d="M-2.4 2.2 C-2.8 6.4 -1.6 10 0 12.6 C1.6 10 2.8 6.4 2.4 2.2"/>
+        <path d="M-3.2 -6.4 C-1.6 -7.4 1.6 -7.4 3.2 -6.4" stroke-width="0.9"/>
+      </g>
 
-    <!-- 发饰：四角星 + 小花 -->
-    <g transform="translate(90,36)">
-      <path d="M0 -8 L1.9 -2.2 L7.6 0 L1.9 2.2 L0 8 L-1.9 2.2 L-7.6 0 L-1.9 -2.2 Z" fill="#c3b1ff" stroke="#8f7ce8" stroke-width="0.8"/>
-      <path d="M0 -4 L0.9 -1 L3.8 0 L0.9 1 L0 4 L-0.9 1 L-3.8 0 L-0.9 -1 Z" fill="#fff4c9"/>
+      <!-- 躯干 -->
+      <path d="M56 114 C72 114 88 117 96 123 C101 127 102 134 100 140 C98 146 96 149 94 151 C80 156 32 156 18 151 C16 149 14 146 12 140 C10 134 11 127 16 123 C24 117 40 114 56 114 Z"
+            fill="#fbfaff" stroke="#9c93b8" stroke-width="1.1" stroke-linejoin="round"/>
+      <g clip-path="url(#torsoClip)">
+        <!-- 一层硬阴影 -->
+        <path d="M56 114 C72 114 88 117 96 123 C101 127 102 134 100 140 C98 146 96 149 94 151 C88 153 82 154 76 155 C78 143 72 128 62 122 C60 120 58 117 56 114 Z"
+              fill="#ddd8ee"/>
+        <!-- 腰带 -->
+        <path d="M18 144 C38 149 74 149 94 144 L94 150 C74 155 38 155 18 150 Z" fill="#a894f0"/>
+        <path d="M18 144 C38 149 74 149 94 144" fill="none" stroke="#8f7ada" stroke-width="0.9"/>
+        <!-- 胸口衣褶（减法：两笔） -->
+        <path d="M44 122 C48 130 48 138 46 145" fill="none" stroke="#c8c0e0" stroke-width="1" stroke-linecap="round"/>
+        <path d="M68 122 C64 130 64 138 66 145" fill="none" stroke="#c8c0e0" stroke-width="1" stroke-linecap="round"/>
+        <!-- 领口 -->
+        <path d="M56 114 C60 120 60 126 56 130 C52 126 52 120 56 114 Z" fill="#ffffff" stroke="#9c93b8" stroke-width="1"/>
+      </g>
     </g>
 
-    <!-- 眼睛：杏仁形（尖角） -->
-    <g id="pet-eyes">
-      <animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.9;0.925;0.965;0.99;1" dur="7.5s" repeatCount="indefinite"/>
-      <path d="M47 57 L52.4 51.4 L57 55.4 L56.6 60.6 L51.6 63.4 L47.4 60.4 Z" fill="url(#iris)"/>
-      <path d="M81 57 L75.6 51.4 L71 55.4 L71.4 60.6 L76.4 63.4 L80.6 60.4 Z" fill="url(#iris)"/>
-      <path d="M48.6 58 L52.4 53.6 L55.4 56.6 L55 59.8 L51.8 61.6 L49 59.6 Z" fill="#3b2c86" opacity="0.85"/>
-      <path d="M79.4 58 L75.6 53.6 L72.6 56.6 L73 59.8 L76.2 61.6 L79 59.6 Z" fill="#3b2c86" opacity="0.85"/>
-      <circle cx="53" cy="55.4" r="1.4" fill="#ffffff" opacity="0.9"/>
-      <circle cx="75" cy="55.4" r="1.4" fill="#ffffff" opacity="0.9"/>
-      <path d="M47.4 55.4 L53 51.2 L57.2 55" stroke="#4d3b9d" stroke-width="1.5" fill="none" stroke-linejoin="miter" opacity="0.7"/>
-      <path d="M80.6 55.4 L75 51.2 L70.8 55" stroke="#4d3b9d" stroke-width="1.5" fill="none" stroke-linejoin="miter" opacity="0.7"/>
-    </g>
-    <g id="pet-eyes-closed" opacity="0">
-      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.9;0.925;0.965;0.99;1" dur="7.5s" repeatCount="indefinite"/>
-      <path d="M47.6 58 L52.4 60.4 L57.2 58" stroke="#6b57bd" stroke-width="1.5" fill="none" stroke-linejoin="miter"/>
-      <path d="M70.8 58 L75.6 60.4 L80.4 58" stroke="#6b57bd" stroke-width="1.5" fill="none" stroke-linejoin="miter"/>
+    <!-- ========== 手臂 + 头（近层） ========== -->
+    <g id="pet-chibi-top">
+
+      <!-- 脖子 -->
+      <path d="M50 104 L62 104 L62 118 L56 121 L50 118 Z" fill="#f6d9cd" stroke="#c99b8b" stroke-width="0.9"/>
+
+      <g id="pet-head-tilt">
+        <g id="pet-head">
+          <animateTransform attributeName="transform" type="rotate"
+            values="0 56 96; -3.2 56 96; 0 56 96; 2.8 56 96; 0 56 96"
+            keyTimes="0; 0.2; 0.48; 0.76; 1"
+            calcMode="spline"
+            keySplines="0.45 0 0.25 1; 0.45 0 0.25 1; 0.45 0 0.25 1; 0.45 0 0.25 1"
+            dur="14s" repeatCount="indefinite"/>
+
+          <!-- 脸 -->
+          <path d="M56 9 C79 9 101 27 102 56 C103 80 89 103 70 111.5 C61 115.5 51 115.5 42 111.5 C23 103 9 80 10 56 C11 27 33 9 56 9 Z"
+                fill="#fdeee6" stroke="#b98a77" stroke-width="1.1"/>
+          <g clip-path="url(#faceClip)">
+            <!-- 一层硬阴影：右颊 + 刘海投影 -->
+            <path d="M56 9 C79 9 101 27 102 56 C103 80 89 103 70 111.5 C64 114 58 115 56 115 C62 96 64 60 56 9 Z" fill="#f2d3c6"/>
+            <path d="M10 56 C11 36 20 22 34 16 C30 30 30 44 34 58 C26 60 17 58 10 56 Z" fill="#f2d3c6" opacity="0.75"/>
+          </g>
+
+          <!-- 后侧发帘 -->
+          <path d="M10 56 C9 84 12 104 16 120 C22 122 27 120 29 116 C25 100 24 78 26 58 Z" fill="#e9e6f5" stroke="#8d84a8" stroke-width="1.05" stroke-linejoin="round"/>
+          <path d="M102 56 C103 84 100 104 96 120 C90 122 85 120 83 116 C87 100 88 78 86 58 Z" fill="#e9e6f5" stroke="#8d84a8" stroke-width="1.05" stroke-linejoin="round"/>
+          <path d="M14 62 C15 82 17 100 19 114" fill="none" stroke="#cfc7e6" stroke-width="1" stroke-linecap="round"/>
+          <path d="M98 62 C97 82 95 100 93 114" fill="none" stroke="#cfc7e6" stroke-width="1" stroke-linecap="round"/>
+
+          <!-- 精灵长耳 -->
+          <path d="M20 73 C14 69 6 65 1.5 66.5 C4 72.5 9 79 17 84 C20.5 86 23.5 84.5 23.5 80.5 C23.5 77.5 22 75 20 73 Z"
+                fill="#fdeee6" stroke="#b98a77" stroke-width="1.05" stroke-linejoin="round"/>
+          <path d="M92 73 C98 69 106 65 110.5 66.5 C108 72.5 103 79 95 84 C91.5 86 88.5 84.5 88.5 80.5 C88.5 77.5 90 75 92 73 Z"
+                fill="#fdeee6" stroke="#b98a77" stroke-width="1.05" stroke-linejoin="round"/>
+          <path d="M18 76 C12 73 6 70 2.5 69.5 C6 74 10 78 16 81.5" fill="none" stroke="#e7c0af" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M94 76 C100 73 106 70 109.5 69.5 C106 74 102 78 96 81.5" fill="none" stroke="#e7c0af" stroke-width="0.9" stroke-linecap="round"/>
+
+          <!-- 刘海 -->
+          <path d="M14 56 C15 32 32 14 56 14 C80 14 97 32 98 56 C98 60 97 63 96 64 C93 52 88 44 82 40 C80 50 74 58 66 62 C67 52 65 44 61 38 C55 46 47 52 38 55 C36 47 33 41 29 37 C24 45 20 54 18 64 C16 62 14 59 14 56 Z"
+                fill="#f2f0fb" stroke="#8d84a8" stroke-width="1.1" stroke-linejoin="round"/>
+          <g clip-path="url(#bangsClip)">
+            <path d="M14 40 C30 20 82 20 98 40 C98 50 96 58 92 62 C86 46 74 38 56 38 C38 38 26 46 20 62 C16 58 14 50 14 40 Z" fill="#dcd6ee"/>
+            <path d="M32 34 C38 30 44 28 50 28" fill="none" stroke="#ffffff" stroke-width="2.2" opacity="0.85" stroke-linecap="round"/>
+          </g>
+
+          <!-- 发饰：星形 -->
+          <g transform="translate(85,30)">
+            <g fill="#e6dcff" stroke="#8f7ada" stroke-width="1" stroke-linejoin="round">
+              <ellipse cx="0" cy="-5.6" rx="3.1" ry="4.2"/>
+              <ellipse cx="5.3" cy="-1.7" rx="3.1" ry="4.2" transform="rotate(72 5.3 -1.7)"/>
+              <ellipse cx="3.3" cy="4.6" rx="3.1" ry="4.2" transform="rotate(144 3.3 4.6)"/>
+              <ellipse cx="-3.3" cy="4.6" rx="3.1" ry="4.2" transform="rotate(216 -3.3 4.6)"/>
+              <ellipse cx="-5.3" cy="-1.7" rx="3.1" ry="4.2" transform="rotate(288 -5.3 -1.7)"/>
+            </g>
+            <circle cx="0" cy="0" r="2.4" fill="#fff3b0" stroke="#d9b64a" stroke-width="0.9"/>
+          </g>
+
+          <!-- 眉（细、弯） -->
+          <path d="M32 52 C36 48.5 43 48 47 50" fill="none" stroke="#a99cc4" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M80 52 C76 48.5 69 48 65 50" fill="none" stroke="#a99cc4" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- 眼睛：保留原瞳孔形状（竖长杏仁）+ 紫色系 -->
+          <g id="pet-eyes">
+            <animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.9;0.925;0.965;0.99;1" dur="7.5s" repeatCount="indefinite"/>
+            <g id="eyeShapeL">
+              <path d="M28 74 C28 64 34 57 41 57 C48 57 52 64 52 74 C52 82 47 88 40 88 C33 88 28 82 28 74 Z" fill="#ffffff" stroke="#a99cc4" stroke-width="1.1"/>
+              <path d="M31 74 C31 65 36 60 41 60 C46 60 49 65 49 74 C49 81 46 85 40 85 C34 85 31 81 31 74 Z" fill="#8f7ae0"/>
+              <path d="M33 78 C33 71 37 66 41 66 C45 66 47 71 47 78 C47 83 45 86 40 86 C35 86 33 83 33 78 Z" fill="#6b55c9"/>
+              <path d="M36 76 C36 72 38 69 41 69 C44 69 45 72 45 76 C45 80 44 82 40 82 C37 82 36 80 36 76 Z" fill="#3b2f74"/>
+              <circle cx="44" cy="68" r="3" fill="#ffffff"/>
+              <circle cx="37.5" cy="80" r="1.5" fill="#ffffff" opacity="0.85"/>
+              <path d="M27.6 71 C31.4 62.6 38 58 43.6 58" fill="none" stroke="#7d6aa8" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M52 71 C51 78 47 84 42 87" fill="none" stroke="#b7a9d4" stroke-width="1.1" stroke-linecap="round"/>
+            </g>
+            <use xlink:href="#eyeShapeL" transform="translate(112 0) scale(-1 1)"/>
+          </g>
+
+          <g id="pet-eyes-closed" opacity="0">
+            <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.9;0.925;0.965;0.99;1" dur="7.5s" repeatCount="indefinite"/>
+            <g id="eyeClosedL">
+              <path d="M28 76 C34 82 46 82 52 75" fill="none" stroke="#7d6aa8" stroke-width="1.8" stroke-linecap="round"/>
+            </g>
+            <use xlink:href="#eyeClosedL" transform="translate(112 0) scale(-1 1)"/>
+          </g>
+
+          <!-- 腮红 -->
+          <ellipse cx="26" cy="90" rx="7" ry="3.6" fill="#ffc3cf" opacity="0.55"/>
+          <ellipse cx="86" cy="90" rx="7" ry="3.6" fill="#ffc3cf" opacity="0.55"/>
+
+          <!-- 嘴：小幅上扬 -->
+          <path d="M53 98.6 C55.2 100.8 57.6 100.9 59.4 99" fill="none" stroke="#c98a94" stroke-width="1.15" stroke-linecap="round"/>
+        </g>
+      </g>
     </g>
 
-    <!-- 眉（直线段） -->
-    <path d="M47.4 46.4 L56.6 44.8" stroke="#bdb6d8" stroke-width="1.8" stroke-linecap="butt"/>
-    <path d="M80.6 46.4 L71.4 44.8" stroke="#bdb6d8" stroke-width="1.8" stroke-linecap="butt"/>
-    <!-- 腮红 -->
-    <ellipse cx="48" cy="68" rx="4.6" ry="2.6" fill="url(#blush)"/>
-    <ellipse cx="80" cy="68" rx="4.6" ry="2.6" fill="url(#blush)"/>
-    <!-- 嘴（折线） -->
-    <path d="M60.8 72.6 L64 74.6 L67.2 72.6" stroke="#d98195" stroke-width="1.4" fill="none" stroke-linejoin="miter" stroke-linecap="butt"/>
-  </g>
+      <!-- 左臂（休息下垂） -->
+      <path d="M20 122 C13 128 9 139 8 151 C7 160 9 167 13 168 C17 169 19 163 20 156 C22 144 24 132 28 126 Z"
+            fill="#fdeee6" stroke="#b98a77" stroke-width="1.05" stroke-linejoin="round"/>
+      <g clip-path="url(#armLClip)"><path d="M22 124 C16 132 12 142 12 154 C12 162 14 166 18 167 L12 168 C8 166 7 158 8 150 C9 138 14 127 20 122 Z" fill="#f2d3c6"/></g>
+      <!-- 左手 -->
+      <path d="M13 166 C8 168 5 173 6 177 C7 181 12 183 16 181 C20 179 21 174 20 170 C19 166 16 165 13 166 Z"
+            fill="#fdeee6" stroke="#b98a77" stroke-width="1.05" stroke-linejoin="round"/>
+      <path d="M8 174 C10 176 14 177 18 176" fill="none" stroke="#e3b9a8" stroke-width="0.8" stroke-linecap="round"/>
 
-  <!-- ===== 漂浮星星（四角，棱角化） ===== -->
-  <g fill="#ffe08a">
-    <path d="M16 27 L17.8 33 L24 35 L17.8 37 L16 43 L14.2 37 L8 35 L14.2 33 Z" opacity="0.85">
-      <animate attributeName="opacity" values="0.2;1;0.2" dur="3.4s" begin="0s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="3.4s" begin="0s" repeatCount="indefinite"/>
-    </path>
-    <path d="M112 60 L113.3 64 L117 65.4 L113.3 66.8 L112 71 L110.7 66.8 L107 65.4 L110.7 64 Z" opacity="0.75">
-      <animate attributeName="opacity" values="0.15;0.9;0.15" dur="3.8s" begin="0.9s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -2.6; 0 0" dur="3.8s" begin="0.9s" repeatCount="indefinite"/>
-    </path>
+      <!-- 右臂（举起打招呼） -->
+      <path d="M94 122 C101 116 105 106 106 96 C106.5 90 103 86 99 88 C95 90 93 99 91 107 C89 116 89 121 89 125 Z"
+            fill="#fdeee6" stroke="#b98a77" stroke-width="1.05" stroke-linejoin="round"/>
+      <g clip-path="url(#armRClip)"><path d="M96 122 C102 114 104 104 104 96 C104 91 101 88 98 89 C100 98 100 110 96 120 Z" fill="#f2d3c6"/></g>
+      <!-- 右手（张开招手） -->
+      <path d="M99 86 C95 83 90 83 87 86 C85 89 86 93 89 95 C92 97 96 97 99 95 C102 92 102 88 99 86 Z"
+            fill="#fdeee6" stroke="#b98a77" stroke-width="1.05" stroke-linejoin="round"/>
+      <path d="M88 87 L86 84 M92 84 L91 80 M96 84 L96 80 M99 87 L102 84" fill="none" stroke="#b98a77" stroke-width="1" stroke-linecap="round"/>
+
+    <!-- 编发：左肩前的麻花辫 -->
+    <g id="pet-braid" stroke="#8d84a8" stroke-width="1" stroke-linejoin="round">
+      <ellipse cx="23.4" cy="116" rx="6.4" ry="4.9" fill="#f2f0fb" transform="rotate(-24 23.4 116)"/>
+      <ellipse cx="24.6" cy="125" rx="6.4" ry="4.9" fill="#e9e6f5" transform="rotate(22 24.6 125)"/>
+      <ellipse cx="23.6" cy="134" rx="6.4" ry="4.9" fill="#f2f0fb" transform="rotate(-22 23.6 134)"/>
+      <ellipse cx="24.8" cy="143" rx="6.4" ry="4.9" fill="#e9e6f5" transform="rotate(22 24.8 143)"/>
+      <ellipse cx="24" cy="152" rx="6.2" ry="4.7" fill="#f2f0fb" transform="rotate(-20 24 152)"/>
+      <ellipse cx="25" cy="161" rx="5.8" ry="4.4" fill="#e9e6f5" transform="rotate(20 25 161)"/>
+      <ellipse cx="25.4" cy="169.5" rx="5.2" ry="4" fill="#f2f0fb" transform="rotate(-18 25.4 169.5)"/>
+      <path d="M24.6 175 C24.6 179 24 182 23.4 185" fill="none" stroke="#a894f0" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M26.4 175 C26.6 179 26.4 182 26 185" fill="none" stroke="#c9b8ff" stroke-width="1.6" stroke-linecap="round"/>
+    </g>
+
+    <!-- 前景星点 -->
+    <g id="pet-sparkles">
+      <path d="M20 30 L21.2 34 L25 35.2 L21.2 36.4 L20 40.4 L18.8 36.4 L15 35.2 L18.8 34 Z" fill="#ffe08a">
+        <animate attributeName="opacity" values="0.2;1;0.2" dur="3.4s" repeatCount="indefinite"/>
+      </path>
+      <path d="M100 128 L101 131 L104 132 L101 133 L100 136 L99 133 L96 132 L99 131 Z" fill="#ffe08a">
+        <animate attributeName="opacity" values="0.15;0.9;0.15" dur="3.8s" begin="0.9s" repeatCount="indefinite"/>
+      </path>
+      <path d="M14 150 L14.8 152.6 L17.4 153.4 L14.8 154.2 L14 156.8 L13.2 154.2 L10.6 153.4 L13.2 152.6 Z" fill="#ffe08a">
+        <animate attributeName="opacity" values="0.1;0.7;0.1" dur="4.6s" begin="1.4s" repeatCount="indefinite"/>
+      </path>
+    </g>
   </g>
 </svg>
