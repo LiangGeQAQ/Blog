@@ -244,7 +244,7 @@ comment:
     repository: hexo-site-comments       # Repository name to store issues
     client_id: e68b2117517290f1c9fe       # GitHub Application Client ID
     client_secret: e7b2fc7190cb9ce2d632de491ff72a11e648b9b5   # GitHub Application Client Secret
-    proxy:            # GitHub oauth request reverse proxy for CORS
+    proxy: https://www.liliaw.com/api/gitalk-token   # 自建同域代理（api/gitalk-token.js），勿留空
 
   # Twikoo
   # See: https://github.com/imaegoo/twikoo
