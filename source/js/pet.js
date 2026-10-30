@@ -15,13 +15,41 @@
   var PET_H = 310;
   var STORE_KEY = 'pet:pos:v2';
 
-  var LINES = [
-    '今天也要加油呀～',
-    '要不要先喝口水？',
-    '又在折腾板子吗？',
-    '写不动了就休息一下。',
-    '我在这儿陪你一会儿。'
+  var LINES_ANY = [
+    '又见面啦～\n今天想看点什么？',
+    '点我一下说一句，\n再点一下换一句。',
+    '我还能被拖走哦，\n放到顺手的地方就行。',
+    '写博客的时候，\n别把调试参数也贴进去呀。',
+    '这站是 Hexo 搭的，\n改完记得 push。',
+    '困了就睡，\n代码明天还是你的。',
+    '喝水。就现在。\n（认真盯）',
+    '要不要先跑一遍构建？\n反正每次都会忘。',
+    '我眨了眨眼，\n你看见了吗？',
+    '诶？\n刚才是不是有只虫子飞过去。',
+    '别盯着我啦，\n我只是一张 171×310 的图。',
+    '写得真好……\n虽然我一句没看懂。',
+    '这个 bug 昨天就在了吧？\n（小声）',
+    '慢慢来，\n一次只改一个地方。',
+    '哼哼～',
+    '地址栏加 ?pet=0，\n我就可以先休息。'
   ];
+  var LINES_MORNING = [
+    '早上好呀。\n记得吃早饭。',
+    '早八吗？\n那我陪你一起困。'
+  ];
+  var LINES_AFTERNOON = [
+    '下午三点最容易犯困，\n起来走两步吧。',
+    '今天进度怎么样？\n有没有偷偷摸鱼。'
+  ];
+  var LINES_EVENING = [
+    '晚上好～\n今晚打算写点什么？',
+    '又是改样式的一晚吗？\n我懂你。'
+  ];
+  var LINES_LATE = [
+    '这个点了还不睡？\n明天还要上班诶。',
+    '再改最后一个 bug 就睡——\n你上次也这么说。'
+  ];
+  var lastLine = '';
 
   var FORCE = /[?&]pet=1\b/.test(location.search);   // ?pet=1 强制显示（排障用）
   var OFF = /[?&]pet=0\b/.test(location.search);     // ?pet=0 临时关闭
@@ -104,6 +132,7 @@
     el.classList.toggle('side-right', side === 'right');
     el.style.left = Math.round(x) + 'px';
     el.style.top = Math.round(y) + 'px';
+    if (bubble && bubble.classList.contains('is-on')) placeBubble();
   }
 
   function updateVisibility() {
@@ -243,12 +272,82 @@
     scheduleBlink();
   }
 
+  function pickLine() {
+    var h = new Date().getHours();
+    var pool = LINES_ANY.slice();
+    if (h >= 5 && h < 11) pool = pool.concat(LINES_MORNING);
+    else if (h >= 11 && h < 18) pool = pool.concat(LINES_AFTERNOON);
+    else if (h >= 18 && h < 23) pool = pool.concat(LINES_EVENING);
+    else pool = pool.concat(LINES_LATE);
+    var s = '';
+    for (var i = 0; i < 6; i++) {
+      s = pool[Math.floor(Math.random() * pool.length)];
+      if (s !== lastLine) break;
+    }
+    lastLine = s;
+    return s;
+  }
+
+  var fontTried = false;
+  function ensureFont() {
+    if (fontTried) return;
+    fontTried = true;
+    if (!document.fonts || !document.fonts.load) return;
+    try {
+      document.fonts.load('13.5px PetBubble').then(function () {
+        if (bubble && bubble.classList.contains('is-on')) placeBubble();
+      })["catch"](function () {});
+    } catch (e) { /* ignore */ }
+  }
+
+  /* 气泡摆位：贴到页面外侧的空白带，优先人头上方，空间不够翻到脚下；尾巴指向头顶 */
+  function placeBubble() {
+    if (!bubble || !el) return;
+    var W = window.innerWidth, H = window.innerHeight;
+    var pr = el.getBoundingClientRect();
+    var main = document.querySelector('.main-content') || document.querySelector('main');
+    var mr = main ? main.getBoundingClientRect() : null;
+    var band = side === 'right'
+      ? (mr ? W - mr.right : W - pr.right)
+      : (mr ? mr.left : pr.left);
+    var maxW = clamp(Math.round(band - 12), 140, 240);
+    bubble.style.maxWidth = maxW + 'px';
+
+    bubble.classList.remove('is-below');
+    bubble.style.left = '0px';
+    bubble.style.top = '0px';
+    var bw = bubble.offsetWidth || maxW;
+    var bh = bubble.offsetHeight || 64;
+
+    var left = side === 'right' ? W - 10 - bw : 10;
+    left = clamp(left, 8, Math.max(8, W - bw - 8));
+
+    var headX = pr.left + pr.width / 2;
+    var top = Math.round(pr.top - bh - 12);
+    var below = false;
+    if (top < 8) {
+      below = true;
+      top = Math.round(pr.top + pr.height + 10);
+      if (top + bh > H - 8) top = H - 8 - bh;
+    }
+    top = Math.max(8, top);
+
+    bubble.style.left = Math.round(left - pr.left) + 'px';
+    bubble.style.top = Math.round(top - pr.top) + 'px';
+    bubble.style.setProperty('--tail-x', Math.round(clamp(headX - left, 20, bw - 20)) + 'px');
+    bubble.classList.toggle('is-below', below);
+  }
+
   function showBubble() {
     if (!bubble) return;
-    bubble.textContent = LINES[Math.floor(Math.random() * LINES.length)];
+    ensureFont();
+    var text = pickLine();
+    bubble.textContent = text;
+    placeBubble();
     bubble.classList.add('is-on');
     clearTimeout(bubbleTimer);
-    bubbleTimer = setTimeout(function () { bubble.classList.remove('is-on'); }, 2600);
+    var ms = 2600 + text.length * 60;
+    bubbleTimer = setTimeout(function () { bubble.classList.remove('is-on'); }, Math.min(ms, 6400));
   }
 
   function onPointerDown(e) {
