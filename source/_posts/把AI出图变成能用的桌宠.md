@@ -1,7 +1,7 @@
 ---
 title: 把 AI 出图变成能用的桌宠：一份 Q 版人物提示词备忘
 date: 2026-10-30 02:20:00
-updated: 2026-10-30 02:20:00
+updated: 2026-10-30 08:50:00
 tags: [AI, 提示词, 桌宠, 图像处理, Hexo]
 categories: [工具与效率]
 comment: true
@@ -103,3 +103,86 @@ var ASSET_V = '?v=20261030t';
 AI 出图现在很能打，但它不知道你要做的是**171×310 像素、带透明通道、能叠在网页角落、每 5 秒眨一次眼**的小人。这些约束，得由你翻译成人话写进提示词，剩下的部分——抠图、配准、掩膜、缓存——才是真正决定"能不能上线"的地方。
 
 完整的实现参数我记在站点的 `BLOG_GUIDE 4.6.2` 里了，万一以后忘了怎么调，翻那份就行。
+
+## 五、附录：可直接抄的提示词
+
+下面四份是我实际跑通的那一套，按「一次只让模型干一件事」的思路拆开的。
+
+> 说明：具体到哪个角色、什么发色服装、要不要做某个特殊动作，这些和我的私活强绑定的细节我都用 `xx` 代替了——**留白的地方换成你自己的设定即可**，结构不用动。任务描述越具体（比如“给我来一段跑步”“拿剑摆个姿势”），模型越容易崩，这也是我把它们虚化的原因。
+
+### 5.1 三视图设定稿
+
+```text
+二头身 Q 版小人，角色三视图设定稿：正面 / 正侧面 / 背面 并列排布在同一张画布上，
+同比例、同一视角高度、脚底落在同一条水平线上。
+角色设定：xx（发型 xx、发色 xx、服装 xx、配饰 xx）。
+头部占总高约 50%，短圆四肢，幼态圆脸，大眼睛，表情中性自然。
+透明背景（alpha 通道，无任何背景元素、无文字、无边框、无地面阴影）。
+干净纤细的闭合线稿，赛璐璐平涂，一层硬阴影，低饱和柔和配色。
+```
+
+```text
+white background, solid background, checkerboard pattern, ground shadow,
+text, watermark, border, three different characters, different proportions between views,
+dynamic pose, T-pose, action pose, motion blur,
+3D render, realistic face, watercolor, thick paint, adult proportions, messy sketch lines
+```
+
+### 5.2 正面自然垂手（主形象）
+
+```text
+二头身 Q 版小人，正面平视，透明背景（alpha 通道，无任何背景元素）。
+角色设定：xx（发型 xx、发色 xx、服装 xx、配饰 xx）。
+头部占总高约 50%，短圆四肢，幼态圆脸。
+双臂自然下垂，从躯干向外张开约 15–20 度，肘部微屈，双手略向前伸。
+肩部放松不耸起，手臂与躯干之间留有清晰缝隙、不遮挡身体轮廓。
+干净纤细的闭合线稿，赛璐璐平涂，一层硬阴影，低饱和柔和配色。
+```
+
+```text
+white background, solid background, checkerboard pattern, ground shadow,
+T-pose, arms straight out, arms crossed, arms merged with torso,
+3D render, realistic face, watercolor, thick paint, adult proportions,
+messy sketch lines, American cartoon eyes, gradient blending
+```
+
+### 5.3 转身序列（5 帧）
+
+```text
+同一角色，xx 视角的转身序列，5 帧横向等距排列：0°（正面）、22.5°、45°、67.5°、90°（正侧面）。
+每帧均为完整全身，比例一致，头顶到脚底高度完全相同，脚底对齐同一条水平线。
+角度逐帧递增，不跳步、不回摆、不重复同一视角。
+角色设定：xx（发型 xx、发色 xx、服装 xx、配饰 xx）。
+透明背景（alpha 通道，无背景元素、无地面阴影、无文字）。
+干净纤细的闭合线稿，赛璐璐平涂，一层硬阴影，低饱和柔和配色。
+```
+
+```text
+only one view, duplicated identical frames, front view repeated, inconsistent scale,
+floating feet, ground shadow, background, text, watermark, motion blur,
+multiple characters, T-pose, action pose, 3D render, realistic face, adult proportions
+```
+
+### 5.4 行走循环（4 帧）
+
+```text
+二维游戏行走循环，4 帧横向排列，90° 正侧视角，同一角色。
+角色设定：xx（发型 xx、发色 xx、服装 xx、配饰 xx）。
+步幅小、自然，重心平稳，手臂前后小幅摆动，不做大幅摆臂。
+4 帧可循环闭合：第 4 帧能自然衔接第 1 帧；第 1、3 帧为接触帧，第 2、4 帧为通过帧。
+每帧比例一致、脚底同线，角色朝向始终一致。
+透明背景（alpha 通道，无背景元素、无地面阴影、无文字）。
+干净纤细的闭合线稿，赛璐璐平涂，一层低饱和柔和阴影。
+```
+
+```text
+run, sprint, jump, tilt body, motion blur, duplicated frames,
+different character per frame, changing size, facing different directions,
+background, ground shadow, text, watermark, 3D render, realistic face, adult proportions
+```
+
+**几句话补充：**
+
+- 三视图和垂手正视图是刚需，直接决定后面抠图和配准的难度；转身、行走这两组是加分项，做不出来手绘补也行。
+- 帧数越多越容易崩（5 帧里出现两张一模一样的视角是家常便饭）。真要序列帧，我的做法是**一帧一图 + img2img 锁形象**，别指望一次出整条序列。
+- 每条正面词都要配一条负面词，尤其是 `T-pose` 和 `arms merged with torso` 这两句，少了就等着收 T 字怪。
