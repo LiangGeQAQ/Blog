@@ -300,7 +300,7 @@
     } catch (e) { /* ignore */ }
   }
 
-  /* 气泡摆位：贴到页面外侧的空白带，优先人头上方，空间不够翻到脚下；尾巴指向头顶 */
+  /* 气泡摆位：人物在空白带里就贴边，被拖到中间就以头部为中心；尾巴必须指向头顶 */
   function placeBubble() {
     if (!bubble || !el) return;
     var W = window.innerWidth, H = window.innerHeight;
@@ -310,7 +310,17 @@
     var band = side === 'right'
       ? (mr ? W - mr.right : W - pr.right)
       : (mr ? mr.left : pr.left);
-    var maxW = clamp(Math.round(band - 12), 140, 240);
+    // 人物有多少落在正文列外的空白带里：够多就按空白带算宽度，否则允许宽一点
+    var petFree = 0;
+    if (mr) {
+      var g0 = side === 'right' ? mr.right : 0;
+      var g1 = side === 'right' ? W : mr.left;
+      petFree = Math.max(0, Math.min(pr.left + pr.width, g1) - Math.max(pr.left, g0));
+    } else {
+      petFree = 99;
+    }
+    var inGutter = petFree >= 60;
+    var maxW = inGutter ? clamp(Math.round(band - 12), 140, 240) : 220;
     bubble.style.maxWidth = maxW + 'px';
 
     bubble.classList.remove('is-below');
@@ -319,10 +329,15 @@
     var bw = bubble.offsetWidth || maxW;
     var bh = bubble.offsetHeight || 64;
 
-    var left = side === 'right' ? W - 10 - bw : 10;
-    left = clamp(left, 8, Math.max(8, W - bw - 8));
-
     var headX = pr.left + pr.width / 2;
+    var left = inGutter ? (side === 'right' ? W - 10 - bw : 10) : (headX - bw / 2);
+
+    // 尾巴要落在人物身上：气泡横向不能离人太远
+    var minLeft = Math.max(8, pr.left + 24 - bw);
+    var maxLeft = Math.min(W - bw - 8, pr.left + pr.width - 24);
+    if (minLeft > maxLeft) { minLeft = maxLeft = clamp(minLeft, 8, Math.max(8, W - bw - 8)); }
+    left = clamp(left, minLeft, maxLeft);
+
     var top = Math.round(pr.top - bh - 12);
     var below = false;
     if (top < 8) {
@@ -352,6 +367,8 @@
 
   function onPointerDown(e) {
     if (e.button !== undefined && e.button !== 0) return;
+    clearTimeout(bubbleTimer);
+    if (bubble) bubble.classList.remove('is-on');   // 一开始拖就把气泡收掉，免得跟着错位
     dragging = true; moved = false;
     startX = e.clientX; startY = e.clientY;
     var r = el.getBoundingClientRect();
