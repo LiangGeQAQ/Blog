@@ -20,6 +20,9 @@ source/_data/keep.yml
 *.wmv
 *.flv
 *.m4a
+
+# 例外：文章资源目录里由 GIF 转出的演示视频（单文件 ≤5MB，见 BLOG_GUIDE 4.7）
+!source/_posts/**/*.mp4
 *.mp3
 *.zip
 *.7z

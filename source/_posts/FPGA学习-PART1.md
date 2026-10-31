@@ -145,7 +145,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports {LED[7]}]
 
 最后的运行如下所示：
 
-<div align = "center"><img src="PL_LED.gif"  width=""  height = "" /></div>
+<div align="center"><video src="PL_LED.mp4" autoplay loop muted playsinline style="max-width:100%;height:auto"></video></div>
 
 参考网站：
 
