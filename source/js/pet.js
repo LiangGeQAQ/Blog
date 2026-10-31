@@ -17,10 +17,10 @@
 
   /* 三档尺寸：手机 / 平板竖屏 / 桌面。宽度决定宠物大小，气泡字号始终 ≥13.5px */
   var TIERS = [
-    { name: 'short', max: 0, w: 96, h: 174, bubble: 180 },        // 横屏矮窗口
-    { name: 'phone-s', max: 380, w: 104, h: 188, bubble: 188 },
-    { name: 'phone', max: 480, w: 118, h: 214, bubble: 200 },
-    { name: 'tablet', max: 900, w: 142, h: 257, bubble: 216 },
+    { name: 'short', max: 0, w: 84, h: 152, bubble: 172 },        // 横屏矮窗口
+    { name: 'phone-s', max: 380, w: 88, h: 160, bubble: 176 },
+    { name: 'phone', max: 480, w: 100, h: 182, bubble: 188 },
+    { name: 'tablet', max: 900, w: 128, h: 232, bubble: 200 },
     { name: 'desktop', max: Infinity, w: 171, h: 310, bubble: 236 }
   ];
   var tier = TIERS[TIERS.length - 1];
@@ -133,14 +133,14 @@
   var OFF = /[?&]pet=0\b/.test(location.search);     // ?pet=0 临时关闭
 
   var el = null, bubble = null, side = 'right';
-  var x = 0, y = 0;
+  var x = 0, y = 0, autoAnchor = true;   // autoAnchor=false 表示用户拖过，位置以保存值为准
   var dragging = false, moved = false, touchMode = false;
   var startX = 0, startY = 0, originLeft = 0, originTop = 0;
   var bubbleTimer = null, lastPath = null, raf = 0;
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
   var ASSET_V = '?v=20261030t';
-  var PET_VER = '20261101.20';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var PET_VER = '20261101.21';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_CLOSED_1X = '/images/pet/front_closed_310.webp' + ASSET_V;
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_620.webp' + ASSET_V;
   var SPRITE_CLOSED_3X = '/images/pet/front_closed_930.webp' + ASSET_V;
@@ -207,8 +207,8 @@
   function loadState() {
     try {
       var s = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
-      if (typeof s.x === 'number') x = s.x;
-      if (typeof s.y === 'number') y = s.y;
+      if (typeof s.x === 'number') { x = s.x; autoAnchor = false; }
+      if (typeof s.y === 'number') { y = s.y; autoAnchor = false; }
     } catch (e) { /* ignore */ }
   }
 
@@ -228,8 +228,28 @@
 
   function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 
+  /* 默认落点：右下角工具齿轮的正上方；找不到就退回右下角 */
+  function defaultPos() {
+    var W = window.innerWidth, H = window.innerHeight;
+    var gear = document.querySelector('.exposed-tools-list') || document.querySelector('.tool-toggle-show');
+    if (gear) {
+      var r = gear.getBoundingClientRect();
+      if (r.width > 0 && r.height > 0) {
+        return {
+          x: Math.round(clamp(r.right - PET_W, 4, W - PET_W - 4)),
+          y: Math.round(clamp(r.top - PET_H - 8, 8, H - PET_H - 8))
+        };
+      }
+    }
+    return {
+      x: Math.round(W - PET_W - (mqMobile() ? 10 : 24)),
+      y: Math.round(H - PET_H - (mqMobile() ? 70 : 96))
+    };
+  }
+
   function applyPosition() {
     if (!el) return;
+    if (autoAnchor) { var dp = defaultPos(); x = dp.x; y = dp.y; }   // 每页重新贴到齿轮上方
     x = clamp(x, 0, window.innerWidth - PET_W);
     y = clamp(y, 12, window.innerHeight - PET_H - 12);
     side = (x + PET_W / 2) < window.innerWidth / 2 ? 'left' : 'right';
@@ -540,7 +560,7 @@
     if (!dragging) return;
     var dx = e.clientX - startX, dy = e.clientY - startY;
     var th = touchMode ? 10 : 4;   // 手指点击会有轻微位移，阈值放宽
-    if (Math.abs(dx) > th || Math.abs(dy) > th) moved = true;
+    if (Math.abs(dx) > th || Math.abs(dy) > th) { moved = true; autoAnchor = false; }
     x = clamp(originLeft + dx, 0, window.innerWidth - PET_W);
     y = clamp(originTop + dy, 12, window.innerHeight - PET_H - 12);
     side = (x + PET_W / 2) < window.innerWidth / 2 ? 'left' : 'right';
@@ -619,10 +639,7 @@
     el.classList.toggle('tier-phone-s', tier.name === 'phone-s');
     el.classList.toggle('tier-short', tier.name === 'short');
     el.classList.toggle('tier-tablet', tier.name === 'tablet');
-    if (!x && !y) {
-      x = window.innerWidth - PET_W - (mqMobile() ? 10 : 24);
-      y = window.innerHeight - PET_H - (mqMobile() ? 64 : 96);
-    }
+
     applyPosition();
     updateVisibility();
   }
@@ -641,7 +658,7 @@
     if (OFF) { destroy(); return; }
     if (!force && currentPath() === lastPath) { updateVisibility(); return; }
     lastPath = currentPath();
-    if (isHome() || tooNarrow()) { destroy(); return; }
+    if (tooNarrow() || (isHome() && !mqMobile())) { destroy(); return; }
     build();
     updateVisibility();
   }
