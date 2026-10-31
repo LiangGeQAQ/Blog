@@ -9,11 +9,21 @@
 (function () {
   'use strict';
 
-  var MIN_GUTTER = 110;   // 两侧空白小于该值就缩回（内容占满屏幕）
-  var MOBILE_MAX = 900;   // 低于该宽度视为移动端（手机不加载）
+  var MIN_GUTTER = 110;   // 桌面：两侧空白小于该值就缩回（内容占满屏幕）
+  var MIN_WIDTH = 320;    // 窄于这个宽度（极窄窗口）不加载
   var PET_W = 171;
   var PET_H = 310;
-  var STORE_KEY = 'pet:pos:v2';
+  var STORE_KEY = 'pet:pos:v3';
+
+  /* 三档尺寸：手机 / 平板竖屏 / 桌面。宽度决定宠物大小，气泡字号始终 ≥13.5px */
+  var TIERS = [
+    { name: 'short', max: 0, w: 96, h: 174, bubble: 180 },        // 横屏矮窗口
+    { name: 'phone-s', max: 380, w: 104, h: 188, bubble: 188 },
+    { name: 'phone', max: 480, w: 118, h: 214, bubble: 200 },
+    { name: 'tablet', max: 900, w: 142, h: 257, bubble: 216 },
+    { name: 'desktop', max: Infinity, w: 171, h: 310, bubble: 236 }
+  ];
+  var tier = TIERS[TIERS.length - 1];
 
   var LINES_ANY = [
     '又见面啦～\n今天想看点什么？',
@@ -124,7 +134,7 @@
 
   var el = null, bubble = null, side = 'right';
   var x = 0, y = 0;
-  var dragging = false, moved = false;
+  var dragging = false, moved = false, touchMode = false;
   var startX = 0, startY = 0, originLeft = 0, originTop = 0;
   var bubbleTimer = null, lastPath = null, raf = 0;
 
@@ -155,7 +165,34 @@
   var reduced = false;
   try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
 
-  function mqMobile() { return !FORCE && window.matchMedia('(max-width:' + MOBILE_MAX + 'px)').matches; }
+  function pickTier() {
+    var w = window.innerWidth, h = window.innerHeight;
+    if (w > h && h < 520) return TIERS[0];          // 手机横屏：给正文让位，缩小一档
+    for (var i = 1; i < TIERS.length; i++) if (w <= TIERS[i].max) return TIERS[i];
+    return TIERS[TIERS.length - 1];
+  }
+
+  /* 切换尺寸档位；返回 true 表示档位变了（调用方需要重新排版） */
+  function applySize() {
+    var t = pickTier();
+    if (t.name === tier.name && PET_W === t.w) return false;
+    tier = t;
+    PET_W = t.w;
+    PET_H = t.h;
+    if (el) {
+      el.style.width = PET_W + 'px';
+      el.style.height = PET_H + 'px';
+      el.classList.toggle('is-mobile', t.name !== 'desktop');
+      el.classList.toggle('tier-phone', t.name === 'phone' || t.name === 'phone-s');
+      el.classList.toggle('tier-phone-s', t.name === 'phone-s');
+      el.classList.toggle('tier-short', t.name === 'short');
+      el.classList.toggle('tier-tablet', t.name === 'tablet');
+    }
+    return true;
+  }
+
+  function mqMobile() { return !FORCE && window.innerWidth <= 900; }
+  function tooNarrow() { return window.innerWidth < MIN_WIDTH; }
 
   function currentPath() {
     return location.pathname.replace(/index\.html$/, '');
@@ -205,7 +242,10 @@
 
   function updateVisibility() {
     if (!el) return;
-    var ok = FORCE ? true : (gutter() >= MIN_GUTTER && !mqMobile());
+    var ok;
+    if (FORCE) ok = true;
+    else if (mqMobile()) ok = !tooNarrow();   // 手机上允许浮在正文上方，不再要求两侧空白
+    else ok = gutter() >= MIN_GUTTER;
     el.classList.toggle('is-hidden', !ok);
     el.setAttribute('aria-hidden', ok ? 'false' : 'true');
     if (ok) applyPosition();
@@ -426,7 +466,8 @@
       petFree = 99;
     }
     var inGutter = petFree >= 60;
-    var maxW = inGutter ? clamp(Math.round(band - 12), 140, 240) : 220;
+    var maxW = Math.min(tier.bubble, W - 20);
+    if (inGutter) maxW = clamp(Math.round(band - 12), 140, maxW);
     bubble.style.maxWidth = maxW + 'px';
 
     bubble.classList.remove('is-below');
@@ -486,6 +527,7 @@
     clearTimeout(bubbleTimer);
     if (bubble) bubble.classList.remove('is-on');   // 一开始拖就把气泡收掉，免得跟着错位
     dragging = true; moved = false;
+    touchMode = e.pointerType === 'touch' || e.pointerType === 'pen';
     startX = e.clientX; startY = e.clientY;
     var r = el.getBoundingClientRect();
     originLeft = r.left; originTop = r.top;
@@ -497,7 +539,8 @@
   function onPointerMove(e) {
     if (!dragging) return;
     var dx = e.clientX - startX, dy = e.clientY - startY;
-    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) moved = true;
+    var th = touchMode ? 10 : 4;   // 手指点击会有轻微位移，阈值放宽
+    if (Math.abs(dx) > th || Math.abs(dy) > th) moved = true;
     x = clamp(originLeft + dx, 0, window.innerWidth - PET_W);
     y = clamp(originTop + dy, 12, window.innerHeight - PET_H - 12);
     side = (x + PET_W / 2) < window.innerWidth / 2 ? 'left' : 'right';
@@ -566,9 +609,19 @@
 
     document.body.appendChild(el);
     loadState();
+    tier = pickTier();
+    PET_W = tier.w;
+    PET_H = tier.h;
+    el.style.width = PET_W + 'px';
+    el.style.height = PET_H + 'px';
+    el.classList.toggle('is-mobile', tier.name !== 'desktop');
+    el.classList.toggle('tier-phone', tier.name === 'phone' || tier.name === 'phone-s');
+    el.classList.toggle('tier-phone-s', tier.name === 'phone-s');
+    el.classList.toggle('tier-short', tier.name === 'short');
+    el.classList.toggle('tier-tablet', tier.name === 'tablet');
     if (!x && !y) {
-      x = window.innerWidth - PET_W - 24;
-      y = window.innerHeight - PET_H - 96;
+      x = window.innerWidth - PET_W - (mqMobile() ? 10 : 24);
+      y = window.innerHeight - PET_H - (mqMobile() ? 64 : 96);
     }
     applyPosition();
     updateVisibility();
@@ -588,14 +641,18 @@
     if (OFF) { destroy(); return; }
     if (!force && currentPath() === lastPath) { updateVisibility(); return; }
     lastPath = currentPath();
-    if (isHome() || mqMobile()) { destroy(); return; }
+    if (isHome() || tooNarrow()) { destroy(); return; }
     build();
     updateVisibility();
   }
 
   function schedule() {
     cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(function () { applyPosition(); updateVisibility(); });
+    raf = requestAnimationFrame(function () {
+      if (applySize()) { x = clamp(x, 0, window.innerWidth - PET_W); y = clamp(y, 12, window.innerHeight - PET_H - 12); }
+      applyPosition();
+      updateVisibility();
+    });
   }
 
   function boot() {
@@ -621,6 +678,8 @@
         path: currentPath(),
         home: isHome(),
         mobileMQ: mqMobile(),
+        tier: tier.name,
+        petSize: { w: PET_W, h: PET_H },
         innerWidth: window.innerWidth,
         contentWidth: Math.round(contentWidth()),
         gutter: Math.round(gutter()),

@@ -73,9 +73,26 @@
   animation-play-state: paused;
 }
 
-@media (max-width: 900px) {
+/* 极窄窗口（<360px）不加载，避免遮住内容 */
+@media (max-width: 319px) {
   #pet-widget { display: none !important; }
 }
+
+/* 手机/平板档：宠物变小，但气泡字号反而调大一点（不小于桌面 13.5px） */
+#pet-widget.tier-phone .pet-bubble,
+#pet-widget.tier-phone-s .pet-bubble,
+#pet-widget.tier-short .pet-bubble,
+#pet-widget.tier-tablet .pet-bubble {
+  font-size: 14px;
+  line-height: 1.7;
+  padding: 10px 13px 11px;
+  min-width: 112px;
+}
+
+#pet-widget.tier-phone .pet-bubble,
+#pet-widget.tier-phone-s .pet-bubble { border-radius: 16px; }
+
+#pet-widget.tier-phone-s .pet-bubble { padding: 9px 12px 10px; }
 
 @media (prefers-reduced-motion: reduce) {
   #pet-widget .pet-art { animation: none; }
