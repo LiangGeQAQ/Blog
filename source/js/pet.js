@@ -107,6 +107,18 @@
   ];
   var lastLine = '';
 
+  /* 当日新闻：构建时由 scripts/inline-pet.js 从 source/_data/pet-news.json 注入 */
+  var NEWS = (function () {
+    var n = window.__PET_NEWS;
+    if (!n || !n.items || !n.items.length || !n.date) return [];
+    var t = Date.parse(n.date + 'T00:00:00');
+    if (isNaN(t)) return [];
+    if (Math.abs(Date.now() - t) > 2 * 86400000) return [];   // 超过两天就不提了
+    var out = [];
+    for (var i = 0; i < n.items.length; i++) out.push('今日要闻：' + n.items[i]);
+    return out;
+  })();
+
   var FORCE = /[?&]pet=1\b/.test(location.search);   // ?pet=1 强制显示（排障用）
   var OFF = /[?&]pet=0\b/.test(location.search);     // ?pet=0 临时关闭
 
@@ -372,6 +384,7 @@
     var pool = LINES_ANY.slice().concat(timePool(d.getHours(), wd === 0 || wd === 6));
     var ctx = contextPool();
     if (ctx.length) pool = pool.concat(ctx, ctx);   // 情境台词权重加倍
+    if (NEWS.length) pool = pool.concat(NEWS);      // 当日新闻：权重与时段台词相当
     var s = '';
     for (var i = 0; i < 6; i++) {
       s = pool[Math.floor(Math.random() * pool.length)];
@@ -449,7 +462,17 @@
   function showBubble() {
     if (!bubble) return;
     ensureFont();
-    var text = pickLine();
+    // 每个会话第一次点我，先报一条当日新闻；之后回归随机池子
+    var firstNews = false;
+    if (NEWS.length) {
+      try {
+        if (!sessionStorage.getItem('pet.newsSaid')) {
+          sessionStorage.setItem('pet.newsSaid', '1');
+          firstNews = true;
+        }
+      } catch (e) { /* 隐私模式忽略 */ }
+    }
+    var text = firstNews ? NEWS[Math.floor(Math.random() * NEWS.length)] : pickLine();
     bubble.textContent = text;
     placeBubble();
     bubble.classList.add('is-on');
@@ -611,6 +634,7 @@
         codeVer: PET_VER,
         bucket: timeBucket(new Date().getHours()),
         ctx: contextPool().length,
+        news: NEWS.length,
         tilt: { x: +cur.x.toFixed(3), y: +cur.y.toFixed(3) }
       };
     };
