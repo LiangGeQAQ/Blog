@@ -93,7 +93,7 @@
   font-weight: 400;
   font-display: swap;
   /* 仅含气泡文案用到的字形（ZCOOL KuaiLe 子集，OFL-1.1，见 /font/pet-bubble-OFL.txt） */
-  src: url("/font/pet-bubble-v1.woff2") format("woff2");
+  src: url("/font/pet-bubble-v3.woff2") format("woff2");
 }
 
 #pet-widget .pet-bubble {

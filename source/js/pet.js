@@ -31,25 +31,93 @@
     '这个 bug 昨天就在了吧？\n（小声）',
     '慢慢来，\n一次只改一个地方。',
     '哼哼～',
-    '地址栏加 ?pet=0，\n我就可以先休息。'
+    '地址栏加 ?pet=0，\n我就可以先休息。',
+    '代码写累了，\n就看我两眼。',
+    '今天的 commit，\n信息想好了吗？',
+    '游戏打不过，\n就先睡一觉。',
+    '拖我一下试试，\n我不会跑。'
   ];
   var LINES_MORNING = [
     '早上好呀。\n记得吃早饭。',
-    '早八吗？\n那我陪你一起困。'
+    '早八吗？\n那我陪你一起困。',
+    '清晨的空气，\n配一杯热的正好。'
+  ];
+  var LINES_NOON = [
+    '中午了，\n别对着屏幕吃饭。',
+    '眯十分钟，\n下午能多写两行。',
+    '午饭吃什么？\n别又是外卖。'
   ];
   var LINES_AFTERNOON = [
     '下午三点最容易犯困，\n起来走两步吧。',
-    '今天进度怎么样？\n有没有偷偷摸鱼。'
+    '今天进度怎么样？\n有没有偷偷摸鱼。',
+    '太阳要斜了，\n再撑一会儿。'
   ];
   var LINES_EVENING = [
     '晚上好～\n今晚打算写点什么？',
-    '又是改样式的一晚吗？\n我懂你。'
+    '又是改样式的一晚吗？\n我懂你。',
+    '八点了，\n今天还顺利吗？'
   ];
   var LINES_LATE = [
     '这个点了还不睡？\n明天还要上班诶。',
-    '再改最后一个 bug 就睡——\n你上次也这么说。'
+    '再改最后一个 bug 就睡——\n你上次也这么说。',
+    '夜深了，\n屏幕亮度调低一点。'
+  ];
+  var LINES_DAWN = [
+    '两点了。\n真的，去睡吧。',
+    '这个点做的决定，\n明天多半要重做。',
+    '凌晨的效率，\n是用明天的头疼换的。'
+  ];
+  var LINES_WEEKEND = [
+    '周末诶，\n可以多玩一会儿。',
+    '周末的晚上，\n时间过得特别快。',
+    '休息日也别熬太狠，\n周一还要上班。'
+  ];
+  var LINES_WEEKDAY = [
+    '工作日呢，\n摸鱼记得切窗口。',
+    '又是上班的一天，\n先喝口水。'
+  ];
+  var LINES_GAME = [
+    '又卡关了？\n换把武器试试。',
+    '这 Boss 有二阶段，\n我猜的。',
+    '手柄连上了吗？\n别又键鼠硬上。',
+    '存档了吗？\n……还没吧。',
+    '掉帧的话，\n先看看显存。'
+  ];
+  var LINES_ZHEN = [
+    '石蒜花开了，\n阿花在等你。',
+    '大刀举起来了——\n快翻滚！',
+    '相公，你好狠的心。\n（投技预警）',
+    '灭烛见真火，\n忘剑得神兵。',
+    '追命要开二阶段了，\n这次别差一刀。',
+    '玉儿还在谷底等着呢，\n别又忘了。',
+    '金身罗汉？\n拿斧老大的斧头砸。',
+    '被杀气改造了？\n那就先跑吧。'
+  ];
+  var LINES_GENSHIN = [
+    '前面的区域，\n以后再来探索吧。',
+    '原神，启动！',
+    '树脂要溢出了，\n真的。',
+    '派蒙又要说话了吧。'
+  ];
+  var LINES_CP2077 = [
+    '夜之城的雨，\n好像没停过。',
+    '华子还等着呢，\n别让她等太久。',
+    'PhotoMode-EX 更新了？\n先拍两张。',
+    '义体有点热，\n该散热了。'
   ];
   var lastLine = '';
+
+  /* 当日新闻：构建时由 scripts/inline-pet.js 从 source/_data/pet-news.json 注入 */
+  var NEWS = (function () {
+    var n = window.__PET_NEWS;
+    if (!n || !n.items || !n.items.length || !n.date) return [];
+    var t = Date.parse(n.date + 'T00:00:00');
+    if (isNaN(t)) return [];
+    if (Math.abs(Date.now() - t) > 2 * 86400000) return [];   // 超过两天就不提了
+    var out = [];
+    for (var i = 0; i < n.items.length; i++) out.push('今日要闻：' + n.items[i]);
+    return out;
+  })();
 
   var FORCE = /[?&]pet=1\b/.test(location.search);   // ?pet=1 强制显示（排障用）
   var OFF = /[?&]pet=0\b/.test(location.search);     // ?pet=0 临时关闭
@@ -62,7 +130,7 @@
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
   var ASSET_V = '?v=20261030t';
-  var PET_VER = '20261030.19';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var PET_VER = '20261101.20';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_CLOSED_1X = '/images/pet/front_closed_310.webp' + ASSET_V;
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_620.webp' + ASSET_V;
   var SPRITE_CLOSED_3X = '/images/pet/front_closed_930.webp' + ASSET_V;
@@ -272,13 +340,51 @@
     scheduleBlink();
   }
 
+  /* 页面情境：文章页按标题/标签认出是哪款游戏，列表页不参与 */
+  var ctxPath = null, ctxPool = [];
+  function contextPool() {
+    var p = location.pathname;
+    if (p === ctxPath) return ctxPool;
+    ctxPath = p;
+    ctxPool = [];
+    if (/^\/(tags|categories|archives|page)\b/.test(p)) return ctxPool;
+    var txt = (document.title || '') + ' ' + p;
+    var tags = document.querySelectorAll('.article-tags a, .article-categories a, .article-meta a');
+    for (var i = 0; i < tags.length; i++) txt += ' ' + (tags[i].textContent || '');
+    if (/影之刃零|影零/.test(txt)) ctxPool = LINES_ZHEN.concat(LINES_GAME);
+    else if (/原神/.test(txt)) ctxPool = LINES_GENSHIN.concat(LINES_GAME);
+    else if (/赛博朋克|2077/.test(txt)) ctxPool = LINES_CP2077.concat(LINES_GAME);
+    else if (/游戏/.test(txt)) ctxPool = LINES_GAME.slice();
+    return ctxPool;
+  }
+
+  function timeBucket(h) {
+    if (h >= 5 && h < 11) return 'morning';
+    if (h >= 11 && h < 14) return 'noon';
+    if (h >= 14 && h < 18) return 'afternoon';
+    if (h >= 18 && h < 23) return 'evening';
+    if (h >= 23 || h < 2) return 'late';
+    return 'dawn';
+  }
+
+  function timePool(h, weekend) {
+    var p = [];
+    if (h >= 5 && h < 11) p = p.concat(LINES_MORNING);
+    else if (h >= 11 && h < 14) p = p.concat(LINES_NOON);
+    else if (h >= 14 && h < 18) p = p.concat(LINES_AFTERNOON);
+    else if (h >= 18 && h < 23) p = p.concat(LINES_EVENING);
+    else if (h >= 23 || h < 2) p = p.concat(LINES_LATE);
+    else p = p.concat(LINES_DAWN);
+    return p.concat(weekend ? LINES_WEEKEND : LINES_WEEKDAY);
+  }
+
   function pickLine() {
-    var h = new Date().getHours();
-    var pool = LINES_ANY.slice();
-    if (h >= 5 && h < 11) pool = pool.concat(LINES_MORNING);
-    else if (h >= 11 && h < 18) pool = pool.concat(LINES_AFTERNOON);
-    else if (h >= 18 && h < 23) pool = pool.concat(LINES_EVENING);
-    else pool = pool.concat(LINES_LATE);
+    var d = new Date();
+    var wd = d.getDay();
+    var pool = LINES_ANY.slice().concat(timePool(d.getHours(), wd === 0 || wd === 6));
+    var ctx = contextPool();
+    if (ctx.length) pool = pool.concat(ctx, ctx);   // 情境台词权重加倍
+    if (NEWS.length) pool = pool.concat(NEWS);      // 当日新闻：权重与时段台词相当
     var s = '';
     for (var i = 0; i < 6; i++) {
       s = pool[Math.floor(Math.random() * pool.length)];
@@ -356,7 +462,17 @@
   function showBubble() {
     if (!bubble) return;
     ensureFont();
-    var text = pickLine();
+    // 每个会话第一次点我，先报一条当日新闻；之后回归随机池子
+    var firstNews = false;
+    if (NEWS.length) {
+      try {
+        if (!sessionStorage.getItem('pet.newsSaid')) {
+          sessionStorage.setItem('pet.newsSaid', '1');
+          firstNews = true;
+        }
+      } catch (e) { /* 隐私模式忽略 */ }
+    }
+    var text = firstNews ? NEWS[Math.floor(Math.random() * NEWS.length)] : pickLine();
     bubble.textContent = text;
     placeBubble();
     bubble.classList.add('is-on');
@@ -516,6 +632,9 @@
         sprite: !!artEl,
         ver: ASSET_V.replace('?v=', ''),
         codeVer: PET_VER,
+        bucket: timeBucket(new Date().getHours()),
+        ctx: contextPool().length,
+        news: NEWS.length,
         tilt: { x: +cur.x.toFixed(3), y: +cur.y.toFixed(3) }
       };
     };
