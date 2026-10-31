@@ -361,7 +361,7 @@ int main()
 
 运行结果是符合预期的，就是拍视频的时候一只手不太方便有点点遮挡视线…不过现象还是比较明显的.
 
-<div align = "center"><img src="LED_SW.gif"  width=""  height = "" /></div>
+<div align="center"><video src="LED_SW.mp4" autoplay loop muted playsinline style="max-width:100%;height:auto"></video></div>
 
 
 
