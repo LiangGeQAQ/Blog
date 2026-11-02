@@ -45,7 +45,10 @@
     '代码写累了，\n就看我两眼。',
     '今天的 commit，\n信息想好了吗？',
     '游戏打不过，\n就先睡一觉。',
-    '拖我一下试试，\n我不会跑。'
+    '拖我一下试试，\n我不会跑。',
+    '今天也要，\n好好吃饭。',
+    '窗外风大，\n记得关窗。',
+    '写不下去了，\n就出去走两圈。'
   ];
   var LINES_MORNING = [
     '早上好呀。\n记得吃早饭。',
@@ -101,13 +104,18 @@
     '追命要开二阶段了，\n这次别差一刀。',
     '玉儿还在谷底等着呢，\n别又忘了。',
     '金身罗汉？\n拿斧老大的斧头砸。',
-    '被杀气改造了？\n那就先跑吧。'
+    '被杀气改造了？\n那就先跑吧。',
+    '石蒜花谷的新娘，\n等了一整年。',
+    '二阶段不讲武德，\n先撤，再打。',
+    '忘剑得神兵，\n这名字起得真好。'
   ];
   var LINES_GENSHIN = [
     '前面的区域，\n以后再来探索吧。',
     '原神，启动！',
     '树脂要溢出了，\n真的。',
-    '派蒙又要说话了吧。'
+    '派蒙又要说话了吧。',
+    '抽卡前先许愿，\n玄学也算数。',
+    '每日委托清了吗？\n树脂别浪费。'
   ];
   var LINES_CP2077 = [
     '夜之城的雨，\n好像没停过。',
@@ -115,6 +123,60 @@
     'PhotoMode-EX 更新了？\n先拍两张。',
     '义体有点热，\n该散热了。'
   ];
+  /* 季节池：按月-日区间生效，跨年区间自动回绕（11-01 → 03-15） */
+  var LINES_WINTER = [
+    '天冷得很快，\n外套别嫌麻烦。',
+    '被窝以外，\n都是远方。',
+    '手冻僵了吧？\n先搓热再打字。',
+    '天黑得早了，\n回去路上慢点。',
+    '灌一杯热的，\n从里到外暖起来。'
+  ];
+  var SEASONAL = [
+    { from: '11-01', to: '03-15', lines: LINES_WINTER }
+  ];
+
+  /* 时效台词：过了区间自动消失（阿万 2026-11-02 定：强时效必须老化，不留陈年梗） */
+  var LINES_SINGLES = [
+    '购物车清了吗？\n零点可别手抖。',
+    '双十一倒计时，\n钱包先深呼吸。',
+    '凑单凑到最后，\n总会多买一件。'
+  ];
+  var LINES_NEWYEAR = [
+    '又一年要过去了，\n今年还算行吧。',
+    '跨年别一个人，\n至少叫上朋友。'
+  ];
+  var TIMED = [
+    { from: '11-01', to: '11-11', lines: LINES_SINGLES },
+    { from: '12-25', to: '01-03', lines: LINES_NEWYEAR }
+  ];
+
+  /* 情境限定：条件成立才进池（周一早、周五晚、文章页、归档列表页） */
+  var LINES_MONDAY_AM = [
+    '周一早上，\n灵魂还在被窝里。',
+    '新的一周，\n先别急着立 flag。'
+  ];
+  var LINES_FRIDAY_PM = [
+    '周五晚上，\n一周里最像样的时候。',
+    '这周辛苦了，\n今晚别碰工作。'
+  ];
+  var LINES_POST = [
+    '这段写得不错，\n别手贱删了。',
+    '配图压过了吗？\n原图有点重。',
+    '收尾别忘了，\n加一句 AI 参与标注。'
+  ];
+  var LINES_LIST = [
+    '已经写了这么多篇，\n还挺能坚持。'
+  ];
+  var COND = [
+    { when: function (d) { return d.getDay() === 1 && d.getHours() >= 5 && d.getHours() < 11; }, lines: LINES_MONDAY_AM },
+    { when: function (d) { return d.getDay() === 5 && d.getHours() >= 18; }, lines: LINES_FRIDAY_PM },
+    { when: function () { return /^\/\d{4}\/\d{2}\/\d{2}\//.test(location.pathname); }, lines: LINES_POST },
+    { when: function () { return /^\/(archives|categories|tags)\b/.test(location.pathname); }, lines: LINES_LIST }
+  ];
+
+  /* 阿万点名喜欢的台词，权重 ×2 */
+  var FAVORITES = ['灭烛见真火，\n忘剑得神兵。'];
+
   var lastLine = '';
 
   /* 当日新闻：构建时由 scripts/inline-pet.js 从 source/_data/pet-news.json 注入 */
@@ -140,7 +202,7 @@
 
   /* ---------- 伪 2.5D：整卡透视倾斜 ---------- */
   var ASSET_V = '?v=20261030t';
-  var PET_VER = '20261101.21';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
+  var PET_VER = '20261102.01';   // 内容指纹：改素材必须同步改这里，否则 CDN 7 天缓存不会更新
   var SPRITE_CLOSED_1X = '/images/pet/front_closed_310.webp' + ASSET_V;
   var SPRITE_CLOSED_2X = '/images/pet/front_closed_620.webp' + ASSET_V;
   var SPRITE_CLOSED_3X = '/images/pet/front_closed_930.webp' + ASSET_V;
@@ -427,6 +489,28 @@
     return 'dawn';
   }
 
+  /* 月-日字符串，用于季节/时效区间比较 */
+  function mmdd(d) {
+    return ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+  function inRange(cur, from, to) {
+    return from <= to ? (cur >= from && cur <= to) : (cur >= from || cur <= to);
+  }
+  function datedPool(d, list) {
+    var cur = mmdd(d), p = [];
+    for (var i = 0; i < list.length; i++) {
+      if (inRange(cur, list[i].from, list[i].to)) p = p.concat(list[i].lines);
+    }
+    return p;
+  }
+  function condPool(d) {
+    var p = [];
+    for (var i = 0; i < COND.length; i++) {
+      try { if (COND[i].when(d)) p = p.concat(COND[i].lines); } catch (e) { /* ignore */ }
+    }
+    return p;
+  }
+
   function timePool(h, weekend) {
     var p = [];
     if (h >= 5 && h < 11) p = p.concat(LINES_MORNING);
@@ -444,6 +528,12 @@
     var pool = LINES_ANY.slice().concat(timePool(d.getHours(), wd === 0 || wd === 6));
     var ctx = contextPool();
     if (ctx.length) pool = pool.concat(ctx, ctx);   // 情境台词权重加倍
+    pool = pool.concat(datedPool(d, SEASONAL));     // 季节台词：只在区间内出现
+    pool = pool.concat(datedPool(d, TIMED));        // 时效台词：过期自动消失
+    pool = pool.concat(condPool(d));                // 情境台词：条件成立才进池
+    for (var f = 0; f < FAVORITES.length; f++) {
+      if (pool.indexOf(FAVORITES[f]) >= 0) pool = pool.concat([FAVORITES[f]]);  // 偏爱台词权重 ×2
+    }
     if (NEWS.length) pool = pool.concat(NEWS);      // 当日新闻：权重与时段台词相当
     var s = '';
     for (var i = 0; i < 6; i++) {
@@ -711,6 +801,9 @@
         bucket: timeBucket(new Date().getHours()),
         ctx: contextPool().length,
         news: NEWS.length,
+        seasonal: datedPool(new Date(), SEASONAL).length,
+        timed: datedPool(new Date(), TIMED).length,
+        cond: condPool(new Date()).length,
         tilt: { x: +cur.x.toFixed(3), y: +cur.y.toFixed(3) }
       };
     };
