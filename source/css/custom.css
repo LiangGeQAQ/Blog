@@ -584,3 +584,26 @@ body {
   .first-screen-container .description .desc-item::after,
   #pet-sparkles path { animation: none; }
 }
+
+/* ---------- 文章内嵌数据图表（SVG）：窄屏容器内横滑，页面本身不产生横向滚动 ---------- */
+/* 破例写死底色：图表 SVG 素材自带浅底 #fbfcfe，容器必须与图片一致；暗色模式下显示为一张浅色图表卡片 */
+.keep-markdown-body .oc-chart {
+  margin: 1.4em 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border-color);
+  border-radius: var(--oc-radius-sm);
+  background: #fbfcfe;
+}
+.keep-markdown-body .oc-chart img {
+  display: block;
+  /* 固定 760px 原宽：缩到 500 时图内字号只有 9px，低于可读下限；窄屏改为容器内横滑 */
+  width: 760px;
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .keep-markdown-body .oc-chart { scroll-behavior: auto; }
+}
