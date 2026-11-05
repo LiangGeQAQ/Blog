@@ -812,3 +812,155 @@ body.dark-mode .rf-output .rf-err {
 @media (prefers-reduced-motion: reduce) {
   .website-count .icon-animate { animation: none; }
 }
+
+/* ---------- 10. /tools 工具集合与页内页签（2026-11-05） ---------- */
+
+/* 工具集合列表 */
+.tool-list {
+  display: grid;
+  gap: 12px;
+  margin: 1.2em 0 1.4em;
+}
+
+.keep-markdown-body .tool-item-link {
+  display: block;
+  padding: 16px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--oc-radius-sm);
+  text-decoration: none;
+  transition: border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.keep-markdown-body .tool-item-link:hover {
+  border-color: var(--primary-color);
+  background: color-mix(in srgb, var(--primary-color) 4%, transparent);
+}
+
+.keep-markdown-body .tool-item-link:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.tool-item-title {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-color-1);
+}
+
+.tool-item-desc {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-color-4);
+}
+
+/* 面包屑（返回工具集合） */
+.rf-breadcrumb {
+  margin: 0 0 1em;
+  font-size: 0.92rem;
+  color: var(--text-color-4);
+}
+
+.rf-breadcrumb a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.rf-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.rf-breadcrumb-sep {
+  margin: 0 0.5em;
+  color: var(--text-color-5);
+}
+
+/* 页签 */
+.rf-tabs {
+  margin: 1.2em 0 1.8em;
+  min-width: 0;
+}
+
+.rf-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.rf-tab {
+  margin-bottom: -1px;
+  padding: 11px 18px;
+  font-size: 1rem;
+  color: var(--text-color-3);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.16s ease, border-color 0.16s ease;
+}
+
+.rf-tab:hover {
+  color: var(--primary-color);
+}
+
+.rf-tab:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: -2px;
+}
+
+.rf-tab.is-active {
+  font-weight: 600;
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+/* 无 JS：面板全部展开；JS 就绪（.js-tabs）后才只显示活动面板 */
+.rf-tabpanel {
+  min-width: 0;
+}
+
+.rf-tabs.js-tabs .rf-tabpanel {
+  display: none;
+}
+
+.rf-tabs.js-tabs .rf-tabpanel.is-active {
+  display: block;
+}
+
+.rf-lead {
+  margin: 0 0 1em;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-color-4);
+}
+
+@media (max-width: 480px) {
+  .rf-tab {
+    padding: 10px 13px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .keep-markdown-body .tool-item-link,
+  .rf-tab { transition: none; }
+}
+
+/* 暗色下主题主色 #0066cc 作正文色对比度仅 2.1，工具区的链接/活动页签需提亮到 ≥4.5 */
+body.dark-mode .rf-breadcrumb a,
+body.dark-mode .rf-tab:hover,
+body.dark-mode .rf-tab.is-active {
+  color: color-mix(in srgb, #ffffff 45%, var(--primary-color));
+}
+
+body.dark-mode .rf-tab.is-active {
+  border-bottom-color: color-mix(in srgb, #ffffff 45%, var(--primary-color));
+}
+
+body.dark-mode .keep-markdown-body .tool-item-link:hover {
+  border-color: color-mix(in srgb, #ffffff 45%, var(--primary-color));
+}
