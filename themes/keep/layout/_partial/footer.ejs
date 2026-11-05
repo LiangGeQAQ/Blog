@@ -6,6 +6,7 @@ const {
 } = theme.footer
 const { author: bi_author } = theme.base_info
 const { author: hexo_author } = config
+const bsz = theme.website_count?.busuanzi_count
 %>
 <footer class="footer">
     <div class="info-container">
@@ -20,6 +21,24 @@ const { author: hexo_author } = config
                 &nbsp;<a href="/"><%= bi_author || hexo_author %></a>
             <% } %>
         </div>
+<% if (bsz?.enable === true) { %>
+            <!-- 不蒜子：容器默认隐藏，JSONP 成功后官方库才 shows；服务异常时保持隐藏，不留悬空数字 -->
+            <script async <%= theme.pjax.enable === true ? 'data-pjax' : '' %>
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                <% if (bsz.site_uv) { %>
+                    <span id="busuanzi_container_site_uv" class="busuanzi-container" hidden>
+                        <%- __('site_uv') %>&nbsp;<span id="busuanzi_value_site_uv"></span>
+                    </span>
+                <% } %>
+                <% if (bsz.site_uv && bsz.site_pv) { %>&ensp;<% } %>
+                <% if (bsz.site_pv) { %>
+                    <span id="busuanzi_container_site_pv" class="busuanzi-container" hidden>
+                        <%- __('site_pv') %>&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                <% } %>
+            </div>
+        <% } %>
         <div class="theme-info info-item">
             <%- __('powered_by', '<a target="_blank" href="https://hexo.io">Hexo</a>') %>
         </div>

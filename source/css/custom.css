@@ -791,3 +791,24 @@ body.dark-mode .rf-output .rf-err {
   min-width: 560px;
   margin: 0;
 }
+
+/* ---------- 9. 不蒜子访问统计（2026-11-05 恢复，规则见 BLOG_GUIDE 4.5） ----------
+   容器带 hidden 默认不显示；官方库 JSONP 成功后会把 display 置为 inline，
+   inline style 优先级高于 [hidden] 的 UA 样式，故成功即显示；失败回调不触发，保持隐藏。 */
+.website-count .busuanzi-container {
+  color: var(--text-color-4);
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.article-pv {
+  white-space: nowrap;
+}
+
+.article-pv .fa-eye {
+  color: var(--text-color-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .website-count .icon-animate { animation: none; }
+}
