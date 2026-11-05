@@ -31,7 +31,7 @@ try:
 except ImportError:
     sys.exit("缺少依赖：pip3 install websocket-client")
 
-DEFAULT_PAGES = ["/", "/archives/", "/categories/", "/tags/", "/links/", "/about/"]
+DEFAULT_PAGES = ["/", "/archives/", "/categories/", "/tags/", "/links/", "/tools/", "/about/"]
 WIDTHS = [1440, 1024, 390]
 
 JS = r"""
@@ -104,6 +104,7 @@ JS = r"""
   const required = {
     '/': ['.home-article-item', '.header-wrapper'],
     '/links/': ['.friends-link-item'],
+    '/tools/': ['.rf-tool', '.rf-seg-btn'],
     '/categories/': ['.all-category-list-item'],
     '/tags/': ['.tag-hot-item, .tag-index-item']
   };
