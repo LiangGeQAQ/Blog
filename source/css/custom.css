@@ -607,3 +607,187 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .keep-markdown-body .oc-chart { scroll-behavior: auto; }
 }
+
+/* =====================================================================
+   8. /tools 射频换算工具（2026-11-05 新增，规则见 DESIGN_GUIDE.md）
+   只用主题 CSS 变量，亮/暗色自适应；不引外部库
+   ===================================================================== */
+.rf-tool {
+  margin: 1.2em 0 1.8em;
+}
+
+.rf-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 760px) {
+  .rf-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.rf-panel {
+  border: 1px solid var(--border-color);
+  border-radius: var(--oc-radius-sm);
+  padding: 18px 18px 14px;
+  background: color-mix(in srgb, var(--primary-color) 3%, var(--background-color-1));
+  min-width: 0;
+}
+
+.rf-panel h3 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+}
+
+.rf-field {
+  margin-bottom: 12px;
+  min-width: 0;
+}
+
+.rf-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  color: var(--text-color-2);
+}
+
+.rf-input {
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 10px 12px;
+  font-size: 1rem;
+  color: var(--text-color-1);
+  background: var(--background-color-1);
+  /* 主题默认 border-color 浅色下对比度仅 2.0，加深到 ≥3:1 */
+  border: 1px solid color-mix(in srgb, var(--text-color-3) 40%, var(--border-color));
+  border-radius: var(--oc-radius-sm);
+  outline: none;
+}
+
+.rf-input:focus-visible {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 22%, transparent);
+}
+
+/* 暗色下默认边框过暗（对比度 1.9），提亮到 ≥3:1 */
+body.dark-mode .rf-input {
+  border-color: color-mix(in srgb, #ffffff 32%, var(--border-color));
+}
+
+body.dark-mode .rf-seg-btn {
+  border-color: color-mix(in srgb, #ffffff 28%, var(--border-color));
+}
+
+.rf-output {
+  min-height: 48px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+}
+
+.rf-hint {
+  margin: 4px 0;
+  color: var(--text-color-4);
+  font-size: 0.9rem;
+}
+
+/* 选择器需高于 .keep-markdown-body p，否则错误色会被正文色盖掉 */
+.rf-output .rf-err {
+  margin: 4px 0;
+  color: var(--copyright-info-color);
+  font-size: 0.92rem;
+}
+
+/* 主题暗色错误红过暗（对比度仅 1.4），调亮到 5.2+ */
+body.dark-mode .rf-output .rf-err {
+  color: color-mix(in srgb, #ffffff 60%, var(--copyright-info-color));
+}
+
+.rf-result {
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.rf-result > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  min-width: 0;
+}
+
+.rf-result dt {
+  color: var(--text-color-3);
+  font-size: 0.9rem;
+}
+
+.rf-result dd {
+  margin: 0;
+  text-align: right;
+  color: var(--text-color-1);
+  overflow-wrap: anywhere;
+}
+
+.rf-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+/* 分段切换器（tablist） */
+.rf-seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.rf-seg-btn {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: var(--text-color-2);
+  background: var(--background-color-2);
+  border: 1px solid var(--border-color);
+  border-radius: var(--oc-radius-sm);
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.rf-seg-btn:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.rf-seg-btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.rf-seg-btn.is-active {
+  color: color-mix(in srgb, #ffffff 90%, var(--primary-color));
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.rf-noscript {
+  color: var(--copyright-info-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rf-seg-btn { transition: none; }
+}
+
+/* 参数表横滑容器：窄屏表内滑动，页面本身不出现横向滚动 */
+.rf-table-wrap {
+  margin: 1em 0 1.4em;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rf-table-wrap table {
+  min-width: 560px;
+  margin: 0;
+}
