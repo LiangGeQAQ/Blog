@@ -6,14 +6,15 @@
 (function () {
   'use strict';
 
-  function ready(fn) {
-    if (document.readyState !== 'loading') fn();
-    else document.addEventListener('DOMContentLoaded', fn);
-  }
-
-  ready(function () {
+  // 不使用 DOMContentLoaded：慢网络下它可能被第三方资源拖到数秒后才触发，
+  // 期间页签尚未收拢，用户会看到"两个工具都展开→几秒后突然收起"的闪动。
+  // 脚本位于工具标记之后，解析到这里时 DOM 已存在，直接初始化即可。
+  function boot() {
+    var root = document.getElementById('rf-tabs');
+    if (!root || root.dataset.rfInited === '1') return;
     var T = window.RFTools;
-    if (!T || !document.getElementById('rf-tabs')) return;
+    if (!T) return;
+    root.dataset.rfInited = '1';
 
     var $ = function (id) { return document.getElementById(id); };
 
@@ -227,5 +228,11 @@
       nrOut.innerHTML = html;
     }
     nrInput.addEventListener('input', runNr);
-  });
+  }
+
+  // 立即尝试一次；若依赖未就绪或 PJAX 换了新 DOM，再由这些事件补跑（boot 自身幂等）
+  boot();
+  document.addEventListener('DOMContentLoaded', boot);
+  window.addEventListener('pjax:complete', boot);
+  window.addEventListener('pjax:success', boot);
 })();
