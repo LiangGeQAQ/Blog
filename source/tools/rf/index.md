@@ -61,6 +61,7 @@ description: "PLMN-Identity 编解码与 NR-ARFCN / GSCN 频点换算，参数�
 </div>
 </section>
 </div>
+<script>(function(){var r=document.getElementById('rf-tabs');if(!r)return;r.classList.add('js-tabs');setTimeout(function(){if(r.dataset.rfInited!=='1')r.classList.remove('js-tabs');},4000);})();</script>
 
 ## 规范参数
 
