@@ -13,7 +13,7 @@
 
   ready(function () {
     var T = window.RFTools;
-    if (!T || !document.getElementById('rf-plmn')) return;
+    if (!T || !document.getElementById('rf-tabs')) return;
 
     var $ = function (id) { return document.getElementById(id); };
 
@@ -25,6 +25,58 @@
 
     function showError(el, msg) {
       el.innerHTML = '<p class="rf-err">' + esc(msg) + '</p>';
+    }
+
+    /* ---------------- 页内页签 ---------------- */
+    // 无 JS 时面板全部展开（CSS 只在 .js-tabs 下隐藏），这里负责切换与 hash 同步
+    var tabsRoot = document.getElementById('rf-tabs');
+    if (tabsRoot) {
+      var tabBtns = Array.prototype.slice.call(tabsRoot.querySelectorAll('.rf-tab'));
+      var tabPanels = Array.prototype.slice.call(tabsRoot.querySelectorAll('.rf-tabpanel'));
+
+      var activateTab = function (name, syncHash) {
+        var found = false;
+        tabBtns.forEach(function (b) {
+          var on = b.getAttribute('data-tab') === name;
+          if (on) found = true;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+          b.tabIndex = on ? 0 : -1;
+        });
+        tabPanels.forEach(function (p) {
+          p.classList.toggle('is-active', p.getAttribute('data-panel') === name);
+        });
+        if (found && syncHash) {
+          // replaceState 而非 pushState：切页签不污染浏览器历史
+          try { history.replaceState(null, '', '#' + name); } catch (e) { /* file:// 下忽略 */ }
+        }
+        return found;
+      };
+
+      var initialTab = (location.hash || '').replace('#', '');
+      if (!activateTab(initialTab, false) && tabBtns.length) {
+        activateTab(tabBtns[0].getAttribute('data-tab'), false);
+      }
+      tabsRoot.classList.add('js-tabs'); // JS 就绪后才收拢面板，避免闪隐
+
+      tabBtns.forEach(function (btn, idx) {
+        btn.addEventListener('click', function () {
+          activateTab(btn.getAttribute('data-tab'), true);
+        });
+        btn.addEventListener('keydown', function (e) {
+          var dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!dir) return;
+          e.preventDefault();
+          var next = tabBtns[(idx + dir + tabBtns.length) % tabBtns.length];
+          activateTab(next.getAttribute('data-tab'), true);
+          next.focus();
+        });
+      });
+
+      window.addEventListener('popstate', function () {
+        var name = (location.hash || '').replace('#', '');
+        if (name) activateTab(name, false);
+      });
     }
 
     /* ---------------- PLMN 编码 ---------------- */
@@ -103,7 +155,7 @@
         segBtns.forEach(function (b) {
           var on = b === btn;
           b.classList.toggle('is-active', on);
-          b.setAttribute('aria-selected', on ? 'true' : 'false');
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
         });
         nrLabel.innerHTML = MODE_UI[mode].labelHTML;
         nrInput.placeholder = MODE_UI[mode].placeholder;
