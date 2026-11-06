@@ -12,7 +12,8 @@
   1. 收集 pet.js 里所有台词字符串 + pet-news.json 的 items
   2. 用 Google Fonts 的 text= 参数取子集 woff2
   3. 写入 source/font/pet-bubble-vN.woff2（N 自增），并同步改写 source/css/pet.css
-  4. 校验字符覆盖，缺字直接非 0 退出
+  4. 清理旧版本子集（只保留当前 vN，旧文件从磁盘删除，git 层由调用方 add -u 暂存）
+  5. 校验字符覆盖，缺字直接非 0 退出
 
 依赖：requests 可省（用 urllib），fontTools + brotli 仅用于校验（有则校验，无则跳过）。
 """
@@ -79,6 +80,13 @@ def main():
     open(CSS, 'w', encoding='utf-8').write(css)
 
     print('字体: %s (%d KB), %d 个字符' % (os.path.relpath(out, ROOT), len(data) // 1024, len(chars)))
+
+    # 清理旧版本子集：目录里只留当前版本（BLOG_GUIDE 4.6：旧版本不长期保留）
+    keep = 'pet-bubble-v%d.woff2' % ver
+    for name in sorted(os.listdir(FONT_DIR)):
+        if re.fullmatch(r'pet-bubble-v\d+\.woff2', name) and name != keep:
+            os.remove(os.path.join(FONT_DIR, name))
+            print('已清理旧子集: source/font/%s' % name)
 
     # 覆盖率校验（可选）
     try:
